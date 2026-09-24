@@ -616,9 +616,8 @@ export default function LogicGrid() {
               </div>
             </section>
           </aside>
-        </div>
 
-        <section className={styles.panel}>
+          <section className={`${styles.panel} ${styles.symbolPanel}`}>
           <h2 className={styles.panelTitle}>สัญลักษณ์หัวตาราง</h2>
           {!sel && (
             <p className={styles.panelHint}>
@@ -684,7 +683,8 @@ export default function LogicGrid() {
               </button>
             </div>
           )}
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   );

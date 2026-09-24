@@ -45,8 +45,16 @@
     padding-left: 16px;
     padding-right: 16px;
   }
+  .main {
+    grid-template-columns: 1fr;
+  }
   .side {
-    max-width: none !important;
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .symbolPanel {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 
@@ -220,14 +228,15 @@
 
 /* main layout */
 .main {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
   gap: 24px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: start;
 }
 
 .gridCard {
-  flex: 1 1 640px;
+  grid-column: 1;
+  grid-row: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -236,6 +245,11 @@
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 6px;
+}
+
+.symbolPanel {
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .gridHint {
@@ -362,8 +376,8 @@
 
 /* side panels */
 .side {
-  flex: 1 1 320px;
-  max-width: 420px;
+  grid-column: 2;
+  grid-row: 1 / span 2;
   min-width: 0;
   display: flex;
   flex-direction: column;
