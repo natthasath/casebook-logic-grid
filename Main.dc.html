@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Casebook Logic Grid</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&amp;family=IBM+Plex+Sans+Thai:wght@400;500;600&amp;family=Pridi:wght@500;700&amp;display=swap">
+<style>
+body{margin:0;background:#F1EBDD}
+button{font-family:inherit;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
+.cell:hover{filter:brightness(.93)}
+.cell:focus-visible{outline:3px solid #1F5FA8;outline-offset:-3px}
+button:focus-visible,input:focus-visible{outline:3px solid #1F5FA8;outline-offset:2px}
+input::placeholder{color:#7A7361}
+.wrap{padding-left:32px;padding-right:32px}
+.main{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.gridcard{flex:1 1 640px;min-width:0}
+.side{flex:1 1 320px;max-width:420px;min-width:0}
+@media (max-width:700px){.wrap{padding-left:16px;padding-right:16px}.side{max-width:none}}
+</style>
+</helmet>
+<div style="box-sizing:border-box;width:100%;min-height:1100px;padding-bottom:72px;background-color:#F1EBDD;background-image:radial-gradient(#D6CCB4 1px, transparent 1px);background-size:22px 22px;color:#1C1A16;font-family:'IBM Plex Sans Thai','Noto Sans Thai',system-ui,sans-serif;font-size:16px;line-height:1.5">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="ic-s-hood" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.5 2 3.5 6.5 3.5 12v4.5c0 2 1.2 3.5 3 4.5V22h11v-1c1.8-1 3-2.5 3-4.5V12C20.5 6.5 17.5 2 12 2z M12 7.5a4.2 4.5 0 1 0 0 9 4.2 4.5 0 1 0 0-9z M10.2 10.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2z M13.8 10.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2z"></path></symbol>
+<symbol id="ic-s-tophat" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6.5 3h11v11.5h-11z M6.5 10.5h11v2.5h-11z M2.5 16h19v3h-19z"></path></symbol>
+<symbol id="ic-s-mustache" viewBox="0 0 24 24"><path d="M12 10.5C10.8 8.9 8.8 8.3 6.8 8.9 4.6 9.6 3 11 2 13.5c1.6-.6 2.8-.3 3.8.6 1.4 1.2 3.4 1.2 6.2-.3z"></path><path transform="translate(24 0) scale(-1 1)" d="M12 10.5C10.8 8.9 8.8 8.3 6.8 8.9 4.6 9.6 3 11 2 13.5c1.6-.6 2.8-.3 3.8.6 1.4 1.2 3.4 1.2 6.2-.3z"></path></symbol>
+<symbol id="ic-s-glasses" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="13.5" r="3.6"></circle><circle cx="17.5" cy="13.5" r="3.6"></circle><path d="M10.1 13h3.8M2.9 13L2 9.5M21.1 13L22 9.5"></path></g></symbol>
+<symbol id="ic-s-crown" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"></path></symbol>
+<symbol id="ic-s-mask" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 9c3-2 6-2 10-.5 4-1.5 7-1.5 10 .5v3c0 3-2.5 5-5 5-2 0-3-1-5-1s-3 1-5 1c-2.5 0-5-2-5-5z M5.5 12.6a2 1.6 0 1 0 4 0 2 1.6 0 1 0-4 0z M14.5 12.6a2 1.6 0 1 0 4 0 2 1.6 0 1 0-4 0z"></path></symbol>
+<symbol id="ic-s-bowtie" viewBox="0 0 24 24"><path d="M2 7l8 5-8 5z M22 7l-8 5 8 5z M10 9.5h4v5h-4z"></path></symbol>
+<symbol id="ic-s-cap" viewBox="0 0 24 24"><path d="M4 14a8 8 0 0 1 16 0z M2 16h20v2.5H2z"></path></symbol>
+<symbol id="ic-s-skull" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.5c-4.5 0-8 3-8 7.5 0 2.5 1.2 4.3 3 5.5V20h10v-4.5c1.8-1.2 3-3 3-5.5 0-4.5-3.5-7.5-8-7.5z M9 8.7a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 1 0 0-3.8z M15 8.7a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 1 0 0-3.8z M12 12.8l-1.3 2.7h2.6z"></path></symbol>
+<symbol id="ic-s-person" viewBox="0 0 24 24"><path d="M12 3a4.5 4.5 0 1 0 0 9 4.5 4.5 0 1 0 0-9z M4 21c0-4.5 3.5-7.5 8-7.5s8 3 8 7.5z"></path></symbol>
+<symbol id="ic-l-house" viewBox="0 0 24 24"><path d="M12 3l10 9h-3v9h-5v-6h-4v6H5v-9H2z"></path></symbol>
+<symbol id="ic-l-toilet" viewBox="0 0 24 24"><path d="M6 2.5h9v6H6z M4 10h17c0 4-2 6.5-5 7.5V21H9v-3.5C6 16.5 4 14 4 10z"></path></symbol>
+<symbol id="ic-l-stage" viewBox="0 0 24 24"><path d="M3 3h18v3H3z M3 6h5c0 6-1 10-1 14H3z M21 6h-5c0 6 1 10 1 14h4z M3 20.5h18V22H3z"></path></symbol>
+<symbol id="ic-l-bed" viewBox="0 0 24 24"><path d="M2 5h2.5v14H2z M2 14h20v5h-2.5v-2h-15v2H2z M6.5 9h4.5a1.5 1.5 0 0 1 1.5 1.5V12.5h-6z"></path></symbol>
+<symbol id="ic-l-kitchen" viewBox="0 0 24 24"><path d="M4 9h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z M1.5 11h2.5v2.5H1.5z M20 11h2.5v2.5H20z M8 5h8v2H8z"></path></symbol>
+<symbol id="ic-l-library" viewBox="0 0 24 24"><path d="M3 4h7c1 0 2 .5 2 1.5V20c-.8-.7-1.7-1-2.7-1H3z M21 4h-7c-1 0-2 .5-2 1.5V20c.8-.7 1.7-1 2.7-1H21z"></path></symbol>
+<symbol id="ic-l-tree" viewBox="0 0 24 24"><path d="M12 2l7 9h-4l5 7H4l5-7H5z M10.8 18h2.4v4h-2.4z"></path></symbol>
+<symbol id="ic-l-car" viewBox="0 0 24 24"><path d="M2.5 12.5L5 7h14l2.5 5.5V18h-3v-2H5.5v2h-3z"></path><circle cx="7" cy="18" r="2.5"></circle><circle cx="17" cy="18" r="2.5"></circle></symbol>
+<symbol id="ic-l-stairs" viewBox="0 0 24 24"><path d="M3 21v-4h4v-4h4V9h4V5h6v16z"></path></symbol>
+<symbol id="ic-l-door" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 2.5h12v19H6z M15 11.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M8.5 5h7v5h-7z M8.5 12.5h4v6h-4z"></path></symbol>
+<symbol id="ic-w-printer" viewBox="0 0 24 24"><path d="M6 3h12v5H6z M3 9h18a1 1 0 0 1 1 1v8h-4v-3H6v3H2v-8a1 1 0 0 1 1-1z M7.5 15.5h9V21h-9z"></path></symbol>
+<symbol id="ic-w-triangle" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 3v18h18z M7.5 11v6.5H14z"></path></symbol>
+<symbol id="ic-w-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.9"></circle><path d="M12 6.4L6 21M12 6.4L18 21M8.6 15h6.8"></path></g></symbol>
+<symbol id="ic-w-knife" viewBox="0 0 24 24"><path d="M5 20C5 11 11 5 20 4c-1 9-7 15-15 16z"></path><path d="M2.5 21.5l3-3" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"></path></symbol>
+<symbol id="ic-w-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="3.6"></circle></g><path d="M10.6 10.8H22v2.4H10.6z M17 13.2h2v3h-2z M20.5 13.2h1.5v2.2h-1.5z"></path></symbol>
+<symbol id="ic-w-hammer" viewBox="0 0 24 24"><path d="M3 4h13v5H3z M8.5 9h3v13h-3z"></path></symbol>
+<symbol id="ic-w-rope" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3.6"></circle><path d="M17.7 17.7L21.5 21.5"></path></g></symbol>
+<symbol id="ic-w-scissors" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3L17 15.5M17.5 3L7 15.5"></path><circle cx="6" cy="19" r="2.6"></circle><circle cx="18" cy="19" r="2.6"></circle></g></symbol>
+<symbol id="ic-w-candle" viewBox="0 0 24 24"><path d="M12 1.5c2 2.5 2.5 4 0 6.5-2.5-2.5-2-4 0-6.5z M10 9.5h4v8h-4z M6.5 17.5h11l1.5 4H5z"></path></symbol>
+<symbol id="ic-w-poison" viewBox="0 0 24 24"><path d="M9.5 2.5h5v4h-5z"></path><path fill-rule="evenodd" d="M9 7h6l3 4v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20v-9z M11 12.5h2v2h2v2h-2v2h-2v-2H9v-2h2z"></path></symbol>
+</defs></svg>
+<div class="wrap" style="max-width:1240px;margin:0 auto;box-sizing:border-box;display:flex;flex-direction:column;gap:24px">
+
+<header style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:28px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#5E584B">Casebook · Logic Grid</div>
+<div style="display:flex;gap:20px;align-items:center;font-size:14px;color:#3B372E">
+<div style="display:flex;gap:8px;align-items:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1F5FA8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+<span>ใช่ / ตรงกัน (O)</span>
+</div>
+<div style="display:flex;gap:8px;align-items:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4400A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+<span>ไม่ใช่ / ตัดออก (X)</span>
+</div>
+</div>
+</header>
+
+<section style="display:flex;flex-direction:column;gap:12px;padding-top:4px">
+<h1 style="margin:0;font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:clamp(34px,5vw,58px);line-height:1.2;letter-spacing:-0.01em">ไขคดีด้วยตารางตัดตัวเลือก</h1>
+<p style="margin:0;max-width:660px;font-size:18px;color:#3B372E;text-wrap:pretty">จดผลจับคู่ระหว่างผู้ต้องสงสัย สถานที่ และอาวุธ ตัดตัวเลือกทีละช่อง แล้วบันทึกค่าที่แน่ชัดไว้ก่อนลองสมมุติว่าใครโกหก</p>
+</section>
+
+<section style="display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between;padding:16px 20px;background:#FBF8F1;border:1px solid #CFC6B0;border-radius:6px">
+<div style="display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center">
+<sc-for list="{{dimControls}}" as="c" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="display:flex;flex-direction:column;line-height:1.25;min-width:84px">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#5E584B">{{c.title}}</span>
+<span style="font-size:15px;font-weight:500">{{c.sub}}</span>
+</div>
+<button type="button" aria-label="{{c.decLabel}}" onClick="{{c.dec}}" disabled="{{c.decOff}}" style="width:44px;height:44px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:22px;line-height:1;padding:0">−</button>
+<span style="min-width:22px;text-align:center;font-size:22px;font-weight:600">{{c.n}}</span>
+<button type="button" aria-label="{{c.incLabel}}" onClick="{{c.inc}}" disabled="{{c.incOff}}" style="width:44px;height:44px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:22px;line-height:1;padding:0">+</button>
+</div>
+</sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<button type="button" aria-pressed="{{toolO.pressed}}" onClick="{{toolO.pick}}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-width:1.5px;border-style:solid;border-radius:6px;font-size:15px;font-weight:500;{{toolO.style}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+<span>ถูก (O)</span>
+</button>
+<button type="button" aria-pressed="{{toolX.pressed}}" onClick="{{toolX.pick}}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-width:1.5px;border-style:solid;border-radius:6px;font-size:15px;font-weight:500;{{toolX.style}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+<span>ผิด (X)</span>
+</button>
+<button type="button" aria-pressed="{{toolE.pressed}}" onClick="{{toolE.pick}}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-width:1.5px;border-style:solid;border-radius:6px;font-size:15px;font-weight:500;{{toolE.style}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19h14M7 15l8-9 4 4-6 6H7z"></path></svg>
+<span>ลบช่อง</span>
+</button>
+<span style="width:1px;height:28px;background:#CFC6B0;margin:0 4px"></span>
+<button type="button" onClick="{{undo}}" disabled="{{undoOff}}" style="height:44px;padding:0 16px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:15px;font-weight:500">ย้อนขั้นล่าสุด</button>
+<button type="button" onClick="{{clearAll}}" disabled="{{clearOff}}" style="height:44px;padding:0 16px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:15px;font-weight:500">ล้างตารางทั้งหมด</button>
+</div>
+</section>
+
+<div class="main">
+
+<section class="gridcard" style="display:flex;flex-direction:column;gap:12px;padding:20px;background:#FBF8F1;border:1px solid #CFC6B0;border-radius:6px;box-sizing:border-box">
+<p style="margin:0;font-size:14px;color:#5E584B">เลือกเครื่องมือด้านบน (ค่าเริ่มต้นคือถูก) แล้วคลิกซ้ายที่ช่อง · คลิกขวา = เครื่องหมายผิด (X) เสมอ · คลิกซ้ำที่ค่าเดิมเพื่อล้างช่อง · แตะสัญลักษณ์ที่หัวตารางเพื่อเปลี่ยนสัญลักษณ์หรือตั้งชื่อ (สัญลักษณ์สถานที่ใช้ร่วมกันทั้งสองแกน)</p>
+<div style="overflow-x:auto;padding-bottom:6px">
+<div style="display:grid;width:max-content;{{gridTpl}}">
+<sc-for list="{{items}}" as="item" hint-placeholder-count="20">
+
+<sc-if value="{{ item.isColGroup }}" hint-placeholder-val="{{ false }}">
+<div style="box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end;padding:0 10px 8px;line-height:1.25;{{item.pos}}">
+<span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#5E584B">{{item.en}}</span>
+<span style="font-size:15px;font-weight:600">{{item.th}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ item.isColName }}" hint-placeholder-val="{{ false }}">
+<div style="box-sizing:border-box;display:flex;min-width:0;background:#F6F1E4;{{item.pos}}">
+<button type="button" aria-label="{{item.aria}}" title="{{item.title}}" onClick="{{item.pick}}" style="width:100%;height:100%;box-sizing:border-box;border:0;margin:0;padding:0;border-radius:0;display:flex;align-items:center;justify-content:center;color:#1C1A16;{{item.selStyle}}">
+<sc-if value="{{ item.hasCustom }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:30px;line-height:1;font-weight:600;color:#1C1A16">{{item.custom}}</span>
+</sc-if>
+<sc-if value="{{ item.noCustom }}" hint-placeholder-val="{{ true }}">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="{{item.iconRef}}"></use></svg>
+</sc-if>
+</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ item.isRowGroup }}" hint-placeholder-val="{{ false }}">
+<div style="box-sizing:border-box;display:flex;align-items:center;justify-content:center;{{item.pos}}">
+<div style="writing-mode:vertical-rl;transform:rotate(180deg);display:flex;flex-direction:row;gap:2px;line-height:1.25;white-space:nowrap">
+<span style="font-size:14px;font-weight:600">{{item.th}}</span>
+<span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#5E584B">{{item.en}}</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ item.isRowName }}" hint-placeholder-val="{{ false }}">
+<div style="box-sizing:border-box;display:flex;min-width:0;background:#F6F1E4;{{item.pos}}">
+<button type="button" aria-label="{{item.aria}}" title="{{item.title}}" onClick="{{item.pick}}" style="width:100%;height:100%;box-sizing:border-box;border:0;margin:0;padding:0;border-radius:0;display:flex;align-items:center;justify-content:center;color:#1C1A16;{{item.selStyle}}">
+<sc-if value="{{ item.hasCustom }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:30px;line-height:1;font-weight:600;color:#1C1A16">{{item.custom}}</span>
+</sc-if>
+<sc-if value="{{ item.noCustom }}" hint-placeholder-val="{{ true }}">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="{{item.iconRef}}"></use></svg>
+</sc-if>
+</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ item.isCell }}" hint-placeholder-val="{{ true }}">
+<button type="button" class="cell" aria-label="{{item.aria}}" onClick="{{item.press}}" onContextMenu="{{item.pressX}}" style="box-sizing:border-box;margin:0;padding:0;display:flex;align-items:center;justify-content:center;border-radius:0;background:{{item.bg}};{{item.pos}}">
+<sc-if value="{{ item.isO }}" hint-placeholder-val="{{ false }}">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1F5FA8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+</sc-if>
+<sc-if value="{{ item.isX }}" hint-placeholder-val="{{ false }}">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#B4400A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</sc-if>
+</button>
+</sc-if>
+
+</sc-for>
+</div>
+</div>
+</section>
+
+<aside class="side" style="display:flex;flex-direction:column;gap:24px">
+
+<section style="display:flex;flex-direction:column;gap:14px;padding:20px;background:#FBF8F1;border:1px solid #CFC6B0;border-radius:6px">
+<h2 style="margin:0;font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:22px">สัญลักษณ์หัวตาราง</h2>
+<sc-if value="{{ noSel }}" hint-placeholder-val="{{ true }}">
+<p style="margin:0;font-size:14px;color:#5E584B;text-wrap:pretty">แตะสัญลักษณ์ที่หัวคอลัมน์หรือหัวแถวในตาราง เพื่อเลือกสัญลักษณ์ใหม่ ตั้งชื่อ หรือพิมพ์อักขระของคุณเอง</p>
+</sc-if>
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#5E584B">{{selTitle}}</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label for="symName" style="font-size:14px;font-weight:500">ชื่อ (แสดงเมื่อชี้เมาส์ และใช้กับโปรแกรมอ่านหน้าจอ)</label>
+<input id="symName" type="text" maxlength="28" value="{{selName}}" placeholder="{{selPh}}" onInput="{{onSelName}}" style="height:44px;box-sizing:border-box;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;font-family:inherit;font-size:16px;color:#1C1A16;padding:0 12px">
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:14px;font-weight:500">เลือกสัญลักษณ์</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{libList}}" as="ic" hint-placeholder-count="10">
+<button type="button" aria-label="{{ic.label}}" title="{{ic.label}}" aria-pressed="{{ic.on}}" onClick="{{ic.pick}}" style="width:52px;height:52px;padding:0;display:flex;align-items:center;justify-content:center;border:1.5px solid #1C1A16;border-radius:6px;{{ic.style}}">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="{{ic.ref}}"></use></svg>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label for="symChar" style="font-size:14px;font-weight:500">หรือพิมพ์อักขระเอง (1-2 ตัว เช่น A, 7, ?)</label>
+<input id="symChar" type="text" maxlength="2" value="{{selCustom}}" onInput="{{onSelCustom}}" style="height:44px;box-sizing:border-box;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;font-family:inherit;font-size:18px;color:#1C1A16;padding:0 12px">
+</div>
+<button type="button" onClick="{{closeSel}}" style="height:44px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:15px;font-weight:500">เสร็จสิ้น</button>
+</div>
+</sc-if>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:16px;padding:20px;background:#FBF8F1;border:1px solid #CFC6B0;border-radius:6px">
+<h2 style="margin:0;font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:22px">สรุปคำตอบ</h2>
+<div style="display:flex;flex-direction:column;gap:4px">
+<label for="ansK" style="font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:18px">ฆาตกร?</label>
+<input id="ansK" type="text" value="{{ansK}}" onInput="{{onAnsK}}" style="height:44px;box-sizing:border-box;border:0;border-bottom:2px solid #1C1A16;background:transparent;font-family:inherit;font-size:17px;color:#1C1A16;padding:0 4px;border-radius:0">
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<label for="ansW" style="font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:18px">อาวุธ?</label>
+<input id="ansW" type="text" value="{{ansW}}" onInput="{{onAnsW}}" style="height:44px;box-sizing:border-box;border:0;border-bottom:2px solid #1C1A16;background:transparent;font-family:inherit;font-size:17px;color:#1C1A16;padding:0 4px;border-radius:0">
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<label for="ansL" style="font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:18px">สถานที่?</label>
+<input id="ansL" type="text" value="{{ansL}}" onInput="{{onAnsL}}" style="height:44px;box-sizing:border-box;border:0;border-bottom:2px solid #1C1A16;background:transparent;font-family:inherit;font-size:17px;color:#1C1A16;padding:0 4px;border-radius:0">
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px;padding:20px;background:#FBF8F1;border:1px solid #CFC6B0;border-radius:6px">
+<h2 style="margin:0;font-family:'Pridi','Noto Serif Thai',serif;font-weight:700;font-size:22px">จุดบันทึกค่าแน่ชัด</h2>
+<p style="margin:0;font-size:14px;color:#5E584B;text-wrap:pretty">กรณีมีคนให้การเท็จ: บันทึกค่าที่แน่ชัดไว้ก่อน แล้วลองสมมุติว่าใครโกหก ถ้าขัดแย้งกัน กดย้อนกลับมาที่จุดนี้ได้ทันที</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="cpName" style="font-size:14px;font-weight:500">ชื่อจุดบันทึก (ไม่ใส่ก็ได้)</label>
+<input id="cpName" type="text" maxlength="40" value="{{cpLabel}}" onInput="{{onCpLabel}}" placeholder="{{cpPlaceholder}}" style="height:44px;box-sizing:border-box;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;font-family:inherit;font-size:16px;color:#1C1A16;padding:0 12px">
+<button type="button" onClick="{{saveCp}}" style="height:48px;border:1.5px solid #1C1A16;border-radius:6px;background:#1C1A16;color:#FBF8F1;font-size:16px;font-weight:600">บันทึกค่าตอนนี้</button>
+</div>
+<sc-if value="{{ noCp }}" hint-placeholder-val="{{ true }}">
+<div style="font-size:14px;color:#5E584B;padding:8px 0">ยังไม่มีจุดบันทึก</div>
+</sc-if>
+<div style="display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{cpList}}" as="cp" hint-placeholder-count="2">
+<div style="display:flex;flex-direction:column;gap:10px;padding:12px;background:#FFFEFA;border:1px solid #CFC6B0;border-radius:6px">
+<div style="display:flex;flex-direction:column;line-height:1.3">
+<span style="font-weight:600;font-size:16px;overflow-wrap:anywhere">{{cp.label}}</span>
+<span style="font-size:13px;color:#5E584B">{{cp.meta}}</span>
+</div>
+<div style="display:flex;gap:8px">
+<button type="button" aria-label="{{cp.restoreLabel}}" onClick="{{cp.restore}}" style="flex-grow:1;height:44px;border:1.5px solid #1C1A16;border-radius:6px;background:#FFFEFA;color:#1C1A16;font-size:15px;font-weight:500">ย้อนกลับมาจุดนี้</button>
+<button type="button" aria-label="{{cp.delLabel}}" onClick="{{cp.del}}" style="height:44px;padding:0 14px;border:1.5px solid #CFC6B0;border-radius:6px;background:transparent;color:#3B372E;font-size:15px">ลบ</button>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+</aside>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  get K() {
+    return {
+      KEY: 'casebook-logic-grid-v1',
+      INK: '#1C1A16',
+      LINE: '#CFC6B0',
+      LIB: {
+        s: [['hood', 'ผ้าคลุม'], ['tophat', 'หมวกทรงสูง'], ['mustache', 'หนวด'], ['glasses', 'แว่นตา'], ['crown', 'มงกุฎ'], ['mask', 'หน้ากาก'], ['bowtie', 'โบว์ไท'], ['cap', 'หมวกแก๊ป'], ['skull', 'กะโหลก'], ['person', 'คนทั่วไป']],
+        l: [['house', 'บ้าน'], ['toilet', 'ห้องน้ำ'], ['stage', 'เวที'], ['bed', 'ห้องนอน'], ['kitchen', 'ห้องครัว'], ['library', 'ห้องสมุด'], ['tree', 'สวน'], ['car', 'รถ'], ['stairs', 'บันได'], ['door', 'ประตู']],
+        w: [['printer', 'เครื่องพิมพ์'], ['triangle', 'ไม้ฉาก'], ['compass', 'วงเวียน'], ['knife', 'มีด'], ['key', 'กุญแจ'], ['hammer', 'ค้อน'], ['rope', 'เชือก'], ['scissors', 'กรรไกร'], ['candle', 'เชิงเทียน'], ['poison', 'ขวดยาพิษ']]
+      },
+      CATS: {
+        s: { en: 'Suspects', th: 'ผู้ต้องสงสัย' },
+        l: { en: 'Locations', th: 'สถานที่' },
+        w: { en: 'Weapons', th: 'อาวุธ' }
+      }
+    };
+  }
+
+  get s() {
+    const def = {
+      dims: { s: 3, l: 3, w: 3 },
+      names: { s: [], l: [], w: [] },
+      icons: { s: [], l: [], w: [] },
+      custom: { s: [], l: [], w: [] },
+      sel: null,
+      marks: {},
+      answers: { k: '', w: '', l: '' },
+      tool: 'O',
+      cps: [],
+      hist: [],
+      cpLabel: '',
+      nextCp: 1
+    };
+    return Object.assign(def, this.state || {});
+  }
+
+  componentDidMount() {
+    try {
+      const raw = window.localStorage.getItem(this.K.KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (!d || !d.dims) return;
+      this.setState({
+        dims: d.dims,
+        names: d.names || { s: [], l: [], w: [] },
+        icons: d.icons || { s: [], l: [], w: [] },
+        custom: d.custom || { s: [], l: [], w: [] },
+        marks: d.marks || {},
+        answers: d.answers || { k: '', w: '', l: '' },
+        cps: d.cps || [],
+        nextCp: d.nextCp || 1,
+        tool: d.tool || 'O'
+      });
+    } catch (e) {}
+  }
+
+  upd(patch) {
+    const next = Object.assign({}, this.s, patch);
+    this.setState(patch);
+    try {
+      window.localStorage.setItem(this.K.KEY, JSON.stringify({
+        dims: next.dims,
+        names: next.names,
+        icons: next.icons,
+        custom: next.custom,
+        marks: next.marks,
+        answers: next.answers,
+        cps: next.cps,
+        nextCp: next.nextCp,
+        tool: next.tool
+      }));
+    } catch (e) {}
+  }
+
+  snap(s) {
+    return JSON.parse(JSON.stringify({ dims: s.dims, names: s.names, icons: s.icons, custom: s.custom, marks: s.marks, answers: s.answers }));
+  }
+
+  pushHist(s) {
+    return s.hist.concat([this.snap(s)]).slice(-100);
+  }
+
+  setTool(t) { this.upd({ tool: t }); }
+
+  toggleCell(key, mark) {
+    const s = this.s;
+    const marks = Object.assign({}, s.marks);
+    if (mark === 'E' || marks[key] === mark) {
+      if (marks[key] === undefined) return;
+      delete marks[key];
+    } else {
+      marks[key] = mark;
+    }
+    this.upd({ marks: marks, hist: this.pushHist(s) });
+  }
+
+  selectHead(c, i) {
+    const cur = this.s.sel;
+    if (cur && cur.c === c && cur.i === i) { this.setState({ sel: null }); return; }
+    this.setState({ sel: { c: c, i: i } });
+  }
+
+  closeSel() { this.setState({ sel: null }); }
+
+  setIcon(c, i, key) {
+    const s = this.s;
+    const icons = Object.assign({}, s.icons);
+    const arr = (icons[c] || []).slice();
+    for (let k = 0; k < i; k++) { if (arr[k] === undefined) arr[k] = null; }
+    arr[i] = key;
+    icons[c] = arr;
+    const custom = Object.assign({}, s.custom);
+    const ca = (custom[c] || []).slice();
+    ca[i] = '';
+    custom[c] = ca;
+    this.upd({ icons: icons, custom: custom });
+  }
+
+  setCustom(c, i, v) {
+    const s = this.s;
+    const custom = Object.assign({}, s.custom);
+    const ca = (custom[c] || []).slice();
+    for (let k = 0; k < i; k++) { if (ca[k] === undefined) ca[k] = null; }
+    ca[i] = v;
+    custom[c] = ca;
+    this.upd({ custom: custom });
+  }
+
+  setName(c, i, v) {
+    const s = this.s;
+    const names = Object.assign({}, s.names);
+    const arr = (names[c] || []).slice();
+    for (let k = 0; k < i; k++) { if (arr[k] === undefined) arr[k] = null; }
+    arr[i] = v;
+    names[c] = arr;
+    this.upd({ names: names });
+  }
+
+  setDim(c, delta) {
+    const s = this.s;
+    const n = Math.max(2, Math.min(8, s.dims[c] + delta));
+    if (n === s.dims[c]) return;
+    const dims = Object.assign({}, s.dims);
+    dims[c] = n;
+    this.upd({ dims: dims, hist: this.pushHist(s) });
+  }
+
+  undo() {
+    const s = this.s;
+    if (!s.hist.length) return;
+    const last = s.hist[s.hist.length - 1];
+    this.upd({
+      dims: last.dims,
+      names: last.names,
+      icons: last.icons || { s: [], l: [], w: [] },
+      custom: last.custom || { s: [], l: [], w: [] },
+      marks: last.marks,
+      answers: last.answers,
+      hist: s.hist.slice(0, -1)
+    });
+  }
+
+  clearAll() {
+    const s = this.s;
+    if (!Object.keys(s.marks).length) return;
+    this.upd({ marks: {}, hist: this.pushHist(s) });
+  }
+
+  setAnswer(k, v) {
+    const s = this.s;
+    const answers = Object.assign({}, s.answers);
+    answers[k] = v;
+    this.upd({ answers: answers });
+  }
+
+  saveCp() {
+    const s = this.s;
+    const vals = Object.values(s.marks);
+    const o = vals.filter((v) => v === 'O').length;
+    const x = vals.filter((v) => v === 'X').length;
+    const at = new Date().toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit' });
+    const label = (s.cpLabel || '').trim() || ('จุดที่ ' + s.nextCp);
+    const cp = { id: 'cp' + Date.now(), label: label, at: at, o: o, x: x, snap: this.snap(s) };
+    this.upd({ cps: s.cps.concat([cp]), nextCp: s.nextCp + 1, cpLabel: '' });
+  }
+
+  restoreCp(id) {
+    const s = this.s;
+    const cp = s.cps.find((c) => c.id === id);
+    if (!cp) return;
+    const sn = JSON.parse(JSON.stringify(cp.snap));
+    this.upd({
+      dims: sn.dims,
+      names: sn.names,
+      icons: sn.icons || { s: [], l: [], w: [] },
+      custom: sn.custom || { s: [], l: [], w: [] },
+      marks: sn.marks,
+      answers: sn.answers,
+      hist: this.pushHist(s)
+    });
+  }
+
+  delCp(id) {
+    const s = this.s;
+    this.upd({ cps: s.cps.filter((c) => c.id !== id) });
+  }
+
+  renderVals() {
+    const s = this.s;
+    const K = this.K;
+    const INK = K.INK;
+    const LINE = K.LINE;
+    const CATS = K.CATS;
+    const d = s.dims;
+    const nS = d.s;
+    const nL = d.l;
+    const nW = d.w;
+
+    const iconKey = (c, i) => {
+      const k = (s.icons[c] || [])[i];
+      return k || K.LIB[c][i % K.LIB[c].length][0];
+    };
+    const customOf = (c, i) => (s.custom[c] || [])[i] || '';
+    const iconLabel = (c, i) => {
+      if (customOf(c, i)) return 'สัญลักษณ์ ' + customOf(c, i);
+      const k = iconKey(c, i);
+      const f = K.LIB[c].find((x) => x[0] === k);
+      return f ? f[1] : k;
+    };
+    const defName = (c, i) => iconLabel(c, i);
+    const nameOf = (c, i) => {
+      const v = (s.names[c] || [])[i];
+      return v === undefined || v === null || v === '' ? defName(c, i) : v;
+    };
+    const ariaName = (c, i) => nameOf(c, i) || defName(c, i);
+    const bc = (w) => (w === 2 ? INK : LINE);
+
+    const items = [];
+
+    // column group titles
+    items.push({ isColGroup: true, pos: 'grid-row:1;grid-column:3 / span ' + nS + ';', en: CATS.s.en, th: CATS.s.th });
+    items.push({ isColGroup: true, pos: 'grid-row:1;grid-column:' + (3 + nS) + ' / span ' + nL + ';', en: CATS.l.en, th: CATS.l.th });
+
+    // column names: suspects then locations
+    const colDefs = [];
+    for (let i = 0; i < nS; i++) colDefs.push({ c: 's', i: i, col: 3 + i, last: i === nS - 1 });
+    for (let i = 0; i < nL; i++) colDefs.push({ c: 'l', i: i, col: 3 + nS + i, last: i === nL - 1 });
+    const headItem = (kind, c, i, pos) => {
+      const isSel = !!(s.sel && s.sel.c === c && s.sel.i === i);
+      const cu = customOf(c, i);
+      const o = {
+        pos: pos,
+        iconRef: '#ic-' + c + '-' + iconKey(c, i),
+        custom: cu,
+        hasCustom: !!cu,
+        noCustom: !cu,
+        title: ariaName(c, i),
+        aria: 'สัญลักษณ์ ' + CATS[c].th + ' ที่ ' + (i + 1) + ' ชื่อ ' + ariaName(c, i) + ' (แตะเพื่อแก้ไข)',
+        selStyle: isSel ? 'background:#E4D9BD;box-shadow:inset 0 0 0 3px #1C1A16;' : 'background:transparent;',
+        pick: () => this.selectHead(c, i)
+      };
+      o[kind] = true;
+      return o;
+    };
+    colDefs.forEach((cd) => {
+      const w = cd.last ? 2 : 1;
+      items.push(headItem('isColName', cd.c, cd.i, 'grid-row:2;grid-column:' + cd.col + ';border-right:' + w + 'px solid ' + bc(w) + ';'));
+    });
+
+    // row group labels (vertical)
+    items.push({ isRowGroup: true, pos: 'grid-column:1;grid-row:3 / span ' + nW + ';', en: CATS.w.en, th: CATS.w.th });
+    items.push({ isRowGroup: true, pos: 'grid-column:1;grid-row:' + (3 + nW) + ' / span ' + nL + ';', en: CATS.l.en, th: CATS.l.th });
+
+    const addCells = (rc, i, cc, nc, rowNo, colStart, nr, topEdge, leftEdge) => {
+      for (let j = 0; j < nc; j++) {
+        const key = rc + i + cc + j;
+        const v = s.marks[key];
+        const T = i === 0 && topEdge ? 2 : 0;
+        const Lw = j === 0 && leftEdge ? 2 : 0;
+        const R = j === nc - 1 ? 2 : 1;
+        const B = i === nr - 1 ? 2 : 1;
+        items.push({
+          isCell: true,
+          pos: 'grid-row:' + rowNo + ';grid-column:' + (colStart + j) + ';border-style:solid;border-width:' + T + 'px ' + R + 'px ' + B + 'px ' + Lw + 'px;border-color:' + bc(T) + ' ' + bc(R) + ' ' + bc(B) + ' ' + bc(Lw) + ';',
+          bg: v === 'O' ? '#E2ECF8' : v === 'X' ? '#FBE9DC' : '#FFFEFA',
+          isO: v === 'O',
+          isX: v === 'X',
+          aria: ariaName(rc, i) + ' กับ ' + ariaName(cc, j) + ' : ' + (v === 'O' ? 'ถูก' : v === 'X' ? 'ผิด' : 'ว่าง'),
+          press: () => this.toggleCell(key, s.tool),
+          pressX: (e) => { if (e && e.preventDefault) e.preventDefault(); this.toggleCell(key, 'X'); }
+        });
+      }
+    };
+
+    // weapon rows: symbol, weapons x suspects, weapons x locations
+    for (let i = 0; i < nW; i++) {
+      const w = i === nW - 1 ? 2 : 1;
+      items.push(headItem('isRowName', 'w', i, 'grid-column:2;grid-row:' + (3 + i) + ';border-bottom:' + w + 'px solid ' + bc(w) + ';'));
+      addCells('w', i, 's', nS, 3 + i, 3, nW, true, true);
+      addCells('w', i, 'l', nL, 3 + i, 3 + nS, nW, true, false);
+    }
+    // location rows: symbol, locations x suspects
+    for (let i = 0; i < nL; i++) {
+      const w = i === nL - 1 ? 2 : 1;
+      items.push(headItem('isRowName', 'l', i, 'grid-column:2;grid-row:' + (3 + nW + i) + ';border-bottom:' + w + 'px solid ' + bc(w) + ';'));
+      addCells('l', i, 's', nS, 3 + nW + i, 3, nL, false, true);
+    }
+
+    const gridTpl = 'grid-template-columns:44px 72px repeat(' + (nS + nL) + ', 54px);grid-template-rows:44px 72px repeat(' + (nW + nL) + ', 54px);';
+
+    const dimControls = ['s', 'l', 'w'].map((c) => ({
+      title: CATS[c].en,
+      sub: CATS[c].th,
+      n: d[c],
+      decLabel: 'ลดจำนวน' + CATS[c].th,
+      incLabel: 'เพิ่มจำนวน' + CATS[c].th,
+      dec: () => this.setDim(c, -1),
+      inc: () => this.setDim(c, 1),
+      decOff: d[c] <= 2,
+      incOff: d[c] >= 8
+    }));
+
+    const toolBtn = (t) => ({
+      pressed: s.tool === t,
+      pick: () => this.setTool(t),
+      style: s.tool === t
+        ? 'background:#1C1A16;color:#FBF8F1;border-color:#1C1A16;'
+        : 'background:#FFFEFA;color:#1C1A16;border-color:#1C1A16;'
+    });
+
+    const selRaw = s.sel && s.sel.i < d[s.sel.c] ? s.sel : null;
+    let libList = [];
+    let selTitle = '';
+    let selName = '';
+    let selPh = '';
+    let selCustom = '';
+    if (selRaw) {
+      const sc = selRaw.c;
+      const si = selRaw.i;
+      const curKey = iconKey(sc, si);
+      const hasCu = !!customOf(sc, si);
+      libList = K.LIB[sc].map((e) => ({
+        ref: '#ic-' + sc + '-' + e[0],
+        label: e[1],
+        on: !hasCu && curKey === e[0],
+        pick: () => this.setIcon(sc, si, e[0]),
+        style: !hasCu && curKey === e[0] ? 'background:#1C1A16;color:#FBF8F1;' : 'background:#FFFEFA;color:#1C1A16;'
+      }));
+      selTitle = CATS[sc].en + ' · ' + CATS[sc].th + ' · ลำดับที่ ' + (si + 1);
+      const rawName = (s.names[sc] || [])[si];
+      selName = rawName === undefined || rawName === null ? '' : rawName;
+      selPh = defName(sc, si);
+      selCustom = customOf(sc, si);
+    }
+
+    const cpList = s.cps.slice().reverse().map((cp) => ({
+      label: cp.label,
+      meta: cp.at + ' น. · ถูก ' + cp.o + ' · ผิด ' + cp.x,
+      restoreLabel: 'ย้อนกลับไปที่ ' + cp.label,
+      delLabel: 'ลบจุดบันทึก ' + cp.label,
+      restore: () => this.restoreCp(cp.id),
+      del: () => this.delCp(cp.id)
+    }));
+
+    return {
+      items: items,
+      gridTpl: gridTpl,
+      dimControls: dimControls,
+      toolO: toolBtn('O'),
+      toolX: toolBtn('X'),
+      toolE: toolBtn('E'),
+      noSel: !selRaw,
+      hasSel: !!selRaw,
+      selTitle: selTitle,
+      selName: selName,
+      selPh: selPh,
+      selCustom: selCustom,
+      libList: libList,
+      onSelName: (e) => { if (selRaw) this.setName(selRaw.c, selRaw.i, e.target.value); },
+      onSelCustom: (e) => { if (selRaw) this.setCustom(selRaw.c, selRaw.i, e.target.value); },
+      closeSel: () => this.closeSel(),
+      undo: () => this.undo(),
+      undoOff: s.hist.length === 0,
+      clearAll: () => this.clearAll(),
+      clearOff: Object.keys(s.marks).length === 0,
+      ansK: s.answers.k,
+      ansW: s.answers.w,
+      ansL: s.answers.l,
+      onAnsK: (e) => this.setAnswer('k', e.target.value),
+      onAnsW: (e) => this.setAnswer('w', e.target.value),
+      onAnsL: (e) => this.setAnswer('l', e.target.value),
+      cpLabel: s.cpLabel,
+      cpPlaceholder: 'จุดที่ ' + s.nextCp,
+      onCpLabel: (e) => this.setState({ cpLabel: e.target.value }),
+      saveCp: () => this.saveCp(),
+      noCp: s.cps.length === 0,
+      cpList: cpList
+    };
+  }
+}
+</script>
+</body>
+</html>
