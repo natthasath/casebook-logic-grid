@@ -6,13 +6,13 @@ Casebook Logic Grid is a browser-based deduction notebook for solving Clue-style
 
 ### ✨ Features
 
-- ปรับจำนวนของแต่ละหมวด (Suspects / Locations / Weapons) ได้อิสระ ตั้งแต่ 2–8 รายการ
-- เครื่องมือทำเครื่องหมาย ถูก (O) / ผิด (X) / ลบช่อง — คลิกขวาบนตารางจะทำเครื่องหมายผิดเสมอโดยไม่ต้องสลับเครื่องมือ
-- Undo ย้อนกลับได้สูงสุด 100 ขั้น พร้อมปุ่มล้างตารางทั้งหมด
-- **Checkpoints** — บันทึกสถานะกระดานทั้งหมดไว้เป็นจุดอ้างอิง ลองสมมุติสถานการณ์ต่อ (เช่น "ถ้าคนนี้ให้การเท็จ") แล้วย้อนกลับมาจุดที่แน่ชัดได้ทุกเมื่อ
-- ปรับสัญลักษณ์หัวตารางได้เอง — เลือกไอคอนจากคลัง 10 แบบต่อหมวด ตั้งชื่อเอง หรือพิมพ์อักขระ 1–2 ตัวแทนไอคอน
-- ช่องสรุปคำตอบ (ฆาตกร / อาวุธ / สถานที่)
-- บันทึกสถานะอัตโนมัติลง `localStorage` — เปิดกลับมาใช้งานต่อได้ทันที
+- Freely resize each category (Suspects / Locations / Weapons) from 2 to 8 entries
+- Mark cells correct (O) / incorrect (X) / clear — right-click always marks X without switching tools
+- Undo up to 100 steps, plus a button to clear the whole grid
+- **Checkpoints** — save the entire board state as a reference point, branch off to test a hypothesis (e.g. "what if this suspect is lying"), and jump back to a known-good point anytime
+- Customize header symbols — pick from a library of 40 icons per category, rename them, or type your own 1–2 character symbol
+- Answer summary fields (culprit / weapon / location)
+- Auto-saves to `localStorage` — pick up right where you left off
 
 ### 🧊 Tech Stack / Folder Structure
 
@@ -29,7 +29,7 @@ Casebook Logic Grid is a browser-based deduction notebook for solving Clue-style
 | `app/` | Next.js App Router entry (`layout.tsx`, `page.tsx`) |
 | `components/LogicGrid.tsx` | Puzzle state, logic, and UI |
 | `components/LogicGrid.module.css` | Component styling |
-| `components/IconSprite.tsx` | Hand-drawn SVG icon set (10 icons × 3 categories) |
+| `components/IconSprite.tsx` | Hand-drawn SVG icon set (40 icons × 3 categories) |
 | `lib/types.ts` | Shared puzzle state types |
 | `Main.dc.html`, `support.js`, `vendor/` | Original design mockup — reference only, not part of the running app |
 
