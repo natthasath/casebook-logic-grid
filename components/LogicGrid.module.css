@@ -40,24 +40,6 @@
   gap: 24px;
 }
 
-@media (max-width: 700px) {
-  .wrap {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .main {
-    grid-template-columns: 1fr;
-  }
-  .side {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .symbolPanel {
-    grid-column: 1;
-    grid-row: auto;
-  }
-}
-
 /* header */
 .header {
   display: flex;
@@ -78,7 +60,8 @@
 
 .legend {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 10px 20px;
   align-items: center;
   font-size: 14px;
   color: var(--body);
@@ -136,6 +119,7 @@
 
 .dimGroup {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -261,11 +245,18 @@
 .gridScroll {
   overflow-x: auto;
   padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 
 .gridContainer {
+  --cellSize: 54px;
+  --headW: 72px;
+  --labelW: 44px;
   display: grid;
   width: max-content;
+  grid-template-columns: var(--labelW) var(--headW) repeat(var(--gridCols), var(--cellSize));
+  grid-template-rows: var(--labelW) var(--headW) repeat(var(--gridRows), var(--cellSize));
 }
 
 .colGroupLabel {
@@ -322,6 +313,11 @@
   line-height: 1;
   font-weight: 600;
   color: var(--ink);
+}
+
+.headIcon {
+  width: 36px;
+  height: 36px;
 }
 
 .rowGroupLabel {
@@ -583,6 +579,7 @@
 
 .cpActions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -605,4 +602,113 @@
   background: transparent;
   color: var(--body);
   font-size: 15px;
+}
+
+/* Responsive overrides — kept at the end of the file so they win the
+   cascade against the base rules above (equal specificity: last wins). */
+@media (max-width: 700px) {
+  .wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 18px;
+  }
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  /* Single column: keep the grid card and its symbol panel adjacent,
+     then append the side panels. Explicit placement is cleared so the
+     `order` values drive auto-placement instead of the desktop rows. */
+  .gridCard {
+    grid-column: auto;
+    grid-row: auto;
+    order: 1;
+  }
+  .symbolPanel {
+    grid-column: auto;
+    grid-row: auto;
+    order: 2;
+  }
+  .side {
+    grid-column: auto;
+    grid-row: auto;
+    order: 3;
+    gap: 18px;
+  }
+  .gridCard,
+  .panel {
+    padding: 16px;
+  }
+  .controlsBar {
+    padding: 14px 16px;
+    gap: 16px;
+  }
+  .dimList {
+    gap: 10px 20px;
+  }
+  .divider {
+    display: none;
+  }
+  .gridContainer {
+    --cellSize: 46px;
+    --headW: 60px;
+    --labelW: 34px;
+  }
+  .headIcon {
+    width: 28px;
+    height: 28px;
+  }
+  .customGlyph {
+    font-size: 24px;
+  }
+  .iconBtn {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .header {
+    padding-top: 18px;
+  }
+  .legend {
+    gap: 14px;
+    font-size: 13px;
+  }
+  .title {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .gridCard,
+  .panel {
+    padding: 12px;
+  }
+  .controlsBar {
+    padding: 12px;
+  }
+  .dimLabel {
+    min-width: 0;
+  }
+  .toolBtn span,
+  .actionBtn {
+    font-size: 14px;
+  }
+  .gridContainer {
+    --cellSize: 40px;
+    --headW: 52px;
+    --labelW: 28px;
+  }
+  .headIcon {
+    width: 22px;
+    height: 22px;
+  }
+  .customGlyph {
+    font-size: 19px;
+  }
 }

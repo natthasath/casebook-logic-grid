@@ -266,9 +266,19 @@ export const ICON_LIBRARY: Record<"s" | "l" | "w", [string, string][]> = {
   ],
 };
 
-export function Icon({ cat, iconKey, size = 30 }: { cat: "s" | "l" | "w"; iconKey: string; size?: number }) {
+export function Icon({
+  cat,
+  iconKey,
+  size = 30,
+  className,
+}: {
+  cat: "s" | "l" | "w";
+  iconKey: string;
+  size?: number;
+  className?: string;
+}) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <use href={`#ic-${cat}-${iconKey}`} />
     </svg>
   );

@@ -262,7 +262,7 @@ export default function LogicGrid() {
           {cu ? (
             <span className={styles.customGlyph}>{cu}</span>
           ) : (
-            <Icon cat={c} iconKey={iconKeyOf(c, i)} size={36} />
+            <Icon cat={c} iconKey={iconKeyOf(c, i)} size={36} className={styles.headIcon} />
           )}
         </button>
       </div>
@@ -387,10 +387,10 @@ export default function LogicGrid() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.dims, state.marks, state.sel, state.icons, state.custom, state.names, state.tool]);
 
-  const gridTemplate = {
-    gridTemplateColumns: `44px 72px repeat(${nS + nL}, 54px)`,
-    gridTemplateRows: `44px 72px repeat(${nW + nL}, 54px)`,
-  };
+  const gridTemplate: React.CSSProperties = {
+    "--gridCols": nS + nL,
+    "--gridRows": nW + nL,
+  } as React.CSSProperties;
 
   const dimControls: { c: Cat }[] = [{ c: "s" }, { c: "l" }, { c: "w" }];
 
