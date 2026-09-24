@@ -1,4 +1,4 @@
-# 🎉 Casebook Logic Grid
+# 🎉 Logic Grid Deduction
 
 Casebook Logic Grid is a browser-based deduction notebook for solving Clue-style logic grid puzzles. Cross-reference Suspects, Locations, and Weapons in an interactive O/X matrix, then save checkpoints to test hypotheses whenever a suspect might be lying.
 
