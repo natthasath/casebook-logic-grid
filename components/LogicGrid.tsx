@@ -123,6 +123,27 @@ export default function LogicGrid() {
     });
   };
 
+  const randomizeIcon = (c: Cat, i: number) => {
+    setState((s) => {
+      const lib = ICON_LIBRARY[c];
+      const current = (s.icons[c] || [])[i] || lib[i % lib.length][0];
+      let key = lib[Math.floor(Math.random() * lib.length)][0];
+      if (lib.length > 1) {
+        while (key === current) key = lib[Math.floor(Math.random() * lib.length)][0];
+      }
+      const arr = (s.icons[c] || []).slice();
+      for (let k = 0; k < i; k++) if (arr[k] === undefined) arr[k] = null;
+      arr[i] = key;
+      const ca = (s.custom[c] || []).slice();
+      ca[i] = "";
+      return {
+        ...s,
+        icons: { ...s.icons, [c]: arr },
+        custom: { ...s.custom, [c]: ca },
+      };
+    });
+  };
+
   const setCustomChar = (c: Cat, i: number, v: string) => {
     setState((s) => {
       const ca = (s.custom[c] || []).slice();
@@ -644,7 +665,17 @@ export default function LogicGrid() {
                 />
               </div>
               <div className={styles.field}>
-                <span className={styles.fieldLabel}>เลือกสัญลักษณ์</span>
+                <div className={styles.fieldLabelRow}>
+                  <span className={styles.fieldLabel}>เลือกสัญลักษณ์</span>
+                  <button
+                    type="button"
+                    onClick={() => randomizeIcon(sel.c, sel.i)}
+                    className={styles.randomBtn}
+                    title="สุ่มสัญลักษณ์สำหรับช่องนี้ช่องเดียว"
+                  >
+                    สุ่มสัญลักษณ์นี้
+                  </button>
+                </div>
                 <div className={styles.iconGrid}>
                   {ICON_LIBRARY[sel.c].map(([key, label]) => {
                     const hasCu = !!customOf(sel.c, sel.i);

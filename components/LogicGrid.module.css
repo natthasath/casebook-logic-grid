@@ -429,6 +429,31 @@
   font-weight: 500;
 }
 
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.randomBtn {
+  height: 28px;
+  padding: 0 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--field);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.randomBtn:hover {
+  background: var(--ink);
+  color: var(--card);
+}
+
 .textInput {
   height: 44px;
   box-sizing: border-box;

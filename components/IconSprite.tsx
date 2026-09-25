@@ -1,126 +1,233 @@
 // Symbol library for the three categories (suspects/locations/weapons).
-// Path data ported verbatim from the design mockup (Main.dc.html).
+// All icons are curated from the full Google Material Symbols set (Outlined,
+// fill1), Apache 2.0, https://fonts.google.com/icons -- every icon in this
+// file was matched by name against the theme of its category (not capped at
+// a fixed count) then hand-filtered to drop UI/product noise (smartwatch
+// feature icons, map-pin variants, EV/battery icons, keyboard shortcuts,
+// etc.) that only matched a keyword by accident. The original hand-drawn set
+// (ported from Main.dc.html) has been retired.
 const SPRITE_HTML = `<defs>
-<symbol id="ic-s-hood" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.5 2 3.5 6.5 3.5 12v4.5c0 2 1.2 3.5 3 4.5V22h11v-1c1.8-1 3-2.5 3-4.5V12C20.5 6.5 17.5 2 12 2z M12 7.5a4.2 4.5 0 1 0 0 9 4.2 4.5 0 1 0 0-9z M10.2 10.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2z M13.8 10.4a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 1 0 0-2.2z"></path></symbol>
-<symbol id="ic-s-tophat" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6.5 3h11v11.5h-11z M6.5 10.5h11v2.5h-11z M2.5 16h19v3h-19z"></path></symbol>
-<symbol id="ic-s-mustache" viewBox="0 0 24 24"><path d="M12 10.5C10.8 8.9 8.8 8.3 6.8 8.9 4.6 9.6 3 11 2 13.5c1.6-.6 2.8-.3 3.8.6 1.4 1.2 3.4 1.2 6.2-.3z"></path><path transform="translate(24 0) scale(-1 1)" d="M12 10.5C10.8 8.9 8.8 8.3 6.8 8.9 4.6 9.6 3 11 2 13.5c1.6-.6 2.8-.3 3.8.6 1.4 1.2 3.4 1.2 6.2-.3z"></path></symbol>
-<symbol id="ic-s-glasses" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="13.5" r="3.6"></circle><circle cx="17.5" cy="13.5" r="3.6"></circle><path d="M10.1 13h3.8M2.9 13L2 9.5M21.1 13L22 9.5"></path></g></symbol>
-<symbol id="ic-s-crown" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"></path></symbol>
-<symbol id="ic-s-mask" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 9c3-2 6-2 10-.5 4-1.5 7-1.5 10 .5v3c0 3-2.5 5-5 5-2 0-3-1-5-1s-3 1-5 1c-2.5 0-5-2-5-5z M5.5 12.6a2 1.6 0 1 0 4 0 2 1.6 0 1 0-4 0z M14.5 12.6a2 1.6 0 1 0 4 0 2 1.6 0 1 0-4 0z"></path></symbol>
-<symbol id="ic-s-bowtie" viewBox="0 0 24 24"><path d="M2 7l8 5-8 5z M22 7l-8 5 8 5z M10 9.5h4v5h-4z"></path></symbol>
-<symbol id="ic-s-cap" viewBox="0 0 24 24"><path d="M4 14a8 8 0 0 1 16 0z M2 16h20v2.5H2z"></path></symbol>
-<symbol id="ic-s-skull" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.5c-4.5 0-8 3-8 7.5 0 2.5 1.2 4.3 3 5.5V20h10v-4.5c1.8-1.2 3-3 3-5.5 0-4.5-3.5-7.5-8-7.5z M9 8.7a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 1 0 0-3.8z M15 8.7a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 1 0 0-3.8z M12 12.8l-1.3 2.7h2.6z"></path></symbol>
-<symbol id="ic-s-person" viewBox="0 0 24 24"><path d="M12 3a4.5 4.5 0 1 0 0 9 4.5 4.5 0 1 0 0-9z M4 21c0-4.5 3.5-7.5 8-7.5s8 3 8 7.5z"></path></symbol>
-<symbol id="ic-s-monocle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="13.5" cy="9.5" r="5"></circle><path d="M13.5 14.5c-1 3 0 6 3 7.5M9 7L3.5 4.5"></path></g></symbol>
-<symbol id="ic-s-pipe" viewBox="0 0 24 24"><path d="M2 14a3.5 3.5 0 0 1 3.5-3.5H9V8h11v2.5h-2.5L21 14l-1.6 1.4-4-4.4H9a1.5 1.5 0 0 0-1.5 1.5v1A3.5 3.5 0 0 1 4 17.5 3.5 3.5 0 0 1 2 14z"></path></symbol>
-<symbol id="ic-s-beard" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5 3h14v8c0 5-3 10-7 10s-7-5-7-10z M8.5 8a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M13.5 8a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path></symbol>
-<symbol id="ic-s-wig" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5 12h14v3c0 3.5-3 6.5-7 6.5s-7-3-7-6.5z"></path><circle cx="6" cy="7" r="3.4"></circle><circle cx="12" cy="5" r="3.8"></circle><circle cx="18" cy="7" r="3.4"></circle><circle cx="8.5" cy="10.5" r="3"></circle><circle cx="15.5" cy="10.5" r="3"></circle></symbol>
-<symbol id="ic-s-eyepatch" viewBox="0 0 24 24"><path d="M4 3l16 3-1 3-15-3z"></path><circle cx="14.5" cy="10.5" r="4.5"></circle></symbol>
-<symbol id="ic-s-earring" viewBox="0 0 24 24"><circle cx="12" cy="14" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"></circle><circle cx="12" cy="5.5" r="2"></circle></symbol>
-<symbol id="ic-s-bandana" viewBox="0 0 24 24"><path d="M2 6l10-3 10 3-10 9z M15 9l6 3-2 2-5-2z"></path></symbol>
-<symbol id="ic-s-bowler" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 1 6 6v3H6V9a6 6 0 0 1 6-6z M2.5 12h19v2.5h-19z"></path></symbol>
-<symbol id="ic-s-necktie" viewBox="0 0 24 24"><path d="M9.5 2h5l1 4-2 2.5 3 11-4.5 3.5-4.5-3.5 3-11-2-2.5z"></path></symbol>
-<symbol id="ic-s-locket" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M4 4c0 6 3.5 9 8 9s8-3 8-9"></path><circle cx="12" cy="16" r="4.5"></circle></symbol>
-<symbol id="ic-s-fedora" viewBox="0 0 24 24"><path d="M7 3h9l1 7H6z M1.5 11h21v2.5h-21z M7.5 9.5h9v1.4h-9z"></path></symbol>
-<symbol id="ic-s-veil" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2a4 4 0 0 1 4 4v2c4 1 6 5 6 10v3H2v-3c0-5 2-9 6-10V6a4 4 0 0 1 4-4z M9.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M12.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path></symbol>
-<symbol id="ic-s-turban" viewBox="0 0 24 24"><path d="M4 14a8 6.5 0 0 1 16 0c0 1-1 1.6-2 1.2a7 5 0 0 0-12 0c-1 .4-2-.2-2-1.2z M9 15h6v2.2H9z M15.5 6l4-2 .8 1.6-3.4 2.2z"></path></symbol>
-<symbol id="ic-s-headband" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 3a8 8 0 0 1 8 8v4a1.6 1.6 0 0 1-3.2 0v-4a4.8 4.8 0 1 0-9.6 0v4a1.6 1.6 0 0 1-3.2 0v-4a8 8 0 0 1 8-8z"></path><path d="M2 10.5h20v2.4H2z"></path></symbol>
-<symbol id="ic-s-ponytail" viewBox="0 0 24 24"><circle cx="11" cy="8" r="6"></circle><path d="M16 6c3 .5 5 3 4.5 6-3-1-5-1.5-6-1z M15 9c2 4 2 9-1 13-1-4-1-9 0-13z"></path></symbol>
-<symbol id="ic-s-braid" viewBox="0 0 24 24"><circle cx="12" cy="6.5" r="4.5"></circle><path d="M9 10.5c2 1 4 1 6 0-1 2-1 3 0 4-2 1-4 1-6 0 1-1 1-2 0-4z M9 14.5c2 1 4 1 6 0-1 2-1 3 0 4-2 1-4 1-6 0 1-1 1-2 0-4z M9 18.5c2 1 4 1 6 0l-1.5 3.5h-3z"></path></symbol>
-<symbol id="ic-s-sideburns" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M5 2h14v9c0 6-4 11-7 11S5 17 5 11z M9.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M12.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path><path d="M5 6h3v8H5z M16 6h3v8h-3z"></path></symbol>
-<symbol id="ic-s-nosering" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.5c-5 0-8 4-8 9s3 9 8 9 8-4 8-9-3-9-8-9z M9.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M12.5 9a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path><circle cx="12" cy="16.5" r="2" fill="none" stroke="currentColor" stroke-width="1.8"></circle></symbol>
-<symbol id="ic-s-cane" viewBox="0 0 24 24"><path d="M9 2a5 5 0 0 0 0 10c1 0 2-.3 2.8-.8L13 22.5l2-.3-1.4-11.4A5 5 0 0 0 9 2z"></path></symbol>
-<symbol id="ic-s-umbrella" viewBox="0 0 24 24"><path d="M11 2v1.1A10 10 0 0 0 2 12h9V3.1z M13 3.1V12h9a10 10 0 0 0-9-8.9z M11 12h2v8a2 2 0 0 1-4 0h2z"></path></symbol>
-<symbol id="ic-s-handbag" viewBox="0 0 24 24"><path d="M3 10h18l-1.5 12h-15z M8 10V7a4 4 0 0 1 8 0v3h-2V7a2 2 0 0 0-4 0v3z"></path></symbol>
-<symbol id="ic-s-gloves" viewBox="0 0 24 24"><path d="M3 22V9a2 2 0 0 1 4 0v3l1-4a1.4 1.4 0 0 1 2.7.7L9.5 14l1.3-3.3a1.4 1.4 0 0 1 2.6 1L12 16l1-2a1.4 1.4 0 0 1 2.5 1.3L13 22z"></path></symbol>
-<symbol id="ic-s-scarf" viewBox="0 0 24 24"><path d="M3 5c3 3 15 3 18 0-1 4-4 6-8 6.5V17h3l-2 5-5-1v-9.5C7 11 4 9 3 5z"></path></symbol>
-<symbol id="ic-s-brooch" viewBox="0 0 24 24"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"></path><circle cx="12" cy="11" r="2.4"></circle></symbol>
-<symbol id="ic-s-pearls" viewBox="0 0 24 24"><g><circle cx="12" cy="4" r="1.8"></circle><circle cx="6.5" cy="6.5" r="1.8"></circle><circle cx="17.5" cy="6.5" r="1.8"></circle><circle cx="3.5" cy="11.5" r="1.8"></circle><circle cx="20.5" cy="11.5" r="1.8"></circle><circle cx="6" cy="16.5" r="1.8"></circle><circle cx="18" cy="16.5" r="1.8"></circle><circle cx="12" cy="19.5" r="2.4"></circle></g></symbol>
-<symbol id="ic-s-watch" viewBox="0 0 24 24"><path d="M9 2h6v4H9z M9 18h6v4H9z"></path><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2.2"></circle><path d="M12 8.5v4l3 1.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
-<symbol id="ic-s-bald" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.5a8 8 0 0 1 8 8V17a1.6 1.6 0 0 1-3.2 0v-1.2a4.8 4.8 0 0 0-9.6 0V17A1.6 1.6 0 0 1 4 17V10.5a8 8 0 0 1 8-8z M9.5 10a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M12.5 10a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path><path d="M8 5.5l1.5 2M16 5.5l-1.5 2" stroke="currentColor" stroke-width="1.4" fill="none"></path></symbol>
-<symbol id="ic-s-beret" viewBox="0 0 24 24"><path d="M12 2a1.4 1.4 0 0 1 1.4 1.4v1.3c4.6.9 8 3.8 8 7.3 0 3-4.3 5.5-9.4 5.5S2.6 15 2.6 12c0-3.3 3-6.1 7.3-7.2V3.4A1.4 1.4 0 0 1 12 2z"></path></symbol>
-<symbol id="ic-s-balaclava" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.5 2 4 6 4 11v10h16V11c0-5-2.5-9-8-9z M8.5 12a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 1 0 0-3.2z M15.5 12a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 1 0 0-3.2z M9 18h6v1.6H9z"></path></symbol>
-<symbol id="ic-s-bunhair" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="3"></circle><path fill-rule="evenodd" d="M12 8.5a7 7 0 0 1 7 7v6H5v-6a7 7 0 0 1 7-7z M9.5 14a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M12.5 14a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path></symbol>
-<symbol id="ic-l-house" viewBox="0 0 24 24"><path d="M12 3l10 9h-3v9h-5v-6h-4v6H5v-9H2z"></path></symbol>
-<symbol id="ic-l-toilet" viewBox="0 0 24 24"><path d="M6 2.5h9v6H6z M4 10h17c0 4-2 6.5-5 7.5V21H9v-3.5C6 16.5 4 14 4 10z"></path></symbol>
-<symbol id="ic-l-stage" viewBox="0 0 24 24"><path d="M3 3h18v3H3z M3 6h5c0 6-1 10-1 14H3z M21 6h-5c0 6 1 10 1 14h4z M3 20.5h18V22H3z"></path></symbol>
-<symbol id="ic-l-bed" viewBox="0 0 24 24"><path d="M2 5h2.5v14H2z M2 14h20v5h-2.5v-2h-15v2H2z M6.5 9h4.5a1.5 1.5 0 0 1 1.5 1.5V12.5h-6z"></path></symbol>
-<symbol id="ic-l-kitchen" viewBox="0 0 24 24"><path d="M4 9h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z M1.5 11h2.5v2.5H1.5z M20 11h2.5v2.5H20z M8 5h8v2H8z"></path></symbol>
-<symbol id="ic-l-library" viewBox="0 0 24 24"><path d="M3 4h7c1 0 2 .5 2 1.5V20c-.8-.7-1.7-1-2.7-1H3z M21 4h-7c-1 0-2 .5-2 1.5V20c.8-.7 1.7-1 2.7-1H21z"></path></symbol>
-<symbol id="ic-l-tree" viewBox="0 0 24 24"><path d="M12 2l7 9h-4l5 7H4l5-7H5z M10.8 18h2.4v4h-2.4z"></path></symbol>
-<symbol id="ic-l-car" viewBox="0 0 24 24"><path d="M2.5 12.5L5 7h14l2.5 5.5V18h-3v-2H5.5v2h-3z"></path><circle cx="7" cy="18" r="2.5"></circle><circle cx="17" cy="18" r="2.5"></circle></symbol>
-<symbol id="ic-l-stairs" viewBox="0 0 24 24"><path d="M3 21v-4h4v-4h4V9h4V5h6v16z"></path></symbol>
-<symbol id="ic-l-door" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 2.5h12v19H6z M15 11.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M8.5 5h7v5h-7z M8.5 12.5h4v6h-4z"></path></symbol>
-<symbol id="ic-l-garage" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10L12 3l10 7v11h-6v-7H8v7H2z M8 10h8V8H8z"></path></symbol>
-<symbol id="ic-l-attic" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 13L12 3l10 10v9H2z M9.5 15a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z"></path></symbol>
-<symbol id="ic-l-basement" viewBox="0 0 24 24"><path d="M2 12l10-8 10 8v2H2z M4 14h7v7H4z M13 14h7v7h-7z"></path></symbol>
-<symbol id="ic-l-balcony" viewBox="0 0 24 24"><path d="M2 3h20v3H2z"></path><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8v13M20 8v13M4 20h16M7 8v10M10.5 8v10M14 8v10M17.5 8v10"></path></g></symbol>
-<symbol id="ic-l-pool" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 5h20v13H2z M5 8h14v7H5z"></path><path d="M2 21c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></symbol>
-<symbol id="ic-l-study" viewBox="0 0 24 24"><path d="M2 12h20v2.5H2z M3.5 14.5h2.5V21h-2.5z M18 14.5h2.5V21H18z M9 3h6v9H9z M9 3h6v2H9z"></path></symbol>
-<symbol id="ic-l-dining" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 9h20v2.5H2z M9.5 3a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z"></path><path d="M4 11.5h2V21H4z M18 11.5h2V21h-2z M9.5 3h5v3h-5z"></path></symbol>
-<symbol id="ic-l-closet" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 2h16v20H4z M9 11a1 1 0 1 0 2 0 1 1 0 1 0-2 0z M15 11a1 1 0 1 0 2 0 1 1 0 1 0-2 0z"></path><path d="M12 2v20" stroke="currentColor" stroke-width="1.6" fill="none"></path></symbol>
-<symbol id="ic-l-elevator" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 2h18v20H3z M6.5 6h4.5v14H6.5z M13 6h4.5v14H13z M9 9l-1.6 2h3.2z M15.5 15l1.6-2h-3.2z"></path></symbol>
-<symbol id="ic-l-gate" viewBox="0 0 24 24"><path d="M2 6h4v16H2z M18 6h4v16H18z M2 6l10-4 10 4z M6 10h12v3H6z M11 10h2v12h-2z"></path></symbol>
-<symbol id="ic-l-greenhouse" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M2 10L12 3l10 7v11H2z M5 10v11M9 10v11M13 10v11M17 10v11M2 15h20"></path></g></symbol>
-<symbol id="ic-l-observatory" viewBox="0 0 24 24"><path d="M3 14h18v8H3z M12 2a7 7 0 0 1 7 7v3H5v-3a7 7 0 0 1 7-7z M12 6l7-2 .8 1.9L13 8z"></path></symbol>
-<symbol id="ic-l-boathouse" viewBox="0 0 24 24"><path d="M2 11L12 4l10 7v3H2z M4 14h16v4H4z M1 20l3-3h16l3 3z"></path></symbol>
-<symbol id="ic-l-gazebo" viewBox="0 0 24 24"><path d="M12 2l9 5.5-9 3-9-3z M4 10h2v11H4z M18 10h2v11h-2z M9 12h2v9H9z M13 12h2v9h-2z"></path></symbol>
-<symbol id="ic-l-fountain" viewBox="0 0 24 24"><path d="M3 18h18v3H3z M9 14h6v4H9z M5 10h14v2H5z M11 3h2v8h-2z"></path><g stroke="currentColor" stroke-width="1.4" stroke-linecap="round" fill="none"><path d="M7 5l1.2 5M17 5l-1.2 5M12 3v7"></path></g></symbol>
-<symbol id="ic-l-hallway" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 2h16v20H4z M8 6h8v14H8z"></path><path d="M5 9h2v2H5z M17 9h2v2h-2z M5 14h2v2H5z M17 14h2v2h-2z"></path></symbol>
-<symbol id="ic-l-bathroom" viewBox="0 0 24 24"><path d="M2 13h20v3a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5z"></path><path d="M3 13V9a3 3 0 0 1 3-3 3 3 0 0 1 2.8 2" fill="none" stroke="currentColor" stroke-width="2"></path></symbol>
-<symbol id="ic-l-fireplace" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 3h18v19H3z M7 7h10v9H7z"></path><path d="M12 9c1.5 1.5 2 3 .8 4.4-1.2-1-1.6-2-1.6-2s-.8 1-.4 2.2c-1.6-1.2-1-3.2 1.2-4.6z"></path></symbol>
-<symbol id="ic-l-ballroom" viewBox="0 0 24 24"><path d="M11 2h2v3h-2z M6 6h12l-2 3H8z M8 9h8l-1.5 3h-5z M11 12h2v10h-2z M6 22h12v1.4H6z"></path></symbol>
-<symbol id="ic-l-conservatory" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M3 21V9a9 9 0 0 1 18 0v12z M3 14h18M9 9v12M15 9v12"></path></g><path d="M12 11c1.2 1.2 1.6 2.6.6 3.8-1-.8-1.3-1.6-1.3-1.6s-.6.8-.3 1.8c-1.3-1-.8-2.6 1-4z"></path></symbol>
-<symbol id="ic-l-laundry" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 2h16v20H4z M12 14a5 5 0 1 0 0-10 5 5 0 1 0 0 10z"></path><path d="M6 4h2v2H6z M10 4h2v2h-2z"></path></symbol>
-<symbol id="ic-l-terrace" viewBox="0 0 24 24"><path d="M2 6h20v2.5H2z"></path><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 11v10M20 11v10M4 21h16M7 11v8M10.5 11v8M14 11v8M17.5 11v8"></path></g></symbol>
-<symbol id="ic-l-shed" viewBox="0 0 24 24"><path d="M2 12l4-3h12l4 3v9H2z M8 21v-6h4v6"></path></symbol>
-<symbol id="ic-l-barn" viewBox="0 0 24 24"><path d="M2 22V11L12 2l10 9v11h-6v-7h-8v7z M12 2l6 5.5-2 1.5-4-3.5-4 3.5-2-1.5z"></path></symbol>
-<symbol id="ic-l-chapel" viewBox="0 0 24 24"><path d="M11 2h2v3h-2z M12 3.5l7 7.5h-4v11H9v-11H5z M11 12h2v9h-2z"></path></symbol>
-<symbol id="ic-l-maze" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M2 2h20v20H2z M5 5h14v9H10V9h6"></path></g></symbol>
-<symbol id="ic-l-dock" viewBox="0 0 24 24"><path d="M2 8h20v2.5H2z M4 10.5h2V20H4z M18 10.5h2V20h-2z"></path><path d="M2 20c1.5 1.3 3 1.3 4.5 0s3-1.3 4.5 0 3 1.3 4.5 0 3-1.3 4.5 0" fill="none" stroke="currentColor" stroke-width="1.6"></path></symbol>
-<symbol id="ic-l-lighthouse" viewBox="0 0 24 24"><path d="M9 22l1.5-13h3L15 22z M8.5 9h7l-1-6h-5z M10.7 3h2.6V1.5h-2.6z M3 12l5-2v2l-5 2z M21 12l-5-2v2l5 2z"></path></symbol>
-<symbol id="ic-l-windmill" viewBox="0 0 24 24"><path d="M10.5 22V11h3v11z M12 11a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 1 1 0 3.6z M13.2 9.8L20 4.5l1 1.5-7 5z M10.8 9.8L4 4.5 3 6l7 5z M13.2 10.2L20 15.5l1-1.5-7-5z M10.8 10.2L4 15.5 3 14l7-5z"></path></symbol>
-<symbol id="ic-l-stable" viewBox="0 0 24 24"><path d="M2 22V10l10-7 10 7v12H15v-8H9v8z M9 8.5a3 3 0 1 1 6 0 3 3 0 1 1-6 0z"></path></symbol>
-<symbol id="ic-w-printer" viewBox="0 0 24 24"><path d="M6 3h12v5H6z M3 9h18a1 1 0 0 1 1 1v8h-4v-3H6v3H2v-8a1 1 0 0 1 1-1z M7.5 15.5h9V21h-9z"></path></symbol>
-<symbol id="ic-w-triangle" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 3v18h18z M7.5 11v6.5H14z"></path></symbol>
-<symbol id="ic-w-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="1.9"></circle><path d="M12 6.4L6 21M12 6.4L18 21M8.6 15h6.8"></path></g></symbol>
-<symbol id="ic-w-knife" viewBox="0 0 24 24"><path d="M5 20C5 11 11 5 20 4c-1 9-7 15-15 16z"></path><path d="M2.5 21.5l3-3" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"></path></symbol>
-<symbol id="ic-w-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="3.6"></circle></g><path d="M10.6 10.8H22v2.4H10.6z M17 13.2h2v3h-2z M20.5 13.2h1.5v2.2h-1.5z"></path></symbol>
-<symbol id="ic-w-hammer" viewBox="0 0 24 24"><path d="M3 4h13v5H3z M8.5 9h3v13h-3z"></path></symbol>
-<symbol id="ic-w-rope" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3.6"></circle><path d="M17.7 17.7L21.5 21.5"></path></g></symbol>
-<symbol id="ic-w-scissors" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3L17 15.5M17.5 3L7 15.5"></path><circle cx="6" cy="19" r="2.6"></circle><circle cx="18" cy="19" r="2.6"></circle></g></symbol>
-<symbol id="ic-w-candle" viewBox="0 0 24 24"><path d="M12 1.5c2 2.5 2.5 4 0 6.5-2.5-2.5-2-4 0-6.5z M10 9.5h4v8h-4z M6.5 17.5h11l1.5 4H5z"></path></symbol>
-<symbol id="ic-w-poison" viewBox="0 0 24 24"><path d="M9.5 2.5h5v4h-5z"></path><path fill-rule="evenodd" d="M9 7h6l3 4v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20v-9z M11 12.5h2v2h2v2h-2v2h-2v-2H9v-2h2z"></path></symbol>
-<symbol id="ic-w-gun" viewBox="0 0 24 24"><path d="M2 10h13v3h3v-2h4v5h-3l-1 2h-4v-3H9v3H6v-3a2 2 0 0 1-2-2z"></path></symbol>
-<symbol id="ic-w-bat" viewBox="0 0 24 24"><path d="M3 21L16 4c1.5-1.8 4.5 1.2 3 3L6 22.5z"></path></symbol>
-<symbol id="ic-w-wrench" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.5 2a5.5 5.5 0 0 0-5.4 6.6L2 15.7l3 3 7-7.1A5.5 5.5 0 0 0 20 6.5l-3.5 3.5-2-2L18 4.5A5.5 5.5 0 0 0 14.5 2z"></path></symbol>
-<symbol id="ic-w-axe" viewBox="0 0 24 24"><path d="M2 22l8-14 2.5 1.5L4.5 23z M12 2c4 0 8 2 9 6-3 2-8 3-11-.5z"></path></symbol>
-<symbol id="ic-w-dagger" viewBox="0 0 24 24"><path d="M11 2h2v9h-2z M6 10h12v2.5H6z M11 13h2v5h-2z M9.5 18h5l-2.5 4z"></path></symbol>
-<symbol id="ic-w-saw" viewBox="0 0 24 24"><path d="M2 17l14-14 3 3-14 14z M15 7l3 3-2 2-3-3z M17 3l4 4-2 2-4-4z"></path></symbol>
-<symbol id="ic-w-syringe" viewBox="0 0 24 24"><path d="M20.5 2L22 3.5l-2.5 2.5 1 1-9 9-2-2-1.5 1.5 1 1-1.5 1.5-3-3 1.5-1.5 1 1 1.5-1.5-2-2 9-9 1 1z"></path></symbol>
-<symbol id="ic-w-bottle" viewBox="0 0 24 24"><path d="M10 2h4v3.5l2 3V21a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 21V8.5l2-3z"></path></symbol>
-<symbol id="ic-w-trophy" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 3h12v4a6 6 0 0 1-12 0z M2 5h4v2a3 3 0 0 1-4-2.8z M18 5h4a3 3 0 0 1-4 2.8z M11 13h2v4h-2z M7 17h10v2H7z M8 19h8v2H8z"></path></symbol>
-<symbol id="ic-w-chain" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><ellipse cx="7" cy="6" rx="4" ry="3" transform="rotate(-30 7 6)"></ellipse><ellipse cx="13" cy="11" rx="4" ry="3" transform="rotate(-30 13 11)"></ellipse><ellipse cx="19" cy="16" rx="4" ry="3" transform="rotate(-30 19 16)"></ellipse></g></symbol>
-<symbol id="ic-w-crowbar" viewBox="0 0 24 24"><path d="M3 21l14-16 2.5 2-4 4.5 2 1.8-3 3.3-2-1.8L6 23z"></path></symbol>
-<symbol id="ic-w-shovel" viewBox="0 0 24 24"><path d="M14 2l2 2-9.5 9.5-2-2z M15 5l4 4-2.5 2.5-4-4z M6.5 13a5 4.5 0 1 0 6 6z"></path></symbol>
-<symbol id="ic-w-pickaxe" viewBox="0 0 24 24"><path d="M12 2c5 0 9 3 10 7-3-1-6-1-8 .5l2 2-2.5 2.5-2-2C10 14 10 17 11 20l-3 1c-1.5-4-1-8 1-11-2.5-1-5.5-1-9 0 1-4 5-8 12-8z"></path></symbol>
-<symbol id="ic-w-spear" viewBox="0 0 24 24"><path d="M2 22L18 6l2 2L4 24z M16 4l3-3 4 4-3 3z"></path></symbol>
-<symbol id="ic-w-slingshot" viewBox="0 0 24 24"><path d="M11 22V13.5L4 5l1.6-1.4 6.9 8 6.9-8L21 5l-7 8.5V22z"></path><circle cx="12" cy="9" r="1.6"></circle></symbol>
-<symbol id="ic-w-dumbbell" viewBox="0 0 24 24"><path d="M2 10h2.5v4H2z M4.5 8h3v8h-3z M8.5 11h7v2h-7z M15.5 8h3v8h-3z M19.5 10H22v4h-2.5z"></path></symbol>
-<symbol id="ic-w-anvil" viewBox="0 0 24 24"><path d="M6 4h9v4l6 2v2H6a3 3 0 0 0-3 3H2v-3a4 4 0 0 1 4-4z M9 12h4v9H9z M6.5 21h11v2h-11z"></path></symbol>
-<symbol id="ic-w-poker" viewBox="0 0 24 24"><path d="M20 4a3 3 0 0 1-3 3 3 3 0 0 1-1-.2L6.5 17.3a3 3 0 1 1-1.8-1.8L15.2 5a3 3 0 0 1-.2-1 3 3 0 0 1 5-2.2A3 3 0 0 1 20 4z"></path></symbol>
-<symbol id="ic-w-letteropener" viewBox="0 0 24 24"><path d="M9 15L19 5l2 2L11 17z M4 20l4-1.5 1.5-4L3 21z"></path></symbol>
-<symbol id="ic-w-icepick" viewBox="0 0 24 24"><path d="M9 15L20 4l1.5 1.5L10 17z M4 21l3.5-1 1-3.5L2 23z M14 2l4 4-1.5 1.5-4-4z"></path></symbol>
-<symbol id="ic-w-cleaver" viewBox="0 0 24 24"><path d="M3 22c0-6 3-11 9-12h9v8a2 2 0 0 1-2 2H9c-1.5 0-2.5 1-3 2z M12 10V4h2v6z"></path></symbol>
-<symbol id="ic-w-sickle" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 1 8.9 7.8 6.5 6.5 0 0 0-11.3 4.4c0 .9.2 1.7.5 2.4L8 18l-2 3-3-2 2-3 1.6-1.9A9 9 0 0 1 12 2z"></path></symbol>
-<symbol id="ic-w-nailgun" viewBox="0 0 24 24"><path d="M3 10h9v3h3v-2h4a1 1 0 0 1 1 1v3l-3 1v2h-3v-3H8v3H5v-4a2 2 0 0 1-2-2z M10 3h2v6h-2z"></path></symbol>
-<symbol id="ic-w-brick" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 8h20v10H2z M2 12.4h20v1.2H2z M6.2 8h1.2v4.4H6.2z M16.6 8h1.2v4.4h-1.2z M10.4 13.6h1.2V18h-1.2z"></path></symbol>
-<symbol id="ic-w-book" viewBox="0 0 24 24"><path d="M3 3h8v18l-8-2z M21 3h-8v18l8-2z"></path></symbol>
-<symbol id="ic-w-lamp" viewBox="0 0 24 24"><path d="M7 2h10l2 8H5z M9.5 10h5v9h-5z M6 19h12v2H6z"></path></symbol>
-<symbol id="ic-w-golfclub" viewBox="0 0 24 24"><path d="M11 2h2v17.5h-2z M13 15l7-3.5c1.5 2 1 5-1 6.5z"></path></symbol>
-<symbol id="ic-w-harpoon" viewBox="0 0 24 24"><path d="M2 22L17 7l2 2L4 24z M15 5l2-3 5 5-3 2z M17 7l3-1 1 3-3 1z"></path></symbol>
-<symbol id="ic-w-crossbow" viewBox="0 0 24 24"><path d="M2 6l2-1.5 8 7-8 7L2 17l6.5-6.5z M9 9.5h13v2H9z"></path></symbol>
-<symbol id="ic-w-kettle" viewBox="0 0 24 24"><path d="M4 12h13a3 3 0 0 1 3 3l3 1-1 2-2.5-.8A6 6 0 0 1 14 22H8a6 6 0 0 1-6-6z M9 12V7a3 3 0 0 1 6 0v1h-2V7a1 1 0 0 0-2 0v5z M9.5 3h5v2h-5z"></path></symbol>
+<symbol id="ic-s-person" viewBox="0 -960 960 960"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></symbol>
+<symbol id="ic-s-man" viewBox="0 -960 960 960"><path d="M400-80v-280h-80v-240q0-33 23.5-56.5T400-680h160q33 0 56.5 23.5T640-600v240h-80v280H400Zm80-640q-33 0-56.5-23.5T400-800q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800q0 33-23.5 56.5T480-720Z"/></symbol>
+<symbol id="ic-s-woman" viewBox="0 -960 960 960"><path d="M400-80v-240H280l122-308q10-24 31-38t47-14q26 0 47 14t31 38l122 308H560v240H400Zm23.5-663.5Q400-767 400-800t23.5-56.5Q447-880 480-880t56.5 23.5Q560-833 560-800t-23.5 56.5Q513-720 480-720t-56.5-23.5Z"/></symbol>
+<symbol id="ic-s-boy" viewBox="0 -960 960 960"><path d="M430.5-680.5Q410-701 410-730t20.5-49.5Q451-800 480-800t49.5 20.5Q550-759 550-730t-20.5 49.5Q509-660 480-660t-49.5-20.5ZM400-160v-200h-40v-180q0-33 23.5-56.5T440-620h80q33 0 56.5 23.5T600-540v180h-40v200H400Z"/></symbol>
+<symbol id="ic-s-girl" viewBox="0 -960 960 960"><path d="M430.5-680.5Q410-701 410-730t20.5-49.5Q451-800 480-800t49.5 20.5Q550-759 550-730t-20.5 49.5Q509-660 480-660t-49.5-20.5ZM400-160v-160h-80l95-255q8-20 25.5-32.5T480-620q22 0 39.5 12.5T545-575l95 255h-80v160H400Z"/></symbol>
+<symbol id="ic-s-elderly" viewBox="0 -960 960 960"><path d="m320-40-64-48 104-139v-213q0-31 5-67.5t15-67.5l-60 33v142h-80v-188l176-100q25-14 43.5-21.5T494-717q25 0 45.5 21.5T587-628q32 54 58 81t56 41q11-8 19-11t19-3q25 0 43 18t18 42v420h-40v-420q0-8-6-14t-14-6q-8 0-14 6t-6 14v50h-40v-19q-54-23-84-51.5T543-557q-11 28-17.5 68.5T521-412l79 112v260h-80v-200l-71-102-9 142L320-40Zm220-700q-33 0-56.5-23.5T460-820q0-33 23.5-56.5T540-900q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></symbol>
+<symbol id="ic-s-elderly-woman" viewBox="0 -960 960 960"><path d="m320-40-64-48 84-112H240q0-35 19.5-120.5T313-495q34-90 80.5-157.5T494-720q37 0 51.5 23t41.5 69q32 54 58 81t56 41q11-8 19-11t19-3q25 0 43 18t18 42v420h-40v-420q0-8-6-14t-14-6q-8 0-14 6t-6 14v50h-40v-19q-38-21-78-54.5T543-557l-23 117 80 239v161h-80v-160h-80L320-40Zm220-700q-33 0-56.5-23.5T460-820q0-8 4-24-11-5-17.5-14.5T440-880q0-17 11.5-28.5T480-920q12 0 21.5 6.5T516-896q6-2 12-3t12-1q33 0 56.5 23.5T620-820q0 33-23.5 56.5T540-740Z"/></symbol>
+<symbol id="ic-s-face" viewBox="0 -960 960 960"><path d="M324.5-404.5Q310-419 310-440t14.5-35.5Q339-490 360-490t35.5 14.5Q410-461 410-440t-14.5 35.5Q381-390 360-390t-35.5-14.5Zm240 0Q550-419 550-440t14.5-35.5Q579-490 600-490t35.5 14.5Q650-461 650-440t-14.5 35.5Q621-390 600-390t-35.5-14.5ZM480-160q134 0 227-93t93-227q0-24-3-46.5T786-570q-21 5-42 7.5t-44 2.5q-91 0-172-39T390-708q-32 78-91.5 135.5T160-486v6q0 134 93 227t227 93Zm0 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/></symbol>
+<symbol id="ic-s-face-2" viewBox="0 -960 960 960"><path d="M434-43q-23-3-46-8-88 65-193.5 46.5T33-117q-45-74-29-159t77-143v-3Q19-479 4-562.5T32-720q37-63 102-95.5T271-838q32-57 87.5-89.5T480-960q66 0 121.5 32.5T689-838q72-10 137 22.5T928-720q43 74 28 157.5T879-422v3q61 58 77 143t-29 159Q871-23 765.5-4.5T572-51q-23 5-46 8t-46 3q-23 0-46-3Zm46-77q134 0 227-93t93-227q0-29-4.5-55.5T782-547q-29 20-64 31t-73 11q-102 0-173.5-71.5T400-750q-104 26-172 112t-68 198q0 134 93 227t227 93ZM324.5-364.5Q310-379 310-400t14.5-35.5Q339-450 360-450t35.5 14.5Q410-421 410-400t-14.5 35.5Q381-350 360-350t-35.5-14.5Zm240 0Q550-379 550-400t14.5-35.5Q579-450 600-450t35.5 14.5Q650-421 650-400t-14.5 35.5Q621-350 600-350t-35.5-14.5Z"/></symbol>
+<symbol id="ic-s-face-3" viewBox="0 -960 960 960"><path d="M480-240q134 0 227-93.5T800-560q0-31-5-59.5T779-675q-27 17-57 26t-62 9q-54 0-101.5-24.5T480-734q-31 45-78.5 69.5T300-640q-32 0-62-9t-57-26q-11 27-16 55.5t-5 59.5q0 133 93.5 226.5T480-240Zm-84.5-244.5Q410-499 410-520t-14.5-35.5Q381-570 360-570t-35.5 14.5Q310-541 310-520t14.5 35.5Q339-470 360-470t35.5-14.5Zm240 0Q650-499 650-520t-14.5-35.5Q621-570 600-570t-35.5 14.5Q550-541 550-520t14.5 35.5Q579-470 600-470t35.5-14.5ZM88-80q-35 0-59-26T8-167l36-395q8-84 45.5-157t96-126.5q58.5-53.5 134-84T480-960q85 0 160.5 30.5t134 84Q833-792 870.5-719T916-562l36 395q3 35-21 61t-59 26H88Z"/></symbol>
+<symbol id="ic-s-crown" viewBox="0 -960 960 960"><path d="M200-160v-80h560v80H200Zm0-140-51-321q-2 0-4.5.5t-4.5.5q-25 0-42.5-17.5T80-680q0-25 17.5-42.5T140-740q25 0 42.5 17.5T200-680q0 7-1.5 13t-3.5 11l125 56 125-171q-11-8-18-21t-7-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820q0 15-7 28t-18 21l125 171 125-56q-2-5-3.5-11t-1.5-13q0-25 17.5-42.5T820-740q25 0 42.5 17.5T880-680q0 25-17.5 42.5T820-620q-2 0-4.5-.5t-4.5-.5l-51 321H200Z"/></symbol>
+<symbol id="ic-s-domino-mask" viewBox="0 -960 960 960"><path d="M312-240q-51 0-97.5-18T131-311q-48-45-69.5-106.5T40-545q0-78 38-126.5T189-720q14 0 26.5 2.5T241-710l239 89 239-89q13-5 25.5-7.5T771-720q73 0 111 48.5T920-545q0 66-21.5 127.5T829-311q-37 35-83.5 53T648-240q-66 0-112-30l-46-30h-20l-46 30q-46 30-112 30Zm37-160q29 0 46-13.5t17-36.5q0-39-52-74.5T251-560q-29 0-46 13.5T188-510q0 39 52 74.5T349-400Zm262 0q57 0 109-35.5t52-74.5q0-24-16.5-37T709-560q-57 0-109 35.5T548-450q0 23 16.5 36.5T611-400Z"/></symbol>
+<symbol id="ic-s-comedy-mask" viewBox="0 -960 960 960"><path d="M593-327q47-47 47-113H320q0 66 47 113t113 47q66 0 113-47ZM480-80q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-440v-440h720v440q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-80ZM280-600h160q0-33-23.5-56.5T360-680q-33 0-56.5 23.5T280-600Zm240 0h160q0-33-23.5-56.5T600-680q-33 0-56.5 23.5T520-600Z"/></symbol>
+<symbol id="ic-s-medical-mask" viewBox="0 -960 960 960"><path d="M480-200q-64 0-127-5.5T227-220q-29-5-48-27.5T160-299v-26q-53-14-86.5-57T40-480q0-54 33.5-97t86.5-57v-46q0-33 23-56.5t55-23.5q29 0 58.5 5.5T355-747q32 3 62.5 4t62.5 1q32 0 62.5-1t62.5-4q29-2 57.5-7.5T720-760q33 0 56.5 23.5T800-680v46q53 14 86.5 56.5T920-480q0 55-33.5 97.5T800-326v26q0 30-19.5 52.5T732-220q-63 10-126 15t-126 5Zm0-140q43 0 85.5-5t84.5-16q17-5 25-19t3-30q-5-16-19-24.5t-30-3.5q-37 10-74 14t-75 4q-38 0-75.5-3.5T330-438q-16-5-30 3t-19 24q-5 16 3.5 30t24.5 19q42 13 84.5 17.5T480-340Zm-320-71v-137q-19 11-29.5 29T120-480q0 22 10.5 40t29.5 29Zm640 0q18-11 29-29t11-40q0-21-11-39t-29-29v137Zm-320-89q43 0 85.5-5t84.5-16q17-5 25-19t3-30q-5-16-19-24.5t-30-3.5q-37 10-74 14t-75 4q-38 0-75.5-4T330-598q-16-5-30 3t-19 25q-5 16 3 30t25 19q42 11 84.5 16t86.5 5Z"/></symbol>
+<symbol id="ic-s-skull" viewBox="0 -960 960 960"><path d="M420-330h120l-60-120-60 120Zm-80-110q33 0 56.5-23.5T420-520q0-33-23.5-56.5T340-600q-33 0-56.5 23.5T260-520q0 33 23.5 56.5T340-440Zm280 0q33 0 56.5-23.5T700-520q0-33-23.5-56.5T620-600q-33 0-56.5 23.5T540-520q0 33 23.5 56.5T620-440ZM240-80v-170q-39-17-68.5-45.5t-50-64.5q-20.5-36-31-77T80-520q0-158 112-259t288-101q176 0 288 101t112 259q0 42-10.5 83t-31 77q-20.5 36-50 64.5T720-250v170H600v-80h-80v80h-80v-80h-80v80H240Z"/></symbol>
+<symbol id="ic-s-eyeglasses" viewBox="0 -960 960 960"><path d="M274-360q31 0 55.5-18t34.5-47l15-46q16-48-8-88.5T302-600H161l19 157q5 35 31.5 59t62.5 24Zm412 0q36 0 62.5-24t31.5-59l19-157H659q-45 0-69 41t-8 89l14 45q10 29 34.5 47t55.5 18Zm-412 80q-66 0-115.5-43.5T101-433L80-600H40v-80h262q44 0 80.5 21.5T440-600h81q21-37 57.5-58.5T659-680h261v80h-40l-21 167q-8 66-57.5 109.5T686-280q-57 0-102.5-32.5T520-399l-15-45q-2-7-4-14.5t-4-21.5h-34q-2 12-4 19.5t-4 14.5l-15 46q-18 54-63.5 87T274-280Z"/></symbol>
+<symbol id="ic-s-eyeglasses-2" viewBox="0 -960 960 960"><path d="M262-320q-61 0-93-16.5T110-398q-15-25-25.5-59.5T65-520q-11 0-18-7t-7-18v-49q0-9 6-15.5t15-8.5q56-11 101.5-16t87.5-5q61 0 110.5 10t77.5 29h85q24-18 76-28.5T711-639q42 0 87 5t101 16q9 2 15 8.5t6 15.5v49q0 11-7 18t-18 7q-9 28-19.5 62.5T850-398q-26 44-58.5 61T698-320q-63 0-107-27t-61-87q-5-16-8.5-32t-8.5-32q-4-12-12-17.5t-21-5.5q-12 0-20 6t-13 17q-5 16-8.5 32t-8.5 32q-17 60-61 87t-107 27Zm0-58q71 0 97-42t26-108q0-17-12-26.5T326-572q-26-7-63-8.5t-72 3.5q-26 4-38.5 13T140-538q0 27 4.5 52t13.5 46q16 35 37.5 48.5T262-378Zm436 0q45 0 66.5-13.5T801-440q9-21 14-46t5-53q0-17-12.5-26.5T768-578q-35-5-71.5-3t-62.5 9q-35 8-47 17t-12 26q0 66 26 108.5t97 42.5Z"/></symbol>
+<symbol id="ic-s-eyeglasses-3" viewBox="0 -960 960 960"><path d="M260-300q-75 0-127.5-52.5T80-480q0-75 52.5-127.5T260-660q56 0 100 30t65 78q13-4 26.5-6t27.5-2q14 0 28 2t28 6q21-48 65-78t100-30q75 0 127.5 52.5T880-480q0 75-52.5 127.5T700-300q-73 0-125-50.5T520-473q-10-4-20-5.5t-21-1.5q-11 0-20.5 2t-18.5 5q-3 72-55 122.5T260-300Zm-71-251q-29 29-29 71t29 71q29 29 71 29t71-29q29-29 29-71t-29-71q-29-29-71-29t-71 29Zm440 0q-29 29-29 71t29 71q29 29 71 29t71-29q29-29 29-71t-29-71q-29-29-71-29t-71 29Z"/></symbol>
+<symbol id="ic-s-jewelry" viewBox="0 -960 960 960"><path d="M480-40q-21 0-35.5-14.5T430-90q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T480-40ZM310-80q-21 0-35.5-14.5T260-130q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T310-80Zm340 0q-21 0-35.5-14.5T600-130q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T650-80ZM200-200q-21 0-35.5-14.5T150-250q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T200-200Zm280 0q-91 0-155.5-64.5T260-420q0-91 72-185.5T480-770q76 70 148 164.5T700-420q0 91-64.5 155.5T480-200Zm280 0q-21 0-35.5-14.5T710-250q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T760-200ZM480-340q33 0 56.5-23t23.5-57q0-33-23.5-56.5T480-500q-34 0-57 23.5T400-420q0 34 23 57t57 23Zm0-480q-21 0-35.5-14.5T430-870q0-20 14.5-35t35.5-15q20 0 35 15t15 35q0 21-15 35.5T480-820Z"/></symbol>
+<symbol id="ic-s-diamond" viewBox="0 -960 960 960"><path d="m368-630 106-210h12l106 210H368Zm82 474L105-570h345v414Zm60 0v-414h345L510-156Zm148-474L554-840h206l105 210H658Zm-563 0 105-210h206L302-630H95Z"/></symbol>
+<symbol id="ic-s-watch" viewBox="0 -960 960 960"><path d="m360-80-54-182q-48-38-77-95t-29-123q0-66 29-123t77-95l54-182h240l54 182q48 38 77 95t29 123q0 66-29 123t-77 95L600-80H360Zm261.5-258.5Q680-397 680-480t-58.5-141.5Q563-680 480-680t-141.5 58.5Q280-563 280-480t58.5 141.5Q397-280 480-280t141.5-58.5Z"/></symbol>
+<symbol id="ic-s-umbrella" viewBox="0 -960 960 960"><path d="M457.5-86.5Q447-93 442-107L240-717l140 34 60-46v-95q0-40 29-68t71-28q42 0 71 28t29 68v24h-80v-24q0-8-6-13.5t-14-5.5q-8 0-14 5.5t-6 13.5v95l60 46 140-34-202 609q-5 14-15.5 21T480-80q-12 0-22.5-6.5ZM520-368l78-238-36 9-42-31v260Zm-80 0v-260l-42 32-37-10 79 238Z"/></symbol>
+<symbol id="ic-s-checkroom" viewBox="0 -960 960 960"><path d="M120-160q-17 0-28.5-11.5T80-200q0-10 4-18.5T96-232l344-258v-70q0-17 12-28.5t29-11.5q25 0 42-18t17-43q0-25-17.5-42T480-720q-25 0-42.5 17.5T420-660h-80q0-58 41-99t99-41q58 0 99 40.5t41 98.5q0 47-27.5 84T520-526v36l344 258q8 5 12 13.5t4 18.5q0 17-11.5 28.5T840-160H120Zm120-80h480L480-420 240-240Z"/></symbol>
+<symbol id="ic-s-apparel" viewBox="0 -960 960 960"><path d="m240-522-40 22q-14 8-30 4t-24-18L66-654q-8-14-4-30t18-24l230-132h70q9 0 14.5 5.5T400-820v20q0 33 23.5 56.5T480-720q33 0 56.5-23.5T560-800v-20q0-9 5.5-14.5T580-840h70l230 132q14 8 18 24t-4 30l-80 140q-8 14-23.5 17.5T760-501l-40-20v361q0 17-11.5 28.5T680-120H280q-17 0-28.5-11.5T240-160v-362Z"/></symbol>
+<symbol id="ic-s-footprint" viewBox="0 -960 960 960"><path d="M260-920q85 0 132.5 75.5T440-680q0 41-8.5 78T412-536l-285 57q-15-29-31-80.5T80-680q0-103 51-171.5T260-920Zm55 680q-71 0-110.5-49.5T160-404l258-52q8 17 15 38.5t7 44.5q0 57-35.5 95T315-240Zm385-480q78 0 129 68.5T880-480q0 69-16 120.5T833-279l-285-57q-11-29-19.5-66t-8.5-78q0-89 47.5-164.5T700-720ZM645-40q-54 0-89.5-38T520-173q0-23 7-44.5t15-38.5l257 52q-5 65-44 114.5T645-40Z"/></symbol>
+<symbol id="ic-s-identity-platform" viewBox="0 -960 960 960"><path d="m480-153 224-137q-50-35-107-52.5T480-360q-60 0-117.5 17.5T254-291l226 138Zm99-328q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41ZM480-60 120-280v-400l360-220 360 220v400L480-60Z"/></symbol>
+<symbol id="ic-s-eyebrow" viewBox="0 -960 960 960"><path d="M600-400q-25 0-69.5 9T432-367q-54 15-112.5 35T206-289q-11 5-22.5 7t-23.5 2q-50 0-85-35t-35-85v-103q0-43 27-76.5t69-41.5q72-14 139-25t126-18.5q59-7.5 109.5-11.5t89.5-4q124 0 212.5 99.5T921-320q2 11-5.5 20T896-286q-11 5-23 3t-23-10q-64-50-131-78.5T600-400Z"/></symbol>
+<symbol id="ic-s-lips" viewBox="0 -960 960 960"><path d="M454-200q-139 0-249-79.5T50-489q106 41 215.5 65T480-400q112 0 218-25.5T910-489q-45 130-155 209.5T506-200h-52Zm27-280q-103 0-202.5-24.5T80-560l162-162q17-17 39.5-26.5T327-758q17 0 34.5 5.5T394-737l86 57 86-57q15-10 32.5-15.5T633-758q23 0 45.5 9.5T718-722l159 159q-97 35-195 59t-201 24Z"/></symbol>
+<symbol id="ic-s-mystery" viewBox="0 -960 960 960"><path d="M440-240q116 0 198-81.5T720-520q0-116-82-198t-198-82q-117 0-198.5 82T160-520q0 117 81.5 198.5T440-240Zm0-180q42 0 71-28.5t29-71.5q0-42-29-71t-71-29q-43 0-71.5 29T340-520q0 43 28.5 71.5T440-420Zm0 60q-83 0-147.5-44.5T200-520q28-70 92.5-115T440-680q82 0 146.5 45T680-520q-29 71-93.5 115.5T440-360Zm0-100q25 0 42.5-17t17.5-43q0-25-17.5-42.5T440-580q-26 0-43 17.5T380-520q0 26 17 43t43 17ZM823-80 664-238q-47 37-104 57.5T440-160q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T80-520q0-74 28.5-139.5t77-114.5q48.5-49 114-77.5T440-880q74 0 139.5 28.5T694-774q49 49 77.5 114.5T800-520q0 64-21 121t-58 104l159 159-57 56Z"/></symbol>
+<symbol id="ic-s-gavel" viewBox="0 -960 960 960"><path d="M160-120v-80h480v80H160Zm226-194L160-540l84-86 228 226-86 86Zm254-254L414-796l86-84 226 226-86 86Zm184 408L302-682l56-56 522 522-56 56Z"/></symbol>
+<symbol id="ic-s-siren" viewBox="0 -960 960 960"><path d="M320-440h80v-120q0-33 23.5-56.5T480-640v-80q-66 0-113 47t-47 113v120ZM160-120q-33 0-56.5-23.5T80-200v-80q0-33 23.5-56.5T160-360h40v-200q0-117 81.5-198.5T480-840q117 0 198.5 81.5T760-560v200h40q33 0 56.5 23.5T880-280v80q0 33-23.5 56.5T800-120H160Z"/></symbol>
+<symbol id="ic-s-handshake" viewBox="0 -960 960 960"><path d="M484-120q-17 0-28.5-11.5T444-160q0-7 3-14.5t9-13.5l185-185-29-29-184 185q-6 6-13 9t-15 3q-17 0-28.5-11.5T360-245q0-10 3-16.5t8-11.5l185-185-28-28-185 184q-6 6-13 9t-16 3q-16 0-28-12t-12-28q0-8 3-15t9-13l185-185-29-28-184 185q-5 5-12 8t-17 3q-17 0-28.5-11.5T189-415q0-8 3-15t9-13l223-223 150 151q11 11 26 17.5t30 6.5q32 0 56-22.5t24-57.5q0-14-5-29t-18-28L508-807q17-16 38-24.5t42-8.5q26 0 48 8.5t40 26.5l169 170q18 18 26.5 40t8.5 51q0 20-9 40.5T845-466L512-132q-8 8-14 10t-14 2ZM141-440l-26-26q-17-16-26-38t-9-46q0-26 10-48t25-37l169-170q16-16 38-25.5t43-9.5q27 0 48 7.5t41 27.5l205 205q6 6 9 13t3 15q0 16-12 28t-28 12q-9 0-15-2.5t-13-9.5L423-722 141-440Z"/></symbol>
+<symbol id="ic-s-folded-hands" viewBox="0 -960 960 960"><path d="M630-320v-112l-76-139q-20 10-32 29t-12 42v320l57 100h313l-40-500-280-320-13 13q-29 29-34.5 68t14.5 74l163 297v128h-60Zm-360 0v-128l163-297q20-35 13.5-74T412-887l-12-13-280 320L80-80h313l57-100v-320q0-23-12.5-42T406-571l-76 139v112h-60Z"/></symbol>
+<symbol id="ic-s-waving-hand" viewBox="0 -960 960 960"><path d="M39-680q0-100 70.5-170.5T280-921v81q-66 0-113 47t-47 113H39Zm173 469q-91-91-91-219t91-219l70-71 12 12q29 29 29 70.5T294-567l-14 14q-12 12-12 28.5t12 28.5l36 36q26 26 26 63t-26 63l43 43q44-44 44-105.5T358-503l-22-22q26-26 37-58.5t9-66.5l179-179q12-12 28.5-12t28.5 12q12 12 12 28.5T618-772L431-585l42 42 241-240q12-12 28-12t28 12q12 12 12 28t-12 28L530-486l42 42 212-212q12-12 28.5-12t28.5 12q12 12 12 28.5T841-599L629-387l42 42 162-162q12-12 28.5-12t28.5 12q12 12 12 28.5T890-450L650-211q-91 91-219 91t-219-91ZM680-39v-81q66 0 113-47t47-113h81q0 100-70.5 170.5T680-39Z"/></symbol>
+<symbol id="ic-s-thumb-up" viewBox="0 -960 960 960"><path d="M720-120H320v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h218q32 0 56 24t24 56v80q0 7-1.5 15t-4.5 15L794-168q-9 20-30 34t-44 14ZM240-640v520H80v-520h160Z"/></symbol>
+<symbol id="ic-s-mood" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm263.5 221.5Q659-337 684-400H276q25 63 80.5 101.5T480-260q68 0 123.5-38.5ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-dissatisfied" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm16.5 138.5Q301-343 276-280h66q22-37 58.5-58.5T480-360q43 0 79.5 21.5T618-280h66q-25-63-80.5-101.5T480-420q-68 0-123.5 38.5Zm-32.5 270Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-stressed" viewBox="0 -960 960 960"><path d="M324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5ZM298-456l143-104-143-104-36 48 77 56-77 56 36 48Zm122 178 60-60 60 60 60-60 39 39 42-42-81-81-60 60-60-60-60 60-60-60-81 81 42 42 39-39 60 60Zm242-178 36-48-77-56 77-56-36-48-143 104 143 104Z"/></symbol>
+<symbol id="ic-s-chess-king" viewBox="0 -960 960 960"><path d="M210-560q-14-22-22-47t-8-53q0-75 52.5-127.5T360-840q21 0 41 4.5t39 14.5v-99h80v99q19-9 39-14t41-5q75 0 127.5 52.5T780-660q0 28-8 53t-22 47H210ZM120-80v-160q0-33 23.5-56.5T200-320h50l10-80H120v-80h720v80H700l10 80h50q33 0 56.5 23.5T840-240v160H120Z"/></symbol>
+<symbol id="ic-s-chess-queen" viewBox="0 -960 960 960"><path d="m223-120-89-481q-37 7-65.5-17T40-680q0-33 23.5-56.5T120-760q33 0 56.5 23.5T200-680q0 14-4 26t-12 22q22 13 44.5 21.5T276-602q44 0 81.5-22t58.5-60l25-46q-19-11-30-29t-11-41q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800q0 23-11 41t-30 29l25 46q21 38 58.5 60t81.5 22q25 0 47.5-8t44.5-21q-8-10-12-22.5t-4-26.5q0-33 23.5-56.5T840-760q33 0 56.5 23.5T920-680q0 38-28.5 62T826-601l-89 481H223Z"/></symbol>
+<symbol id="ic-s-person-2" viewBox="0 -960 960 960"><path d="M391-480q-36 0-60-27t-19-63l13-98q8-57 52-94.5T480-800q59 0 103 37.5t52 94.5l13 98q5 36-19 63t-60 27H391ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></symbol>
+<symbol id="ic-s-person-3" viewBox="0 -960 960 960"><path d="M400-400q-50 0-85-35t-35-85q0-22 7-41.5t21-35.5q-4-10-6-21t-2-22q0-38 20.5-67.5T374-751q20-23 47-36t59-13q32 0 59 13t47 36q33 14 53.5 43.5T660-640q0 11-2 22t-6 21q14 16 21 35.5t7 41.5q0 50-35 85t-85 35H400ZM160-80v-112q0-34 17.5-62.5T224-298q62-31 126-46.5T480-360q66 0 130 15.5T736-298q29 15 46.5 43.5T800-192v112H160Z"/></symbol>
+<symbol id="ic-s-person-4" viewBox="0 -960 960 960"><path d="M367-487q-47-47-47-113v-140q0-25 17.5-42.5T380-800q15 0 28.5 7t21.5 20q8-13 21.5-20t28.5-7q15 0 28.5 7t21.5 20q8-13 21.5-20t28.5-7q25 0 42.5 17.5T640-740v140q0 66-47 113t-113 47q-66 0-113-47ZM160-120v-112q0-34 17.5-62.5T224-338q62-31 126-46.5T480-400q66 0 130 15.5T736-338q29 15 46.5 43.5T800-232v112H160Z"/></symbol>
+<symbol id="ic-s-man-2" viewBox="0 -960 960 960"><path d="M420-80v-280H320v-240q0-33 23.5-56.5T400-680h160q33 0 56.5 23.5T640-600v240H540v280H420Zm60-640q-33 0-56.5-23.5T400-800q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800q0 33-23.5 56.5T480-720Z"/></symbol>
+<symbol id="ic-s-man-3" viewBox="0 -960 960 960"><path d="M400-70v-280h-80v-240q0-33 23.5-56.5T400-670h160q33 0 56.5 23.5T640-590v240h-80v280H400Zm80-630-90-90 90-90 90 90-90 90Z"/></symbol>
+<symbol id="ic-s-man-4" viewBox="0 -960 960 960"><path d="m400-80-68-509q-5-36 19-63.5t60-27.5h138q36 0 60 27.5t19 63.5L560-80H400Zm80-640q-33 0-56.5-23.5T400-800q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800q0 33-23.5 56.5T480-720Z"/></symbol>
+<symbol id="ic-s-woman-2" viewBox="0 -960 960 960"><path d="M420-80v-240H280l122-308q10-24 31-38t47-14q26 0 47 14t31 38l122 308H540v240H420Zm60-640q-33 0-56.5-23.5T400-800q0-33 23.5-56.5T480-880q33 0 56.5 23.5T560-800q0 33-23.5 56.5T480-720Z"/></symbol>
+<symbol id="ic-s-face-4" viewBox="0 -960 960 960"><path d="M324.5-324.5Q310-339 310-360t14.5-35.5Q339-410 360-410t35.5 14.5Q410-381 410-360t-14.5 35.5Q381-310 360-310t-35.5-14.5Zm240 0Q550-339 550-360t14.5-35.5Q579-410 600-410t35.5 14.5Q650-381 650-360t-14.5 35.5Q621-310 600-310t-35.5-14.5ZM480-80q134 0 227-93t93-227q0-24-3-46.5T786-490q-21 5-42 7.5t-44 2.5q-91 0-172-39T390-628q-32 78-91.5 135.5T160-406v6q0 134 93 227t227 93ZM324-31.5Q251-63 197-117t-85.5-127Q80-317 80-400q0-29 4-57.5T96-512q-43-26-69.5-70.5T0-681q0-83 58-141t141-58q53 0 97.5 25.5T368-784q26-8 54.5-12t57.5-4q83 0 156 31.5T763-683q54 54 85.5 127T880-400q0 83-31.5 156T763-117q-54 54-127 85.5T480 0q-83 0-156-31.5Z"/></symbol>
+<symbol id="ic-s-face-5" viewBox="0 -960 960 960"><path d="M466-726q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-160 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm280 40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-320 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm160 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-120 40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-240 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm40 40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm160 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm-480 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm40-40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80-80q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm40-40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 0q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm40 40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm80 80q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6Zm40 40q-6-6-6-14t6-14q6-6 14-6t14 6q6 6 6 14t-6 14q-6 6-14 6t-14-6ZM324.5-404.5Q310-419 310-440t14.5-35.5Q339-490 360-490t35.5 14.5Q410-461 410-440t-14.5 35.5Q381-390 360-390t-35.5-14.5Zm240 0Q550-419 550-440t14.5-35.5Q579-490 600-490t35.5 14.5Q650-461 650-440t-14.5 35.5Q621-390 600-390t-35.5-14.5ZM480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-80q134 0 227-93.5T800-480q0-134-93-227t-227-93q-133 0-226.5 93T160-480q0 133 93.5 226.5T480-160Z"/></symbol>
+<symbol id="ic-s-face-6" viewBox="0 -960 960 960"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-80q134 0 227.5-94T800-482q-71-7-109-44.5T626-618q-5-11-14.5-16.5T591-640H370q-12 0-21.5 5.5T334-618q-27 55-66 92.5T160-481q0 134 93.5 227.5T480-160ZM324.5-404.5Q310-419 310-440t14.5-35.5Q339-490 360-490t35.5 14.5Q410-461 410-440t-14.5 35.5Q381-390 360-390t-35.5-14.5Zm240 0Q550-419 550-440t14.5-35.5Q579-490 600-490t35.5 14.5Q650-461 650-440t-14.5 35.5Q621-390 600-390t-35.5-14.5Z"/></symbol>
+<symbol id="ic-s-face-down" viewBox="0 -960 960 960"><path d="M380-440q-17 0-28.5-11.5T340-480q0-17 11.5-28.5T380-520q17 0 28.5 11.5T420-480q0 17-11.5 28.5T380-440Zm200 0q-17 0-28.5-11.5T540-480q0-17 11.5-28.5T580-520q17 0 28.5 11.5T620-480q0 17-11.5 28.5T580-440Zm-225 85-58 58q-63-44-100-112.5T160-560q0-134 93-227t227-93q134 0 227 93t93 227q0 82-37 150.5T663-297l-58-58q52-32 83.5-85.5T720-560q0-11-1-21t-3-21q-74 8-143-16.5T452-696q-38 52-93.5 86T240-565q-2 67 30 122.5t85 87.5ZM480-40 320-200l56-56 64 63v-167h80v167l64-63 56 56L480-40Z"/></symbol>
+<symbol id="ic-s-face-left" viewBox="0 -960 960 960"><path d="M340-480q-17 0-28.5-11.5T300-520q0-17 11.5-28.5T340-560q17 0 28.5 11.5T380-520q0 17-11.5 28.5T340-480Zm200 0q-17 0-28.5-11.5T500-520q0-17 11.5-28.5T540-560q17 0 28.5 11.5T580-520q0 17-11.5 28.5T540-480ZM297-297q-63-44-100-112.5T160-560q0-134 93-227t227-93q134 0 227 93t93 227q0 82-37 150.5T663-297l-58-58q53-32 85-87.5T720-565q-63-11-118.5-45T508-696q-52 53-121 77.5T244-602q-2 11-3 21t-1 21q0 66 31.5 119.5T355-355l-58 58ZM480-40 320-200l160-160 56 56-63 64h167v80H473l63 64-56 56Z"/></symbol>
+<symbol id="ic-s-face-right" viewBox="0 -960 960 960"><path d="M620-480q-17 0-28.5-11.5T580-520q0-17 11.5-28.5T620-560q17 0 28.5 11.5T660-520q0 17-11.5 28.5T620-480Zm-200 0q-17 0-28.5-11.5T380-520q0-17 11.5-28.5T420-560q17 0 28.5 11.5T460-520q0 17-11.5 28.5T420-480ZM297-297q-63-44-100-112.5T160-560q0-134 93-227t227-93q134 0 227 93t93 227q0 82-37 150.5T663-297l-58-58q52-32 83.5-85.5T720-560q0-11-1-21t-3-21q-74 8-143-16.5T452-696q-38 52-93.5 86T240-565q-2 67 30 122.5t85 87.5l-58 58ZM480-40l-56-56 63-64H320v-80h167l-63-64 56-56 160 160L480-40Z"/></symbol>
+<symbol id="ic-s-face-up" viewBox="0 -960 960 960"><path d="M380-480q-17 0-28.5-11.5T340-520q0-17 11.5-28.5T380-560q17 0 28.5 11.5T420-520q0 17-11.5 28.5T380-480Zm200 0q-17 0-28.5-11.5T540-520q0-17 11.5-28.5T580-560q17 0 28.5 11.5T620-520q0 17-11.5 28.5T580-480ZM355-355l-58 58q-63-44-100-112.5T160-560q0-134 93-227t227-93q134 0 227 93t93 227q0 82-37 150.5T663-297l-58-58q52-32 83.5-85.5T720-560q0-11-1-21t-3-21q-74 8-143-16.5T452-696q-38 52-93.5 86T240-565q-2 67 30 122.5t85 87.5Zm85 315v-167l-64 63-56-56 160-160 160 160-56 56-64-63v167h-80Z"/></symbol>
+<symbol id="ic-s-face-nod" viewBox="0 -960 960 960"><path d="M360-160q-134 0-227-93T40-480q0-134 93-227t227-93q134 0 227 93t93 227q0 134-93 227t-227 93Zm0-80q100 0 170-70t70-170q0-11-1-21t-3-21q-74 8-143-16.5T332-616q-38 52-93.5 86T120-485q-2 101 68 173t172 72ZM260-400q-17 0-28.5-11.5T220-440q0-17 11.5-28.5T260-480q17 0 28.5 11.5T300-440q0 17-11.5 28.5T260-400Zm200 0q-17 0-28.5-11.5T420-440q0-17 11.5-28.5T460-480q17 0 28.5 11.5T500-440q0 17-11.5 28.5T460-400ZM680-80v-200h60v116q58-66 89-147t31-169q0-88-31-169t-89-147v116h-60v-200h200v60h-81q59 72 90 159t31 181q0 94-31 181t-90 159h81v60H680Z"/></symbol>
+<symbol id="ic-s-face-shake" viewBox="0 -960 960 960"><path d="M299-71q-87-31-159-90v81H80v-200h200v60H164q66 58 147 89t169 31q88 0 169-31t147-89H680v-60h200v200h-60v-81q-72 59-159 90T480-40q-94 0-181-31Zm181-209q-134 0-227-93t-93-227q0-134 93-227t227-93q134 0 227 93t93 227q0 134-93 227t-227 93Zm0-80q100 0 170-70t70-170q0-11-1-21t-3-21q-74 8-143-16.5T452-736q-38 52-93.5 86T240-605q-2 101 68 173t172 72ZM380-520q-17 0-28.5-11.5T340-560q0-17 11.5-28.5T380-600q17 0 28.5 11.5T420-560q0 17-11.5 28.5T380-520Zm200 0q-17 0-28.5-11.5T540-560q0-17 11.5-28.5T580-600q17 0 28.5 11.5T620-560q0 17-11.5 28.5T580-520Z"/></symbol>
+<symbol id="ic-s-male" viewBox="0 -960 960 960"><path d="M800-800v240h-80v-103L561-505q19 28 29 59.5t10 65.5q0 92-64 156t-156 64q-92 0-156-64t-64-156q0-92 64-156t156-64q33 0 65 9.5t59 29.5l159-159H560v-80h240ZM281-479q-41 41-41 99t41 99q41 41 99 41t99-41q41-41 41-99t-41-99q-41-41-99-41t-99 41Z"/></symbol>
+<symbol id="ic-s-female" viewBox="0 -960 960 960"><path d="M440-120v-80h-80v-80h80v-84q-79-14-129.5-75.5T260-582q0-91 64.5-154.5T480-800q91 0 155.5 63.5T700-582q0 81-50.5 142.5T520-364v84h80v80h-80v80h-80Zm139-361q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Z"/></symbol>
+<symbol id="ic-s-agender" viewBox="0 -960 960 960"><path d="M480-120q-100 0-170-70t-70-170q0-90 57.5-156.5T440-597v-243h80v243q86 14 143 80.5T720-360q0 100-70 170t-170 70Zm0-80q56 0 98.5-34t56.5-86H325q14 52 56.5 86t98.5 34ZM325-400h310q-14-52-56.5-86T480-520q-56 0-98.5 34T325-400Z"/></symbol>
+<symbol id="ic-s-transgender" viewBox="0 -960 960 960"><path d="M579-401q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41ZM440-40v-80h-80v-80h80v-84q-78-14-129-75t-51-141q0-33 9.5-65t28.5-59l-26-26-56 56-56-56 56-57-76-76v103H60v-240h240v80H197l76 76 57-56 56 56-56 57 26 26q27-20 59-29.5t65-9.5q33 0 65 9.5t59 29.5l159-159H660v-80h240v240h-80v-103L661-625q19 28 29 59.5t10 65.5q0 80-51 141t-129 75v84h80v80h-80v80h-80Z"/></symbol>
+<symbol id="ic-s-chess" viewBox="0 -960 960 960"><path d="M120-80v-160q0-33 23.5-56.5T200-320h52l22-160H160v-80h640v80H686l22 160h52q33 0 56.5 23.5T840-240v160H120Zm138-540-58-260q33 25 68 47t77 22q40 0 73.5-20.5T480-880q28 28 61.5 48.5T615-811q42 0 77-22t68-47l-57 260H258Z"/></symbol>
+<symbol id="ic-s-chess-bishop" viewBox="0 -960 960 960"><path d="M160-80v-200q55-38 99.5-88T330-480h-90v-80h72l-40-66q-14-23-11-50.5t23-47.5l196-196 196 196q20 20 23 47.5T688-626l-40 66h72v80h-90q26 62 70.5 112t99.5 88v200H160Zm348.5-571.5Q520-663 520-680t-11.5-28.5Q497-720 480-720t-28.5 11.5Q440-697 440-680t11.5 28.5Q463-640 480-640t28.5-11.5Z"/></symbol>
+<symbol id="ic-s-chess-knight" viewBox="0 -960 960 960"><path d="M200-80v-160q0-23 12-41.5t32-29.5l196-99v-70l-139 69q-12 6-25 9t-26 3q-31 0-58.5-16T149-461q-14-27-12-57.5t19-56.5l124-185-80-120h240q133 0 226.5 93T760-560v480H200Z"/></symbol>
+<symbol id="ic-s-chess-pawn" viewBox="0 -960 960 960"><path d="M160-80v-200q88-60 129-125t56-115H240v-80h90q-14-22-22-47t-8-53q0-75 52.5-127.5T480-880q75 0 127.5 52.5T660-700q0 28-8 53t-22 47h90v80H615q15 50 56 115t129 125v200H160Z"/></symbol>
+<symbol id="ic-s-chess-rook" viewBox="0 -960 960 960"><path d="M160-80v-200q81-65 122-141t58-139h-20q-33 0-56.5-23.5T240-640v-240h200v120h80v-120h200v240q0 33-23.5 56.5T640-560h-21q17 63 58 139t123 141v200H160Z"/></symbol>
+<symbol id="ic-s-diversity-1" viewBox="0 -960 960 960"><path d="M38-428q-18-36-28-73T0-576q0-112 76-188t188-76q63 0 120 26.5t96 73.5q39-47 96-73.5T696-840q112 0 188 76t76 188q0 38-10 75t-28 73q-11-19-26-34t-35-24q9-23 14-45t5-45q0-78-53-131t-131-53q-81 0-124.5 44.5T480-616q-48-56-91.5-100T264-760q-78 0-131 53T80-576q0 23 5 45t14 45q-20 9-35 24t-26 34ZM0-80v-63q0-44 44.5-70.5T160-240q13 0 25 .5t23 2.5q-14 20-21 43t-7 49v65H0Zm240 0v-65q0-65 66.5-105T480-290q108 0 174 40t66 105v65H240Zm540 0v-65q0-26-6.5-49T754-237q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780ZM160-280q-33 0-56.5-23.5T80-360q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-280Zm640 0q-33 0-56.5-23.5T720-360q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-280Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-440q0 50-34.5 85T480-320Z"/></symbol>
+<symbol id="ic-s-diversity-2" viewBox="0 -960 960 960"><path d="M350-63q-46 0-82.5-24T211-153q-16 21-40.5 32.5T120-109q-51 0-85.5-35T0-229q0-43 28-77.5T99-346q-14-20-21.5-42.5T70-436q0-40 20.5-75t57.5-57q5 18 13.5 38.5T181-494q-14 11-22 26.5t-8 32.5q0 56 46 69t87 21l19 32q-11 32-19 54.5t-8 40.5q0 30 21.5 52.5T350-143q38 0 63-34t41-80q16-46 24.5-93t13.5-72l78 21q-9 45-22 103t-36.5 110.5Q488-135 449.5-99T350-63Zm54-284q-46-41-83.5-76.5t-64.5-69q-27-33.5-41.5-67T200-629q0-65 44.5-109.5T354-783q4 0 7 .5t7 .5q-4-10-6-20t-2-21q0-50 35-85t85-35q50 0 85 35t35 85q0 11-2 20.5t-6 19.5h14q60 0 102 38.5t50 95.5q-18-3-40.5-3t-41.5 2q-7-23-25.5-38T606-703q-35 0-54.5 20.5T498-623h-37q-35-41-54.5-60.5T354-703q-32 0-53 21t-21 53q0 23 13 47.5t36.5 52q23.5 27.5 57 58.5t74.5 67l-57 57ZM609-63q-22 0-43.5-6T524-88q11-14 22-33t20-35q11 7 22 10t22 3q32 0 53.5-22.5T685-219q0-19-8-41t-19-54l19-32q42-8 87.5-21t45.5-69q0-40-29.5-58T716-512q-42 0-98 16t-131 41l-21-78q78-25 139-42t112-17q69 0 121 41t52 115q0 25-7.5 47.5T861-346q43 5 71 39.5t28 77.5q0 50-34.5 85T840-109q-26 0-50.5-11.5T749-153q-20 42-56.5 66T609-63Z"/></symbol>
+<symbol id="ic-s-diversity-3" viewBox="0 -960 960 960"><path d="M40-160v-160q0-34 23.5-57t56.5-23h131q20 0 38 10t29 27q29 39 71.5 61t90.5 22q49 0 91.5-22t70.5-61q13-17 30.5-27t36.5-10h131q34 0 57 23t23 57v160H640v-91q-35 25-75.5 38T480-200q-43 0-84-13.5T320-252v92H40Zm440-160q-38 0-72-17.5T351-386q-17-25-42.5-39.5T253-440q22-37 93-58.5T480-520q63 0 134 21.5t93 58.5q-29 0-55 14.5T609-386q-22 32-56 49t-73 17ZM160-440q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T280-560q0 50-34.5 85T160-440Zm640 0q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T920-560q0 50-34.5 85T800-440ZM480-560q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-680q0 50-34.5 85T480-560Z"/></symbol>
+<symbol id="ic-s-diversity-4" viewBox="0 -960 960 960"><path d="m496-80 87-80q107-100 142-152.5T760-425q0-26-7-49t-21-46h68q33 0 56.5 23.5T880-440v360H496ZM80-80v-360q0-33 23-56.5t57-23.5h67q-13 21-20 45.5t-7 49.5q0 60 33.5 112.5T376-160l88 80H80Zm680-480q-51 0-85.5-34.5T640-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T760-560Zm-280-40q-59 0-99.5-40.5T340-740q0-58 40.5-99t99.5-41q58 0 99 41t41 99q0 59-41 99.5T480-600ZM280-425q0 41 40 92t159 159q118-106 159.5-157.5T680-425q0-40-27-67.5T588-520q-23 0-43 11t-35 27l-31 32-30-31q-14-15-32-27t-45-12q-41 0-66.5 27.5T280-425Zm-80-135q-51 0-85.5-34.5T80-680q0-50 34.5-85t85.5-35q50 0 85 35t35 85q0 51-35 85.5T200-560Z"/></symbol>
+<symbol id="ic-s-family-group" viewBox="0 -960 960 960"><path d="M240-320q-33 0-56.5-23.5T160-400q0-33 23.5-56.5T240-480q33 0 56.5 23.5T320-400q0 33-23.5 56.5T240-320Zm480 0q-33 0-56.5-23.5T640-400q0-33 23.5-56.5T720-480q33 0 56.5 23.5T800-400q0 33-23.5 56.5T720-320Zm-240-40q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM284-120q14-69 68.5-114.5T480-280q73 0 127.5 45.5T676-120H284Zm-204 0q0-66 47-113t113-47q17 0 32 3t29 9q-30 29-50 66.5T224-120H80Zm656 0q-7-44-27-81.5T659-268q14-6 29-9t32-3q66 0 113 47t47 113H736ZM88-480l-48-64 440-336 160 122v-82h120v174l160 122-48 64-392-299L88-480Z"/></symbol>
+<symbol id="ic-s-group" viewBox="0 -960 960 960"><path d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM247-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm466 0q-47 47-113 47-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113q0 66-47 113Z"/></symbol>
+<symbol id="ic-s-badge" viewBox="0 -960 960 960"><path d="M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm80-160h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-157.5-77.5Q420-395 420-420t-17.5-42.5Q385-480 360-480t-42.5 17.5Q300-445 300-420t17.5 42.5Q335-360 360-360t42.5-17.5ZM560-420h160v-60H560v60ZM440-600h80v-200h-80v200Z"/></symbol>
+<symbol id="ic-s-fingerprint" viewBox="0 -960 960 960"><path d="M481-781q106 0 200 45.5T838-604q7 9 4.5 16t-8.5 12q-6 5-14 4.5t-14-8.5q-55-78-141.5-119.5T481-741q-97 0-182 41.5T158-580q-6 9-14 10t-14-4q-7-5-8.5-12.5T126-602q62-85 155.5-132T481-781Zm0 94q135 0 232 90t97 223q0 50-35.5 83.5T688-257q-51 0-87.5-33.5T564-374q0-33-24.5-55.5T481-452q-34 0-58.5 22.5T398-374q0 97 57.5 162T604-121q9 3 12 10t1 15q-2 7-8 12t-15 3q-104-26-170-103.5T358-374q0-50 36-84t87-34q51 0 87 34t36 84q0 33 25 55.5t59 22.5q34 0 58-22.5t24-55.5q0-116-85-195t-203-79q-118 0-203 79t-85 194q0 24 4.5 60t21.5 84q3 9-.5 16T208-205q-8 3-15.5-.5T182-217q-15-39-21.5-77.5T154-374q0-133 96.5-223T481-687Zm0-192q64 0 125 15.5T724-819q9 5 10.5 12t-1.5 14q-3 7-10 11t-17-1q-53-27-109.5-41.5T481-839q-58 0-114 13.5T260-783q-8 5-16 2.5T232-791q-4-8-2-14.5t10-11.5q56-30 117-46t124-16Zm0 289q93 0 160 62.5T708-374q0 9-5.5 14.5T688-354q-8 0-14-5.5t-6-14.5q0-75-55.5-125.5T481-550q-76 0-130.5 50.5T296-374q0 81 28 137.5T406-123q6 6 6 14t-6 14q-6 6-14 6t-14-6q-59-62-90.5-126.5T256-374q0-91 66-153.5T481-590Zm-1 196q9 0 14.5 6t5.5 14q0 75 54 123t126 48q6 0 17-1t23-3q9-2 15.5 2.5T744-191q2 8-3 14t-13 8q-18 5-31.5 5.5t-16.5.5q-89 0-154.5-60T460-374q0-8 5.5-14t14.5-6Z"/></symbol>
+<symbol id="ic-s-wallet" viewBox="0 -960 960 960"><path d="M240-160q-66 0-113-47T80-320v-320q0-66 47-113t113-47h480q66 0 113 47t47 113v320q0 66-47 113t-113 47H240Zm0-480h480q22 0 42 5t38 16v-21q0-33-23.5-56.5T720-720H240q-33 0-56.5 23.5T160-640v21q18-11 38-16t42-5Zm-74 130 445 108q9 2 18 0t17-8l139-116q-11-15-28-24.5t-37-9.5H240q-26 0-45.5 13.5T166-510Z"/></symbol>
+<symbol id="ic-s-perm-identity" viewBox="0 -960 960 960"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></symbol>
+<symbol id="ic-s-local-police" viewBox="0 -960 960 960"><path d="m368-336 112-84 110 84-42-136 112-88H524l-44-136-44 136H300l110 88-42 136ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Z"/></symbol>
+<symbol id="ic-s-mood-bad" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm16.5 138.5Q301-343 276-280h408q-25-63-80.5-101.5T480-420q-68 0-123.5 38.5Zm-32.5 270Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-mood-heart" viewBox="0 -960 960 960"><path d="M340-520q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm263.5 221.5Q659-337 684-400H276q25 63 80.5 101.5T480-260q68 0 123.5-38.5ZM756-640 616-780q-13-13-18.5-28t-5.5-30q0-32 23-57t59-25q28 0 44 13t38 35q20-20 36.5-34t45.5-14q37 0 59.5 25.5T920-837q0 15-6 30t-18 27L756-640ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880q10 0 19.5.5T519-878q-5 17-7.5 34.5T509-807q0 53 20.5 98.5T585-629q-11 8-18 21t-7 28q0 25 17.5 42.5T620-520q23 0 39.5-15t19.5-37q18 6 37.5 9t39.5 3q29 0 57-7t53-19q7 26 10.5 52t3.5 54q0 83-31.5 156T763-197q-54 54-127 85.5T480-80q-83 0-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-calm" viewBox="0 -960 960 960"><path d="M480-260q39 0 75-17.5t67-52.5l-44-40q-22 24-47 36.5T480-321q-26 0-51-12.5T382-370l-44 40q32 35 67.5 52.5T480-260ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Zm86-399q28-30.5 39-72.5l-58-14q-5 22-17.5 39.5T340-540q-21 0-33.5-17.5T289-597l-58 14q11 42 39 72.5t70 30.5q42 0 70-30.5Zm280 0q28-30.5 39-72.5l-58-14q-5 22-17.5 39.5T620-540q-21 0-33.5-17.5T569-597l-58 14q11 42 39 72.5t70 30.5q42 0 70-30.5Z"/></symbol>
+<symbol id="ic-s-sentiment-content" viewBox="0 -960 960 960"><path d="M360-340h240v-60H360v60Zm-36 228.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5ZM340-620q-32 0-59.5 18T235-556l50 33q10-15 24-25.5t31-10.5q17 0 31 10.5t24 24.5l50-33q-18-27-45.5-45T340-620Zm280 0q-32 0-59.5 18T515-556l50 33q10-14 24-24.5t31-10.5q17 0 31.5 10t23.5 25l50-33q-18-28-45.5-46T620-620Z"/></symbol>
+<symbol id="ic-s-sentiment-excited" viewBox="0 -960 960 960"><path d="M320-480v80q0 66 47 113t113 47q66 0 113-47t47-113v-80H320Zm160 180q-42 0-71-29t-29-71v-20h200v20q0 42-29 71t-71 29ZM272.5-652.5Q243-625 231-577l58 14q6-26 20-41.5t31-15.5q17 0 31 15.5t20 41.5l58-14q-12-48-41.5-75.5T340-680q-38 0-67.5 27.5Zm280 0Q523-625 511-577l58 14q6-26 20-41.5t31-15.5q17 0 31 15.5t20 41.5l58-14q-12-48-41.5-75.5T620-680q-38 0-67.5 27.5ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-extremely-dissatisfied" viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm60-444 20-12q2 24 19 40t41 16q25 0 42.5-17.5T680-540q0-15-7-28.5T654-590l26-15-20-35-140 80 20 36Zm-120 0 20-36-140-80-20 35 26 15q-12 8-19 21.5t-7 28.5q0 25 17.5 42.5T340-480q24 0 41-16t19-40l20 12Zm60 84q-71 0-125 45.5T279-280h402q-22-69-76-114.5T480-440Z"/></symbol>
+<symbol id="ic-s-sentiment-frustrated" viewBox="0 -960 960 960"><path d="M391-240q17 0 32.5-6t30.5-14q6-4 12.5-7t13.5-3q8 0 26 10 15 8 30.5 14t32.5 6q50 0 80.5-35.5T680-370q0-72-49.5-111T488-520h-16q-93 0-142.5 39T280-370q0 59 30.5 94.5T391-240Zm-1-60q-24 0-37.5-18.5T339-370q0-46 32.5-68T472-460h15q68 0 100 22t32 68q0 33-13 51.5T569-300q-12 0-34-12-13-8-26.5-13t-28.5-5q-15 0-29 5t-27 13q-8 5-16.5 8.5T390-300ZM251-532q60-24 96-53t68-79l-50-32q-26 41-54.5 63T228-588l23 56Zm457 0 23-56q-53-22-81-44t-55-64l-50 32q32 50 68 78.5t95 53.5ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-neutral" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm20 180h240v-60H360v60Zm-36 228.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-sad" viewBox="0 -960 960 960"><path d="M250-320h60v-10q0-71 49.5-120.5T480-500q71 0 120.5 49.5T650-330v10h60v-10q0-96-67-163t-163-67q-96 0-163 67t-67 163v10Zm34-270q41-6 86.5-32t72.5-59l-46-38q-20 24-55.5 44T276-650l8 60Zm392 0 8-60q-30-5-65.5-25T563-719l-46 38q27 33 72.5 59t86.5 32ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-satisfied" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm263.5 221.5Q659-337 684-400h-66q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-66q25 63 80.5 101.5T480-260q68 0 123.5-38.5ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-satisfied-alt" viewBox="0 -960 960 960"><path d="M620-520q25 0 42.5-17.5T680-580q0-25-17.5-42.5T620-640q-25 0-42.5 17.5T560-580q0 25 17.5 42.5T620-520Zm-280 0q25 0 42.5-17.5T400-580q0-25-17.5-42.5T340-640q-25 0-42.5 17.5T280-580q0 25 17.5 42.5T340-520Zm263.5 221.5Q659-337 684-400h-66q-22 37-58.5 58.5T480-320q-43 0-79.5-21.5T342-400h-66q25 63 80.5 101.5T480-260q68 0 123.5-38.5ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-very-dissatisfied" viewBox="0 -960 960 960"><path d="M356.5-381.5Q301-343 276-280h408q-25-63-80.5-101.5T480-420q-68 0-123.5 38.5ZM312-480l44-42 42 42 42-42-42-42 42-44-42-42-42 42-44-42-42 42 42 44-42 42 42 42Zm250 0 42-42 44 42 42-42-42-42 42-44-42-42-44 42-42-42-42 42 42 44-42 42 42 42ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-very-satisfied" viewBox="0 -960 960 960"><path d="M603.5-298.5Q659-337 684-400H276q25 63 80.5 101.5T480-260q68 0 123.5-38.5ZM312-520l44-42 42 42 42-42-84-86-86 86 42 42Zm250 0 42-42 44 42 42-42-86-86-84 86 42 42ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-sentiment-worried" viewBox="0 -960 960 960"><path d="M452-240h56q55 0 93.5-35t38.5-85q0-50-38.5-85T508-480h-56q-55 0-93.5 35T320-360q0 50 38.5 85t93.5 35Zm0-60q-30 0-51-17.5T380-360q0-25 21-42.5t51-17.5h56q30 0 51 17.5t21 42.5q0 25-21 42.5T508-300h-56ZM240-560h80q50 0 85-35t35-85h-60q0 25-17.5 42.5T320-620h-80v60Zm400 0h80v-60h-80q-25 0-42.5-17.5T580-680h-60q0 50 35 85t85 35ZM324-111.5Q251-143 197-197t-85.5-127Q80-397 80-480t31.5-156Q143-709 197-763t127-85.5Q397-880 480-880t156 31.5Q709-817 763-763t85.5 127Q880-563 880-480t-31.5 156Q817-251 763-197t-127 85.5Q563-80 480-80t-156-31.5Z"/></symbol>
+<symbol id="ic-s-back-hand" viewBox="0 -960 960 960"><path d="M512-40q-82 0-154-37.5T240-182L48-464l19-19q20-21 49.5-24t53.5 14l110 76v-383q0-17 11.5-28.5T320-840q17 0 28.5 11.5T360-800v320h80v-400q0-17 11.5-28.5T480-920q17 0 28.5 11.5T520-880v400h80v-360q0-17 11.5-28.5T640-880q17 0 28.5 11.5T680-840v360h80v-280q0-17 11.5-28.5T800-800q17 0 28.5 11.5T840-760v392q0 137-95.5 232.5T512-40Z"/></symbol>
+<symbol id="ic-s-front-hand" viewBox="0 -960 960 960"><path d="M259-139q-99-99-99-241v-380q0-17 11.5-28.5T200-800q17 0 28.5 11.5T240-760v240h80v-320q0-17 11.5-28.5T360-880q17 0 28.5 11.5T400-840v320h80v-360q0-17 11.5-28.5T520-920q17 0 28.5 11.5T560-880v360h80v-280q0-17 11.5-28.5T680-840q17 0 28.5 11.5T720-800v230q-29 21-44.5 53T660-450v50h-50q-63 0-106.5 43.5T460-250v50h60v-50q0-38 26-64t64-26h110v-110q0-38 26-64t64-26h30v160q0 142-99 241T500-40q-142 0-241-99Z"/></symbol>
+<symbol id="ic-s-person-raised-hand" viewBox="0 -960 960 960"><path d="M80-40v-80h800v80H80Zm80-120v-240q-33-54-51-114.5T91-638q0-61 15.5-120T143-874q8-21 26-33.5t40-12.5q31 0 53 21t18 50l-11 91q-6 48 8.5 91t43.5 75.5q29 32.5 70 52t89 19.5q60 0 120.5 12.5T706-472q45 23 69.5 58.5T800-326v166H400v-37q0-34 23-58.5t57-24.5h160v-80H480q-67 0-113.5 48T320-197v37H160Zm207-447q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Z"/></symbol>
+<symbol id="ic-s-person-apron" viewBox="0 -960 960 960"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Zm273 367v-256q25 8 49 17t47 21q30 15 47 43.5t17 62.5v112H640ZM400-300v-134q20-3 40-4.5t40-1.5q20 0 40 1.5t40 4.5v134H400ZM160-160v-112q0-34 17-62.5t47-43.5q23-12 47-21t49-17v256H160Z"/></symbol>
+<symbol id="ic-s-person-celebrate" viewBox="0 -960 960 960"><path d="M360-120v-200q-62-5-121.5-14T120-360l20-80q83 23 168 31.5t172 8.5q86 0 171-8.5T820-440l20 80q-60 17-119.5 26T600-320v200H360Zm120-320q-34 0-57-23t-23-57q0-33 23-56.5t57-23.5q33 0 56.5 23.5T560-520q0 34-23.5 57T480-440ZM180-560q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T240-620q0 26-17.5 43T180-560Zm600 0q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T840-620q0 26-17.5 43T780-560ZM290-710q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T350-770q0 26-17.5 43T290-710Zm380 0q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T730-770q0 26-17.5 43T670-710Zm-190-50q-26 0-43-17t-17-43q0-25 17-42.5t43-17.5q25 0 42.5 17.5T540-820q0 26-17.5 43T480-760Z"/></symbol>
+<symbol id="ic-s-person-heart" viewBox="0 -960 960 960"><path d="M367-527q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440h14q-11 19-16.5 39.5T472-358q0 30 10.5 59.5T519-243l84 83H160Zm556 0L576-300q-13-13-18.5-28t-5.5-30q0-32 23-57t59-25q28 0 44 13t38 35q20-20 36.5-34t45.5-14q37 0 59.5 25.5T880-357q0 15-6 30t-18 27L716-160Z"/></symbol>
+<symbol id="ic-s-person-book" viewBox="0 -960 960 960"><path d="M351-299q-60 21-111 59v80h480v-80q-51-38-111-59t-129-21q-69 0-129 21ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm339-361q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Z"/></symbol>
+<symbol id="ic-s-siren-check" viewBox="0 -960 960 960"><path d="M578.5-98.5Q520-157 520-240t58.5-141.5Q637-440 720-440t141.5 58.5Q920-323 920-240T861.5-98.5Q803-40 720-40T578.5-98.5ZM691-150l139-138-42-42-97 95-39-39-42 43 81 81Zm-531 30q-33 0-56.5-23.5T80-200v-80q0-33 23.5-56.5T160-360h40v-200q0-117 81.5-198.5T480-840q117 0 198.5 81.5T760-560v43q-10-2-19.5-2.5T720-520q-116 0-198 81.5T440-240q0 31 6.5 61.5T467-120H160Zm160-320h80v-120q0-33 23.5-56.5T480-640v-80q-66 0-113 47t-47 113v120Z"/></symbol>
+<symbol id="ic-s-siren-open" viewBox="0 -960 960 960"><path d="M160-120q-33 0-56.5-23.5T80-200v-80q0-33 23.5-56.5T160-360h40v-200q0-117 81.5-198.5T480-840q117 0 198.5 81.5T760-560v43q-10-2-19.5-2.5T720-520q-116 0-198 81.5T440-240q0 31 6.5 61.5T467-120H160Zm160-320h80v-120q0-33 23.5-56.5T480-640v-80q-66 0-113 47t-47 113v120ZM578.5-98.5Q520-157 520-240t58.5-141.5Q637-440 720-440t141.5 58.5Q920-323 920-240T861.5-98.5Q803-40 720-40T578.5-98.5ZM648-140l112-112v92h40v-160H640v40h92L620-168l28 28Z"/></symbol>
+<symbol id="ic-s-siren-question" viewBox="0 -960 960 960"><path d="M578.5-98.5Q520-157 520-240t58.5-141.5Q637-440 720-440t141.5 58.5Q920-323 920-240T861.5-98.5Q803-40 720-40T578.5-98.5ZM738-127q7-7 7-18t-7-18q-7-7-18-7t-18 7q-7 7-7 18t7 18q7 7 18 7t18-7Zm-36-69h37v-10q0-11 5.5-19.5T758-242q14-12 22-23t8-31q0-29-19-46.5T720-360q-23 0-41.5 13.5T652-310l32 14q3-12 12.5-21t23.5-9q15 0 23.5 7.5T752-296q0 11-6 18.5T732-262q-6 6-12.5 12T708-236q-3 6-4.5 12t-1.5 14v14Zm-542 76q-33 0-56.5-23.5T80-200v-80q0-33 23.5-56.5T160-360h40v-200q0-117 81.5-198.5T480-840q117 0 198.5 81.5T760-560v43q-10-2-19.5-2.5T720-520q-116 0-198 81.5T440-240q0 31 6.5 61.5T467-120H160Zm160-320h80v-120q0-33 23.5-56.5T480-640v-80q-66 0-113 47t-47 113v120Z"/></symbol>
+<symbol id="ic-s-thumb-down" viewBox="0 -960 960 960"><path d="M240-840h400v520L360-40l-50-50q-7-7-11.5-19t-4.5-23v-14l44-174H120q-32 0-56-24t-24-56v-80q0-7 1.5-15t4.5-15l120-282q9-20 30-34t44-14Zm480 520v-520h160v520H720Z"/></symbol>
+<symbol id="ic-s-ear-sound" viewBox="0 -960 960 960"><path d="M240-80q62 0 101.5-31t60.5-91q17-50 32.5-70t71.5-64q62-50 98-113t36-151q0-119-80.5-199.5T360-880q-119 0-199.5 80.5T80-600h80q0-85 57.5-142.5T360-800q85 0 142.5 57.5T560-600q0 68-27 116t-77 86q-52 38-81 74t-43 78q-14 44-33.5 65T240-160q-33 0-56.5-23.5T160-240H80q0 66 47 113t113 47Zm191-449.5q29-29.5 29-70.5 0-42-29-71t-71-29q-42 0-71 29t-29 71q0 41 29 70.5t71 29.5q42 0 71-29.5ZM740-379l-59-59q19-37 29-77.5t10-84.5q0-44-10-84t-29-77l59-59q29 49 44.5 104.5T800-600q0 61-15.5 116.5T740-379Zm117 116-59-58q39-60 60.5-130T880-598q0-78-21.5-148.5T797-877l60-60q49 72 76 157.5T960-600q0 94-27 179.5T857-263Z"/></symbol>
+<symbol id="ic-s-remove-red-eye" viewBox="0 -960 960 960"><path d="M607.5-372.5Q660-425 660-500t-52.5-127.5Q555-680 480-680t-127.5 52.5Q300-575 300-500t52.5 127.5Q405-320 480-320t127.5-52.5Zm-204-51Q372-455 372-500t31.5-76.5Q435-608 480-608t76.5 31.5Q588-545 588-500t-31.5 76.5Q525-392 480-392t-76.5-31.5ZM214-281.5Q94-363 40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200q-146 0-266-81.5Z"/></symbol>
+<symbol id="ic-s-shoe-cleats" viewBox="0 -960 960 960"><path d="M222-79q-32 0-61.5-12T108-127l-7-7q-9-8-11.5-20t2.5-23l62-158 93 32q12 4 23-1.5t15-17.5q5-11-.5-22T268-360l-92-31 17-44 97 33q12 4 23-1.5t15-17.5q4-11-1-22t-16-15l-96-33 17-44 100 34q12 5 23-.5t15-17.5q5-12-.5-22.5T353-557l-99-33 32-82q8-20 27.5-30.5T354-708l58 11q17 3 32-2.5t27-17.5q13-14 18-31t0-34l-5-15q-5-16-1.5-32.5T498-858l43-43q17-18 42.5-18t42.5 17l181 184q22 23 22.5 54.5T809-609l19 19q6 7 10.5 14.5T843-560q0 7-3 14t-11 15q-12 11-28.5 11.5T772-531l-18-19-28 29 18 18q11 11 11 28t-11 28q-12 11-28.5 11.5T687-447l-18-17-112 114 17 16q12 12 12 28.5T574-277q-12 11-28.5 11.5T517-277l-16-17-28 29 16 16q11 11 11 28t-11 28q-12 11-28.5 11.5T432-193l-16-15-28 28 16 15q11 12 11 28.5T404-108q-12 11-28.5 11.5T347-108l-16-16q-23 23-50.5 34T222-79Z"/></symbol>
+<symbol id="ic-l-house" viewBox="0 -960 960 960"><path d="M200-160v-366L88-440l-48-64 440-336 160 122v-82h120v174l160 122-48 64-112-86v366H560v-240H400v240H200Zm200-399h160q0-32-24-52.5T480-632q-32 0-56 20.5T400-559Z"/></symbol>
+<symbol id="ic-l-cottage" viewBox="0 -960 960 960"><path d="M160-120v-375l-72 55-48-64 120-92v-124h80v63l240-183 440 336-48 63-72-54v375H520v-240h-80v240H160Zm0-640q0-50 35-85t85-35q17 0 28.5-11.5T320-920h80q0 50-35 85t-85 35q-17 0-28.5 11.5T240-760h-80Z"/></symbol>
+<symbol id="ic-l-cabin" viewBox="0 -960 960 960"><path d="M240-200h480v-80H240v80Zm0-160h480v-80H240v80Zm0-160h480v-36l-58-44H298l-58 44v36Zm162-160h156l-78-59-78 59ZM160-120v-375l-72 55-48-64 120-92v-124h80v63l240-183 440 336-48 63-72-54v375H160Zm0-640q0-50 35-85t85-35q17 0 28.5-11.5T320-920h80q0 50-35 85t-85 35q-17 0-28.5 11.5T240-760h-80Z"/></symbol>
+<symbol id="ic-l-castle" viewBox="0 -960 960 960"><path d="M40-120v-480h80v80h80v-320h80v80h80v-80h80v80h80v-80h80v80h80v-80h80v320h80v-80h80v480H560v-120q0-33-23.5-56.5T480-320q-33 0-56.5 23.5T400-240v120H40Zm320-360h80v-120h-80v120Zm160 0h80v-120h-80v120Z"/></symbol>
+<symbol id="ic-l-warehouse" viewBox="0 -960 960 960"><path d="M80-120v-560l400-160 400 160v560H640v-320H320v320H80Zm280 0v-80h80v80h-80Zm80-120v-80h80v80h-80Zm80 120v-80h80v80h-80Z"/></symbol>
+<symbol id="ic-l-houseboat" viewBox="0 -960 960 960"><path d="M80-200v-80q38 0 56-20t77-20q58 0 78 20t55 20q38 0 56.5-20t77.5-20q59 0 77.5 20t56.5 20q35 0 55-20t78-20q59 0 77 20t56 20v80q-57 0-78-20t-56-20q-36 0-56 20t-77 20q-59 0-77-20t-56-20q-38 0-56 20t-77 20q-57 0-77-20t-56-20q-35 0-56 20t-78 20Zm150-160q-24 0-46-9t-39-26l-55-55 56-56 55 54q6 6 13.5 9t15.5 3h50v-135l-53 39-47-64 300-220 300 220-47 65-53-39v134h50q8 0 15.5-3t13.5-9l55-54 56 56-55 55q-17 17-39 26t-46 9H230Zm210-80h80v-80h-80v80Z"/></symbol>
+<symbol id="ic-l-bedroom-parent" viewBox="0 -960 960 960"><path d="M200-280h60v-60h440v60h60v-154q0-21-8-39.5T730-506v-94q0-33-23.5-56.5T650-680H520q-11 0-21 3t-19 9q-9-6-19-9t-21-3H310q-33 0-56.5 23.5T230-600v94q-14 14-22 32.5t-8 39.5v154Zm60-120v-40q0-17 11.5-28.5T300-480h360q17 0 28.5 11.5T700-440v40H260Zm30-140v-80h160v80H290Zm220 0v-80h160v80H510ZM160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Z"/></symbol>
+<symbol id="ic-l-bedroom-child" viewBox="0 -960 960 960"><path d="M240-280h60v-60h360v60h60v-166q0-30-16.5-53.5T660-534v-66q0-33-23.5-56.5T580-680H380q-33 0-56.5 23.5T300-600v66q-27 11-43.5 34.5T240-446v166Zm60-120v-46q0-14 10-24t24-10h292q14 0 24 10t10 24v46H300Zm60-140v-80h240v80H360ZM160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Z"/></symbol>
+<symbol id="ic-l-kitchen" viewBox="0 -960 960 960"><path d="M320-640h80v-120h-80v120Zm0 360h80v-200h-80v200ZM240-80q-33 0-56.5-23.5T160-160v-360h640v360q0 33-23.5 56.5T720-80H240Zm-80-520v-200q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v200H160Z"/></symbol>
+<symbol id="ic-l-bathroom" viewBox="0 -960 960 960"><path d="M388.5-251.5Q400-263 400-280t-11.5-28.5Q377-320 360-320t-28.5 11.5Q320-297 320-280t11.5 28.5Q343-240 360-240t28.5-11.5Zm120 0Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5Zm120 0Q640-263 640-280t-11.5-28.5Q617-320 600-320t-28.5 11.5Q560-297 560-280t11.5 28.5Q583-240 600-240t28.5-11.5Zm-240-120Q400-383 400-400t-11.5-28.5Q377-440 360-440t-28.5 11.5Q320-417 320-400t11.5 28.5Q343-360 360-360t28.5-11.5Zm120 0Q520-383 520-400t-11.5-28.5Q497-440 480-440t-28.5 11.5Q440-417 440-400t11.5 28.5Q463-360 480-360t28.5-11.5Zm120 0Q640-383 640-400t-11.5-28.5Q617-440 600-440t-28.5 11.5Q560-417 560-400t11.5 28.5Q583-360 600-360t28.5-11.5ZM280-480h400v-40q0-83-58.5-141.5T480-720q-83 0-141.5 58.5T280-520v40Zm200-180ZM160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Z"/></symbol>
+<symbol id="ic-l-dining" viewBox="0 -960 960 960"><path d="M320-200h60v-270q26-8 43-28.5t17-49.5v-152q0-8-6-14t-14-6q-8 0-14 6t-6 14v100h-30v-100q0-8-6-14t-14-6q-8 0-14 6t-6 14v100h-30v-100q0-8-6-14t-14-6q-8 0-14 6t-6 14v152q0 29 17 49.5t43 28.5v270Zm240 0h60v-254q33-16 51.5-51t18.5-82q0-57-28.5-95T590-720q-43 0-71.5 38T490-587q0 47 18.5 82t51.5 51v254ZM160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Z"/></symbol>
+<symbol id="ic-l-garage" viewBox="0 -960 960 960"><path d="M160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Zm171.5-331.5Q320-423 320-440t11.5-28.5Q343-480 360-480t28.5 11.5Q400-457 400-440t-11.5 28.5Q377-400 360-400t-28.5-11.5Zm240 0Q560-423 560-440t11.5-28.5Q583-480 600-480t28.5 11.5Q640-457 640-440t-11.5 28.5Q617-400 600-400t-28.5-11.5ZM200-516v264q0 14 9 23t23 9h16q14 0 23-9t9-23v-48h400v48q0 14 9 23t23 9h16q14 0 23-9t9-23v-264l-66-192q-5-14-16.5-23t-25.5-9H308q-14 0-25.5 9T266-708l-66 192Zm106-64 28-80h292l28 80H306Z"/></symbol>
+<symbol id="ic-l-deck" viewBox="0 -960 960 960"><path d="M440-80v-520H80l400-280 400 280H520v520h-80Zm-320 0v-210L88-466l78-14 30 160h164v240h-80v-160h-80v160h-80Zm480 0v-240h164l30-160 78 14-32 176v210h-80v-160h-80v160h-80Z"/></symbol>
+<symbol id="ic-l-balcony" viewBox="0 -960 960 960"><path d="M320-480v-80h80v80h-80Zm240 0v-80h80v80h-80ZM120-80v-320h40v-160q0-66 25-124.5t68.5-102Q297-830 355.5-855T480-880q66 0 124.5 25t102 68.5Q750-743 775-684.5T800-560v160h40v320H120Zm80-80h80v-160h-80v160Zm160 0h80v-160h-80v160ZM240-400h200v-397q-86 14-143 80.5T240-560v160Zm280 0h200v-160q0-90-57-156.5T520-797v397Zm0 240h80v-160h-80v160Zm160 0h80v-160h-80v160Z"/></symbol>
+<symbol id="ic-l-pool" viewBox="0 -960 960 960"><path d="M80-120v-80q38 0 57-20t75-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 75 20t57 20v80q-59 0-77.5-20T748-160q-36 0-57 20t-77 20q-56 0-77-20t-57-20q-36 0-57 20t-77 20q-56 0-77-20t-57-20q-36 0-54.5 20T80-120Zm0-180v-80q38 0 57-20t75-20q56 0 77.5 20t56.5 20q36 0 57-20t77-20q56 0 77 20t57 20q36 0 57-20t77-20q56 0 75 20t57 20v80q-59 0-77.5-20T748-340q-36 0-55.5 20T614-300q-57 0-77.5-20T480-340q-38 0-56.5 20T346-300q-59 0-78.5-20T212-340q-36 0-54.5 20T80-300Zm196-204 133-133-40-40q-33-33-70-48t-91-15v-100q75 0 124 16.5t96 63.5l256 256q-17 11-33 17.5t-37 6.5q-36 0-57-20t-77-20q-56 0-77 20t-57 20q-21 0-37-6.5T276-504Zm463-306.5q29 29.5 29 70.5 0 42-29 71t-71 29q-42 0-71-29t-29-71q0-41 29-70.5t71-29.5q42 0 71 29.5Z"/></symbol>
+<symbol id="ic-l-elevator" viewBox="0 -960 960 960"><path d="M280-240h120v-160h40v-100q0-33-23.5-56.5T360-580h-40q-33 0-56.5 23.5T240-500v100h40v160Zm95.5-394.5Q390-649 390-670t-14.5-35.5Q361-720 340-720t-35.5 14.5Q290-691 290-670t14.5 35.5Q319-620 340-620t35.5-14.5ZM520-520h200L620-680 520-520Zm100 240 100-160H520l100 160ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z"/></symbol>
+<symbol id="ic-l-gate" viewBox="0 -960 960 960"><path d="M200-200v-400q0-66 47-113t113-47h80v240h-80v80h80v240H200Zm320 0v-240h80v-80h-80v-240h80q66 0 113 47t47 113v400H520ZM80-280v-400h80v400H80Zm720 0v-400h80v400h-80Z"/></symbol>
+<symbol id="ic-l-fireplace" viewBox="0 -960 960 960"><path d="M424-282q13 11 27.5 15.5T480-262q29 0 52.5-18.5T560-334q5-47-29-69.5T480-462q-5 14-5 26t3 26q3 17 7 32t1 32q-5 18-22 37t-40 27ZM80-80v-800h800v800H80Zm80-80h80v-80h90q-23-29-36.5-61T280-362q0-46 10-86.5t36.5-78.5q26.5-38 73.5-75.5T520-680q-11 44 9.5 93.5T606-496q33 24 53.5 56.5T680-360q0 35-11 64.5T640-240h80v80h80v-640H160v640Z"/></symbol>
+<symbol id="ic-l-laundry" viewBox="0 -960 960 960"><path d="M240-401v-120l-75 41L45-688l264-152h51q16 48 38 84t82 36q60 0 82-36t38-84h51l263 153-119 207-75-41v192l-63 55q-7 6-16 9.5t-18 3.5q-6 0-14-4t-16-10l-106-91q-32-28-72-41t-81-13q-24 0-47.5 4.5T240-401Zm-54 216-52-61 87-74q23-20 52.5-30.5T335-361q32 0 61 10.5t52 30.5l116 99q12 10 28.5 15.5T626-200q18 0 33.5-5t27.5-16l87-75 52 62-87 74q-23 20-52 30t-61 10q-32 0-61.5-10T512-160l-116-99q-12-10-27.5-15.5T335-280q-17 0-33.5 5.5T273-259l-87 74Z"/></symbol>
+<symbol id="ic-l-church" viewBox="0 -960 960 960"><path d="M80-80v-320l160-71v-129l200-100v-60h-80v-80h80v-80h80v80h80v80h-80v60l200 100v129l160 71v320H560v-120q0-33-23.5-56.5T480-280q-33 0-56.5 23.5T400-200v120H80Zm442.5-357.5Q540-455 540-480t-17.5-42.5Q505-540 480-540t-42.5 17.5Q420-505 420-480t17.5 42.5Q455-420 480-420t42.5-17.5Z"/></symbol>
+<symbol id="ic-l-stairs" viewBox="0 -960 960 960"><path d="M240-240h177v-133h103v-133h103v-134h97v-80H543v133H440v133H337v134h-97v80Zm-40 120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z"/></symbol>
+<symbol id="ic-l-stairs-2" viewBox="0 -960 960 960"><path d="M80-200v-80h240v-240h240v-240h320v80H640v240H400v240H80Z"/></symbol>
+<symbol id="ic-l-door-front" viewBox="0 -960 960 960"><path d="M120-120v-80h80v-560q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v560h80v80H120Zm468.5-331.5Q600-463 600-480t-11.5-28.5Q577-520 560-520t-28.5 11.5Q520-497 520-480t11.5 28.5Q543-440 560-440t28.5-11.5Z"/></symbol>
+<symbol id="ic-l-dock" viewBox="0 -960 960 960"><path d="M508.5-731.5Q520-743 520-760t-11.5-28.5Q497-800 480-800t-28.5 11.5Q440-777 440-760t11.5 28.5Q463-720 480-720t28.5-11.5ZM720-840v82q17 3 28.5 16.5T760-711v62q0 17-11.5 30.5T720-602v322q0 33-23.5 56.5T640-200H320q-33 0-56.5-23.5T240-280v-560q0-33 23.5-56.5T320-920h320q33 0 56.5 23.5T720-840ZM320-40v-80h320v80H320Z"/></symbol>
+<symbol id="ic-l-hallway" viewBox="0 -960 960 960"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h120l160-160 160 160h120q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm40-160h480L570-440 450-280l-90-120-120 160Zm164-560h152l-76-76-76 76Z"/></symbol>
+<symbol id="ic-l-library-books" viewBox="0 -960 960 960"><path d="M400-400h160v-80H400v80Zm0-120h320v-80H400v80Zm0-120h320v-80H400v80Zm-80 400q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Z"/></symbol>
+<symbol id="ic-l-meeting-room" viewBox="0 -960 960 960"><path d="M120-120v-80h80v-640h400v40h160v600h80v80H680v-600h-80v600H120Zm348.5-331.5Q480-463 480-480t-11.5-28.5Q457-520 440-520t-28.5 11.5Q400-497 400-480t11.5 28.5Q423-440 440-440t28.5-11.5Z"/></symbol>
+<symbol id="ic-l-sauna" viewBox="0 -960 960 960"><path d="M160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Zm0-240v160h80v-80h-40v-80h-40Zm0-80h40q0-17 11.5-28.5T240-440v-100q0-25 17.5-42.5T300-600h80q25 0 42.5 17.5T440-540v100q17 0 28.5 11.5T480-400h320v-400H160v400Zm180-240q-25 0-42.5-17.5T280-700q0-25 17.5-42.5T340-760q25 0 42.5 17.5T400-700q0 25-17.5 42.5T340-640Zm-20 480h40v-80h-40v80Zm120 0h360v-160H480v80h-40v80Zm50-400q2-13 2.5-19.5t.5-13.5q0-11-4.5-21T470-641q-15-19-22.5-38t-7.5-39q0-8 1-16.5l3-25.5h60q-2 11-3 20.5t-1 21.5q0 11 4.5 21.5T520-674q18 22 26 41.5t8 39.5q0 11-1 18t-3 15h-60Zm100 0q2-13 2.5-19.5t.5-13.5q0-11-4.5-21T570-641q-15-19-22.5-38t-7.5-39q0-8 1-16.5l3-25.5h60q-2 11-3 20.5t-1 21.5q0 11 4.5 21.5T620-674q18 22 26 41.5t8 39.5q0 11-1 18t-3 15h-60Zm102 0q2-13 2.5-19.5t.5-13.5q0-11-4.5-21T672-641q-15-19-22.5-38t-7.5-39q0-8 1-16.5l3-25.5h60q-2 11-3 20.5t-1 21.5q0 11 4.5 21.5T722-674q18 22 26 41.5t8 39.5q0 11-1 18t-3 15h-60Z"/></symbol>
+<symbol id="ic-l-spa" viewBox="0 -960 960 960"><path d="M480-80q-94-12-168-48t-125.5-94Q135-280 108-356.5T81-526q110 11 186 40t123.5 82Q438-351 459-271.5T480-80Zm0-337q-23-35-62.5-69T326-548q6-42 20-87t34-88.5q20-43.5 45.5-83.5t54.5-73q29 33 54.5 73t45.5 83.5q20 43.5 34 88.5t20 87q-52 27-91.5 61T480-417Zm80 321q-2-70-10.5-129.5T523-338q47-81 129.5-132T879-526q1 158-84.5 272.5T560-96Z"/></symbol>
+<symbol id="ic-l-theaters" viewBox="0 -960 960 960"><path d="M160-120v-720h80v80h80v-80h320v80h80v-80h80v720h-80v-80h-80v80H320v-80h-80v80h-80Zm80-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm400 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Z"/></symbol>
+<symbol id="ic-l-room-service" viewBox="0 -960 960 960"><path d="M80-200v-80h800v80H80Zm40-120v-40q0-128 78.5-226T400-710v-10q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720v10q124 26 202 124t78 226v40H120Z"/></symbol>
+<symbol id="ic-l-yard" viewBox="0 -960 960 960"><path d="M480-200q0-100-70-170t-170-70q0 100 70 170t170 70Zm44-220q18-18 18-44v-6q8 6 16.5 9t19.5 3q26 0 44-18t18-44q0-20-9.5-35T604-576q17-6 26.5-21t9.5-35q0-26-18-44t-44-18q-11 0-19.5 3t-16.5 9v-6q0-26-18-44t-44-18q-26 0-44 18t-18 44v6q-8-6-16.5-9t-19.5-3q-26 0-44 18t-18 44q0 20 9.5 35t26.5 21q-17 6-26.5 21t-9.5 35q0 26 18 44t44 18q11 0 19.5-3t16.5-9v6q0 26 18 44t44 18q26 0 44-18Zm-88-111.5Q418-549 418-576q0-26 18-44t44-18q26 0 44 18t18 44q0 27-18 44.5T480-514q-26 0-44-17.5ZM480-200q100 0 170-70t70-170q-100 0-170 70t-70 170ZM160-80q-33 0-56.5-23.5T80-160v-640q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v640q0 33-23.5 56.5T800-80H160Z"/></symbol>
+<symbol id="ic-l-outdoor-garden" viewBox="0 -960 960 960"><path d="M80-120h240v-600L200-840 80-720v600Zm280 0h240v-600L480-840 360-720v600Zm280 0h240v-600L760-840 640-720v600Z"/></symbol>
+<symbol id="ic-l-museum" viewBox="0 -960 960 960"><path d="M80-80v-80h80v-360H80v-80l400-280 400 280v80h-80v360h80v80H80Zm240-160h80v-160l80 120 80-120v160h80v-280h-80l-80 120-80-120h-80v280Z"/></symbol>
+<symbol id="ic-l-wine-bar" viewBox="0 -960 960 960"><path d="M320-120v-80h120v-164q-86-14-143-80t-57-156v-240h480v240q0 90-57 156t-143 80v164h120v80H320Zm0-520h320v-120H320v120Z"/></symbol>
+<symbol id="ic-l-school" viewBox="0 -960 960 960"><path d="M840-280v-276L480-360 40-600l440-240 440 240v320h-80ZM480-120 200-272v-200l280 152 280-152v200L480-120Z"/></symbol>
+<symbol id="ic-l-local-hospital" viewBox="0 -960 960 960"><path d="M420-280h120v-140h140v-120H540v-140H420v140H280v120h140v140ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z"/></symbol>
+<symbol id="ic-l-hotel" viewBox="0 -960 960 960"><path d="M40-200v-600h80v400h320v-320h320q66 0 113 47t47 113v360h-80v-120H120v120H40Zm155-275q-35-35-35-85t35-85q35-35 85-35t85 35q35 35 35 85t-35 85q-35 35-85 35t-85-35Z"/></symbol>
+<symbol id="ic-l-stadium" viewBox="0 -960 960 960"><path d="M120-680v-160l160 80-160 80Zm600 0v-160l160 80-160 80Zm-280-40v-160l160 80-160 80ZM360-85q-52-5-102-15t-89.5-24.5Q129-139 104.5-158T80-200v-360q0-25 31.5-46.5t85.5-38q54-16.5 127-26t156-9.5q83 0 156 9.5t127 26q54 16.5 85.5 38T880-560v360q0 23-24.5 42t-64 33.5Q752-110 702-100T600-85v-195H360v195Zm120-435q97 0 167.5-11.5T760-558q0-5-76-23.5T480-600q-128 0-204 18.5T200-558q42 15 112.5 26.5T480-520Z"/></symbol>
+<symbol id="ic-l-storefront" viewBox="0 -960 960 960"><path d="M841-518v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13Z"/></symbol>
+<symbol id="ic-l-door-back" viewBox="0 -960 960 960"><path d="M120-120v-80h80v-560q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v560h80v80H120Zm308.5-331.5Q440-463 440-480t-11.5-28.5Q417-520 400-520t-28.5 11.5Q360-497 360-480t11.5 28.5Q383-440 400-440t28.5-11.5Z"/></symbol>
+<symbol id="ic-l-door-open" viewBox="0 -960 960 960"><path d="M120-120v-80h80v-560q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v560h80v80H120Zm480-80h80v-560H500v-44q44 8 72 41t28 77v486ZM468.5-451.5Q480-463 480-480t-11.5-28.5Q457-520 440-520t-28.5 11.5Q400-497 400-480t11.5 28.5Q423-440 440-440t28.5-11.5Z"/></symbol>
+<symbol id="ic-l-door-sliding" viewBox="0 -960 960 960"><path d="M388.5-451.5Q400-463 400-480t-11.5-28.5Q377-520 360-520t-28.5 11.5Q320-497 320-480t11.5 28.5Q343-440 360-440t28.5-11.5Zm240 0Q640-463 640-480t-11.5-28.5Q617-520 600-520t-28.5 11.5Q560-497 560-480t11.5 28.5Q583-440 600-440t28.5-11.5ZM120-120v-80h40v-560q0-33 23.5-56.5T240-840h220v640h40v-640h220q33 0 56.5 23.5T800-760v560h40v80H120Z"/></symbol>
+<symbol id="ic-l-fence" viewBox="0 -960 960 960"><path d="M200-160v-160h-80v-80h80v-80h-80v-80h80v-120l120-120 80 80 81-80 80 80 80-80 120 120v120h79v80h-79v80h79v80h-79v160H200Zm80-400h80v-87l-40-40-40 40v87Zm160 0h80v-87l-40-40-40 40v87Zm161 0h79v-87l-40-40-39 39v88ZM280-400h80v-80h-80v80Zm160 0h80v-80h-80v80Zm161 0h79v-80h-79v80ZM280-240h80v-80h-80v80Zm160 0h80v-80h-80v80Zm161 0h79v-80h-79v80Z"/></symbol>
+<symbol id="ic-l-local-convenience-store" viewBox="0 -960 960 960"><path d="M321-240h120v-40h-80v-40h80v-120H321v40h80v40h-80v120Zm280 0h40v-200h-40v80h-40v-80h-40v120h80v80Zm240-278v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13Z"/></symbol>
+<symbol id="ic-l-local-grocery-store" viewBox="0 -960 960 960"><path d="M223.5-103.5Q200-127 200-160t23.5-56.5Q247-240 280-240t56.5 23.5Q360-193 360-160t-23.5 56.5Q313-80 280-80t-56.5-23.5Zm400 0Q600-127 600-160t23.5-56.5Q647-240 680-240t56.5 23.5Q760-193 760-160t-23.5 56.5Q713-80 680-80t-56.5-23.5ZM208-800h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Z"/></symbol>
+<symbol id="ic-l-local-hotel" viewBox="0 -960 960 960"><path d="M40-200v-600h80v400h320v-320h320q66 0 113 47t47 113v360h-80v-120H120v120H40Zm155-275q-35-35-35-85t35-85q35-35 85-35t85 35q35 35 35 85t-35 85q-35 35-85 35t-85-35Z"/></symbol>
+<symbol id="ic-l-local-post-office" viewBox="0 -960 960 960"><path d="M120-80q-17 0-28.5-11.5T80-120v-320q0-17 11.5-28.5T120-480h120v-160q0-100 70-170t170-70h160q100 0 170 70t70 170v560h-80v-120H640v80q0 17-11.5 28.5T600-80H120Zm240-136 200-114v-70L360-286 160-400v70l200 114Zm280-64h160v-360q0-66-47-113t-113-47H480q-66 0-113 47t-47 113v160h280q17 0 28.5 11.5T640-440v160ZM400-560v-80h320v80H400Z"/></symbol>
+<symbol id="ic-l-location-city" viewBox="0 -960 960 960"><path d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z"/></symbol>
+<symbol id="ic-l-potted-plant" viewBox="0 -960 960 960"><path d="M342-80q-28 0-49-17t-28-44l-45-179h520l-45 179q-7 27-28 44t-49 17H342Zm138-560q0-100 70-170t170-70q0 90-57 156t-143 80v84h320v120q0 33-23.5 56.5T760-360H200q-33 0-56.5-23.5T120-440v-120h320v-84q-86-14-143-80t-57-156q100 0 170 70t70 170Z"/></symbol>
+<symbol id="ic-l-holiday-village" viewBox="0 -960 960 960"><path d="M80-160v-400l240-240 240 240v400H360v-200h-80v200H80Zm200-280h80v-80h-80v80Zm360 280v-433L433-800h113l174 174v466h-80Zm160 0v-499L659-800h113l108 108v532h-80Z"/></symbol>
+<symbol id="ic-l-villa" viewBox="0 -960 960 960"><path d="M360-120v-360h320q0-33 23.5-56.5T760-560q33 0 56.5 23.5T840-480v360H640v-200h-80v200H360Zm-240 0v-520l520-200v280H280v440H120Z"/></symbol>
+<symbol id="ic-l-apartment" viewBox="0 -960 960 960"><path d="M120-120v-560h160v-160h400v320h160v400H520v-160h-80v160H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z"/></symbol>
+<symbol id="ic-l-bungalow" viewBox="0 -960 960 960"><path d="M280-120v-248l-44 70-68-42 312-500 312 500-68 42-44-70v248H520v-200h-80v200H280Zm160-280h80v-80h-80v80Z"/></symbol>
+<symbol id="ic-l-room" viewBox="0 -960 960 960"><path d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-80Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Z"/></symbol>
+<symbol id="ic-l-factory" viewBox="0 -960 960 960"><path d="M80-80v-481l280-119v80l200-80v120h320v480H80Zm360-160h80v-160h-80v160Zm-160 0h80v-160h-80v160Zm320 0h80v-160h-80v160Zm272-380H687l34-260h119l32 260Z"/></symbol>
+<symbol id="ic-l-temple-buddhist" viewBox="0 -960 960 960"><path d="m330-720 150-200 150 200H330Zm-90 160v-46q-52-13-86-55t-34-98h80q0 32 23.5 55.5T279-680h402q32 0 55.5-23.5T760-759h80q0 56-34 98t-86 55v46H240ZM160-80v-366q-52-13-86-55t-34-98h80q0 32 23.5 55.5T199-520h562q32 0 55.5-23.5T840-599h80q0 56-34 98t-86 55v366H520v-160q0-17-11.5-28.5T480-280q-17 0-28.5 11.5T440-240v160H160Z"/></symbol>
+<symbol id="ic-l-temple-hindu" viewBox="0 -960 960 960"><path d="m312-680 47-155v-85h80v80h81v-80h80v80l48 160H312ZM80-80v-440h80v80h640v-80h80v440H520v-200h-80v200H80Zm184-440 24-80h384l24 80H264Z"/></symbol>
+<symbol id="ic-l-garage-door-open" viewBox="0 -960 960 960"><path d="M320-460h320v-60H320v60Zm160-180q17 0 28.5-11.5T520-680q0-17-11.5-28.5T480-720q-17 0-28.5 11.5T440-680q0 17 11.5 28.5T480-640ZM160-160v-400H39l441-320 440 320H800v400H640v-240H320v240H160Z"/></symbol>
+<symbol id="ic-l-local-library" viewBox="0 -960 960 960"><path d="M480-60q-72-68-165-104t-195-36v-440q101 0 194 36.5T480-498q73-69 166-105.5T840-640v440q-103 0-195.5 36T480-60ZM367-647q-47-47-47-113t47-113q47-47 113-47t113 47q47 47 47 113t-47 113q-47 47-113 47t-113-47Z"/></symbol>
+<symbol id="ic-l-store" viewBox="0 -960 960 960"><path d="M160-720v-80h640v80H160Zm0 560v-240h-40v-80l40-200h640l40 200v80h-40v240h-80v-240H560v240H160Zm80-80h240v-160H240v160Z"/></symbol>
+<symbol id="ic-l-local-mall" viewBox="0 -960 960 960"><path d="M200-80q-33 0-56.5-23.5T120-160v-480q0-33 23.5-56.5T200-720h80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720h80q33 0 56.5 23.5T840-640v480q0 33-23.5 56.5T760-80H200Zm421.5-378.5Q680-517 680-600h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85h-80q0 83 58.5 141.5T480-400q83 0 141.5-58.5ZM360-720h240q0-50-35-85t-85-35q-50 0-85 35t-35 85Z"/></symbol>
+<symbol id="ic-l-home" viewBox="0 -960 960 960"><path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z"/></symbol>
+<symbol id="ic-w-swords" viewBox="0 -960 960 960"><path d="M762-96 645-212l-88 88-28-28q-23-23-23-57t23-57l169-169q23-23 57-23t57 23l28 28-88 88 116 117q12 12 12 28t-12 28l-50 50q-12 12-28 12t-28-12Zm118-628L426-270l5 4q23 23 23 57t-23 57l-28 28-88-88L198-96q-12 12-28 12t-28-12l-50-50q-12-12-12-28t12-28l116-117-88-88 28-28q23-23 57-23t57 23l4 5 454-454h160v160ZM278-526 80-724v-160h160l198 198-160 160Z"/></symbol>
+<symbol id="ic-w-sword-rose" viewBox="0 -960 960 960"><path d="M644-484 484-644l236-236h160v160L644-484ZM142-92l-50-50q-12-12-12-28t12-28l116-117-88-88 28-28q23-23 57-23t57 23l4 5 48-48 160 160-48 48 5 4q23 23 23 57t-23 57l-28 28-88-88L198-92q-12 12-28 12t-28-12Zm737-44-56 56-466-464q-49 30-107 23.5T150-569l-25-25 27-28q26-27 63.5-26.5T279-622l78 78q9-5 17-11.5t16-14.5q7-7 13-15t11-16l-78-78q-51-50-121-50T96-678l-27 27-29-29 240-239 110 110q43 43 48.5 101T414-601l289 289q-8-26-10-54t3-56q6-30 20.5-56t34-48.5q19.5-22.5 44.5-41t52-32.5q39 48 60 105t9 117q-11 51-42.5 91T797-218l82 82Z"/></symbol>
+<symbol id="ic-w-syringe" viewBox="0 -960 960 960"><path d="M156-513q-11-12-11-28.5t11-28.5l112-112-43-43-12 12q-12 12-28.5 12T156-713q-11-12-11-28.5t11-27.5l80-80q12-12 28.5-12t28.5 12q12 11 12 28t-12 28l-12 12 43 43 112-112q12-12 28.5-12t28.5 12q12 12 12 28.5T493-793l-27 26 62 62-113 112q-11 12-11 28.5t11 28.5q12 12 28.5 12t28.5-12l112-113 61 60-113 113q-12 12-12 28.5t12 28.5q11 11 27.5 10.5T588-420l112-113 61 61q23 23 23 56.5T761-359l-28 29 189 188H808L676-274l-28 29q-23 23-56.5 23T535-245L240-540l-27 27q-12 11-28.5 11T156-513Z"/></symbol>
+<symbol id="ic-w-trophy" viewBox="0 -960 960 960"><path d="M280-120v-80h160v-124q-49-11-87.5-41.5T296-442q-75-9-125.5-65.5T120-640v-40q0-33 23.5-56.5T200-760h80v-80h400v80h80q33 0 56.5 23.5T840-680v40q0 76-50.5 132.5T664-442q-18 46-56.5 76.5T520-324v124h160v80H280Zm0-408v-152h-80v40q0 38 22 68.5t58 43.5Zm400 0q36-13 58-43.5t22-68.5v-40h-80v152Z"/></symbol>
+<symbol id="ic-w-poker-chip" viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-83v-40q-35-5-67.5-19T312-256l-28 29q33 26 72.5 42.5T440-163Zm80 0q44-5 83.5-21.5T676-227l-28-29q-28 20-60.5 34T520-203v40Zm-40-117q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm253-4q26-33 42.5-72.5T797-440h-40q-5 35-19 67.5T704-312l29 28Zm-506 0 29-29q-20-28-34-60t-19-67h-40q5 44 21.5 83.5T227-284Zm253-36L360-480l120-160 120 160-120 160ZM163-520h40q5-35 19-67t34-60l-29-29q-26 33-42.5 72.5T163-520Zm594 0h40q-5-44-22-83.5T732-676l-28 28q20 28 34 60.5t19 67.5ZM313-704q28-20 60-34t67-19v-40q-44 5-83.5 21.5T284-733l29 29Zm335 0 28-28q-33-26-72.5-43T520-797v40q35 5 67.5 19t60.5 34Z"/></symbol>
+<symbol id="ic-w-brick" viewBox="0 -960 960 960"><path d="M80-160v-480h120v-160h240v160h80v-160h240v160h120v480H80Z"/></symbol>
+<symbol id="ic-w-book" viewBox="0 -960 960 960"><path d="M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm200-440 100-60 100 60v-280H440v280Z"/></symbol>
+<symbol id="ic-w-content-cut" viewBox="0 -960 960 960"><path d="M760-120 480-400l-94 94q8 15 11 32t3 34q0 66-47 113T240-80q-66 0-113-47T80-240q0-66 47-113t113-47q17 0 34 3t32 11l94-94-94-94q-15 8-32 11t-34 3q-66 0-113-47T80-720q0-66 47-113t113-47q66 0 113 47t47 113q0 17-3 34t-11 32l494 494v40H760ZM600-520l-80-80 240-240h120v40L600-520ZM296.5-663.5Q320-687 320-720t-23.5-56.5Q273-800 240-800t-56.5 23.5Q160-753 160-720t23.5 56.5Q207-640 240-640t56.5-23.5ZM494-466q6-6 6-14t-6-14q-6-6-14-6t-14 6q-6 6-6 14t6 14q6 6 14 6t14-6ZM296.5-183.5Q320-207 320-240t-23.5-56.5Q273-320 240-320t-56.5 23.5Q160-273 160-240t23.5 56.5Q207-160 240-160t56.5-23.5Z"/></symbol>
+<symbol id="ic-w-floor-lamp" viewBox="0 -960 960 960"><path d="M440-200v-320H240q-20 0-32-16t-6-36l78-252q8-25 29-40.5t47-15.5h248q26 0 47 15.5t29 40.5l78 252q6 20-6 36t-32 16H520v320h-80ZM320-80v-80h320v80H320Z"/></symbol>
+<symbol id="ic-w-table-lamp" viewBox="0 -960 960 960"><path d="M520-120v-80h320v80H520Zm120-120v-400q0-17-11.5-28.5T600-680H440v120q0 17-11.5 28.5T400-520H160q-22 0-34-18t-3-38l95-216q10-22 29.5-35t43.5-13h69q33 0 56.5 23.5T440-760h160q50 0 85 35t35 85v400h-80Z"/></symbol>
+<symbol id="ic-w-candle" viewBox="0 -960 960 960"><path d="M400-673.5Q368-707 370-755q2-52 36.5-91.5T480-920q39 34 73.5 73.5T590-755q2 48-30 81.5T480-640q-48 0-80-33.5Zm431.5 385Q840-297 840-310t-8.5-21.5Q823-340 810-340t-21.5 8.5Q780-323 780-310t8.5 21.5Q797-280 810-280t21.5-8.5ZM720-80H240q-50 0-85-35t-35-85v-80h240v-240q0-33 23.5-56.5T440-600h80q33 0 56.5 23.5T600-520v240h104q-2-8-3-15t-1-15q0-46 32-78t78-32q46 0 78 32t32 78q0 38-22.5 67T840-204v4q0 50-35 85t-85 35Z"/></symbol>
+<symbol id="ic-w-key" viewBox="0 -960 960 960"><path d="M365-395q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35Zm-85 155q-100 0-170-70T40-480q0-100 70-170t170-70q81 0 141.5 46T506-560h335l79 79-140 160-100-79-80 80-80-80h-14q-25 72-87 116t-139 44Z"/></symbol>
+<symbol id="ic-w-push-pin" viewBox="0 -960 960 960"><path d="m640-480 80 80v80H520v240l-40 40-40-40v-240H240v-80l80-80v-280h-40v-80h400v80h-40v280Z"/></symbol>
+<symbol id="ic-w-compass-calibration" viewBox="0 -960 960 960"><path d="M338.5-138.5Q280-197 280-280t58.5-141.5Q397-480 480-480t141.5 58.5Q680-363 680-280t-58.5 141.5Q563-80 480-80t-141.5-58.5ZM280-474 80-674q80-80 183.5-123T480-840q113 0 216.5 43T880-674L680-474q-41-41-92-63.5T480-560q-57 0-108 22.5T280-474Z"/></symbol>
+<symbol id="ic-w-add-triangle" viewBox="0 -960 960 960"><path d="m40-160 440-760 440 760H40Zm400-140h80v-80h80v-80h-80v-80h-80v80h-80v80h80v80Z"/></symbol>
+<symbol id="ic-w-sports-golf" viewBox="0 -960 960 960"><path d="M281.5-401.5Q200-483 200-600t81.5-198.5Q363-880 480-880t198.5 81.5Q760-717 760-600t-81.5 198.5Q597-320 480-320t-198.5-81.5Zm147-210Q440-623 440-640t-11.5-28.5Q417-680 400-680t-28.5 11.5Q360-657 360-640t11.5 28.5Q383-600 400-600t28.5-11.5Zm160 0Q600-623 600-640t-11.5-28.5Q577-680 560-680t-28.5 11.5Q520-657 520-640t11.5 28.5Q543-600 560-600t28.5-11.5Zm-80-80Q520-703 520-720t-11.5-28.5Q497-760 480-760t-28.5 11.5Q440-737 440-720t11.5 28.5Q463-680 480-680t28.5-11.5ZM440-80v-40q0-33-23.5-56.5T360-200h-80v-80h400v80h-80q-33 0-56.5 23.5T520-120v40h-80Z"/></symbol>
+<symbol id="ic-w-kettle" viewBox="0 -960 960 960"><path d="M240-200v-520L120-880h600v120h80q33 0 56.5 23.5T880-680v200q0 33-23.5 56.5T800-400h-80v200H240Zm480-280h80v-200h-80v200ZM480-320h120v-440H480v440ZM120-80v-80h720v80H120Z"/></symbol>
+<symbol id="ic-w-fire-extinguisher" viewBox="0 -960 960 960"><path d="M279-320v-120h400v120H279Zm228.5-412.5Q519-744 519-761t-11.5-28.5Q496-801 479-801t-28.5 11.5Q439-778 439-761t11.5 28.5Q462-721 479-721t28.5-11.5ZM283-520q10-50 42.5-88.5T405-666q-11-8-19.5-18.5T371-708l-171-33v-40l171-33q15-30 43.5-49t64.5-19q23 0 44 9t37 23l160-31v240l-160-31q-2 2-3.5 3t-3.5 3q47 19 79 57t43 89H283Zm76 440q-33 0-56.5-23.5T279-160v-80h400v80q0 33-23.5 56.5T599-80H359Z"/></symbol>
+<symbol id="ic-w-local-fire-department" viewBox="0 -960 960 960"><path d="M160-400q0-105 50-187t110-138q60-56 110-85.5l50-29.5v132q0 37 25 58.5t56 21.5q17 0 32.5-7t28.5-23l18-22q72 42 116 116.5T800-400q0 88-43 160.5T644-125q17-24 26.5-52.5T680-238q0-40-15-75.5T622-377L480-516 339-377q-29 29-44 64t-15 75q0 32 9.5 60.5T316-125q-70-42-113-114.5T160-400Zm320-4 85 83q17 17 26 38t9 45q0 49-35 83.5T480-120q-50 0-85-34.5T360-238q0-23 9-44.5t26-38.5l85-83Z"/></symbol>
+<symbol id="ic-w-bomb" viewBox="0 -960 960 960"><path d="M346-48q-125 0-212.5-88.5T46-350q0-125 86.5-211.5T344-648h13l27-47q12-22 36-28.5t46 6.5l30 17 5-8q23-43 72-56t92 12l35 20-40 69-35-20q-14-8-30.5-3.5T570-668l-5 8 40 23q21 12 27.5 36t-5.5 45l-27 48q23 36 34.5 76.5T646-348q0 125-87.5 212.5T346-48Zm454-560v-80h120v80H800ZM580-828v-120h80v120h-80Zm195 81-56-56 85-85 56 56-85 85Z"/></symbol>
+<symbol id="ic-w-electric-bolt" viewBox="0 -960 960 960"><path d="m280-80 160-300-320-40 480-460h80L520-580l320 40L360-80h-80Z"/></symbol>
+<symbol id="ic-w-build" viewBox="0 -960 960 960"><path d="M686-132 444-376q-20 8-40.5 12t-43.5 4q-100 0-170-70t-70-170q0-36 10-68.5t28-61.5l146 146 72-72-146-146q29-18 61.5-28t68.5-10q100 0 170 70t70 170q0 23-4 43.5T584-516l244 242q12 12 12 29t-12 29l-84 84q-12 12-29 12t-29-12Z"/></symbol>
+<symbol id="ic-w-construction" viewBox="0 -960 960 960"><path d="M756-120 537-339l84-84 219 219-84 84Zm-552 0-84-84 276-276-68-68-28 28-51-51v82l-28 28-121-121 28-28h82l-50-50 142-142q20-20 43-29t47-9q24 0 47 9t43 29l-92 92 50 50-28 28 68 68 90-90q-4-11-6.5-23t-2.5-24q0-59 40.5-99.5T701-841q15 0 28.5 3t27.5 9l-99 99 72 72 99-99q7 14 9.5 27.5T841-701q0 59-40.5 99.5T701-561q-12 0-24-2t-23-7L204-120Z"/></symbol>
+<symbol id="ic-w-handyman" viewBox="0 -960 960 960"><path d="M739-83.5q-7-2.5-13-8.5L522-296q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l85-85q6-6 13-8.5t15-2.5q8 0 15 2.5t13 8.5l204 204q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13l-85 85q-6 6-13 8.5T754-81q-8 0-15-2.5Zm-549.5.5q-7.5-3-13.5-9l-84-84q-6-6-9-13.5T80-205q0-8 3-15t9-13l212-212h85l34-34-165-165h-57L80-765l113-113 121 121v57l165 165 116-116-43-43 56-56H495l-28-28 142-142 28 28v113l56-56 142 142q17 17 26 38.5t9 45.5q0 24-9 46t-26 39l-85-85-56 56-42-42-207 207v84L233-92q-6 6-13 9t-15 3q-8 0-15.5-3Z"/></symbol>
+<symbol id="ic-w-plumbing" viewBox="0 -960 960 960"><path d="M771-593 630-734l-85 84-85-84 113-114q12-12 27-17.5t30-5.5q16 0 30.5 5.5T686-848l85 85q18 17 26.5 39.5T806-678q0 23-8.5 45T771-593ZM220-409q-18-18-18-42.5t18-42.5l98-99 85 85-99 99q-17 18-41.5 18T220-409Zm-43 297q-11-12-17-26.5t-6-30.5q0-16 5.5-30.5T177-226l283-282-127-128q-18-17-18-41.5t18-42.5q17-18 42-18t43 18l127 127 57-57 112 114q12 12 12 28t-12 28q-12 12-28 12t-28-12L290-112q-12 12-26.5 17.5T234-89q-15 0-30-6t-27-17Z"/></symbol>
+<symbol id="ic-w-carpenter" viewBox="0 -960 960 960"><path d="M619-108q-11 11-25.5 17T563-85q-16 0-31-6t-26-17l-56-56q-11-11-16.5-24.5T427-216q-1-14 3.5-28t13.5-26l6-8-326-466 156-156 509 509q11 11 17 25.5t6 30.5q0 16-6 31t-17 26L619-108Zm-56-57 169-169-56-57-170 170 57 56Z"/></symbol>
+<symbol id="ic-w-tools-power-drill" viewBox="0 -960 960 960"><path d="M270-560h180q12 0 21-9t9-21q0-12-9-21t-21-9H270q-12 0-21 9t-9 21q0 12 9 21t21 9Zm0-100h180q12 0 21-9t9-21q0-12-9-21t-21-9H270q-12 0-21 9t-9 21q0 12 9 21t21 9Zm410 140v-240h40q33 0 56.5 23.5T800-680h80q17 0 28.5 11.5T920-640q0 17-11.5 28.5T880-600h-80q0 33-23.5 56.5T720-520h-40ZM480-340H240v-100q-66 0-113-47T80-600v-80q0-66 47-113t113-47h320q33 0 56.5 23.5T640-760v240q0 33-23.5 56.5T560-440h-80v100ZM220-120q-25 0-42.5-17.5T160-180v-60q0-25 17.5-42.5T220-300h280q25 0 42.5 17.5T560-240v60q0 25-17.5 42.5T500-120H220Z"/></symbol>
+<symbol id="ic-w-medical-services" viewBox="0 -960 960 960"><path d="M160-80q-33 0-56.5-23.5T80-160v-480q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v480q0 33-23.5 56.5T800-80H160Zm240-640h160v-80H400v80Zm40 360v120h80v-120h120v-80H520v-120h-80v120H320v80h120Z"/></symbol>
+<symbol id="ic-w-thermometer" viewBox="0 -960 960 960"><path d="M480-120q-83 0-141.5-58.5T280-320q0-48 21-89.5t59-70.5v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q38 29 59 70.5t21 89.5q0 83-58.5 141.5T480-120Zm-40-440h80v-160q0-17-11.5-28.5T480-760q-17 0-28.5 11.5T440-720v160Z"/></symbol>
+<symbol id="ic-w-stethoscope" viewBox="0 -960 960 960"><path d="M540-80q-108 0-184-76t-76-184v-23q-86-14-143-80.5T80-600v-240h120v-40h80v160h-80v-40h-40v160q0 66 47 113t113 47q66 0 113-47t47-113v-160h-40v40h-80v-160h80v40h120v240q0 90-57 156.5T360-363v23q0 75 52.5 127.5T540-160q75 0 127.5-52.5T720-340v-67q-35-12-57.5-43T640-520q0-50 35-85t85-35q50 0 85 35t35 85q0 39-22.5 70T800-407v67q0 108-76 184T540-80Z"/></symbol>
+<symbol id="ic-w-science" viewBox="0 -960 960 960"><path d="M200-120q-51 0-72.5-45.5T138-250l222-270v-240h-40q-17 0-28.5-11.5T280-800q0-17 11.5-28.5T320-840h320q17 0 28.5 11.5T680-800q0 17-11.5 28.5T640-760h-40v240l222 270q32 39 10.5 84.5T760-120H200Z"/></symbol>
+<symbol id="ic-w-biotech" viewBox="0 -960 960 960"><path d="M200-120v-80h200v-80q-83 0-141.5-58.5T200-480q0-57 29-105t80-73q-4 22 1.5 43t17.5 40q-23 16-35.5 41T280-480q0 50 35 85t85 35h320v80H520v80h240v80H200Zm360-356-12-38-38 14-20-53q20-16 31-38.5t11-48.5q0-47-33-79.5T418-752l-18-50 38-14-14-36 76-28 12 38 38-14 110 300-38 14 14 38-76 28ZM369-589q-21-21-21-51t21-51q21-21 51-21t51 21q21 21 21 51t-21 51q-21 21-51 21t-51-21Z"/></symbol>
+<symbol id="ic-w-warning" viewBox="0 -960 960 960"><path d="m40-120 440-760 440 760H40Zm468.5-131.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Z"/></symbol>
+<symbol id="ic-w-dangerous" viewBox="0 -960 960 960"><path d="M330-120 120-330v-300l210-210h300l210 210v300L630-120H330Zm36-190 114-114 114 114 56-56-114-114 114-114-56-56-114 114-114-114-56 56 114 114-114 114 56 56Z"/></symbol>
+<symbol id="ic-w-flash-on" viewBox="0 -960 960 960"><path d="M400-80v-320H280v-480h400l-80 280h160L400-80Z"/></symbol>
+<symbol id="ic-w-propane" viewBox="0 -960 960 960"><path d="M400-720h160v-40H400v40ZM280-120v-120q-100 0-170-70T40-480q0-100 70-170t170-70h40v-40q0-33 23.5-56.5T400-840h160q33 0 56.5 23.5T640-760v40h40q100 0 170 70t70 170q0 100-70 170t-170 70v120h-80v-120H360v120h-80Z"/></symbol>
+<symbol id="ic-w-sports-martial-arts" viewBox="0 -960 960 960"><path d="m400-80-20-360-127-73-14 52 81 141-69 40-99-170 48-172 230-132-110-110 56-56 184 183-144 83 48 42 328-268 48 56-340 344-20 400h-80ZM200-680q-33 0-56.5-23.5T120-760q0-33 23.5-56.5T200-840q33 0 56.5 23.5T280-760q0 33-23.5 56.5T200-680Z"/></symbol>
+<symbol id="ic-w-fitness-center" viewBox="0 -960 960 960"><path d="m536-84-56-56 142-142-340-340-142 142-56-56 56-58-56-56 84-84-56-58 56-56 58 56 84-84 56 56 58-56 56 56-142 142 340 340 142-142 56 56-56 58 56 56-84 84 56 58-56 56-58-56-84 84-56-56-58 56Z"/></symbol>
+<symbol id="ic-w-water-bottle" viewBox="0 -960 960 960"><path d="M393-80q-31 0-54-20.5T313-152l-31-346q-1-10 3.5-18.5T299-530q8-5 14-12t6-17q0-9-4-16.5T303-588q-10-5-15-15.5t-2-21.5l26-105q3-14 14-22t25-8h109v-40h-60v-80h200v80h-60v40h109q14 0 24.5 8t13.5 22l27 105q3 11-2 21.5T697-588q-8 4-12.5 11t-4.5 16q0 11 5.5 18.5T700-530q9 5 14 13.5t4 18.5l-31 345q-3 31-26 52t-54 21H393Z"/></symbol>
+<symbol id="ic-w-blender" viewBox="0 -960 960 960"><path d="M320-80q-33 0-56.5-23.5T240-160v-40q0-47 20.5-87t53.5-67l-25-166h-89q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h200v-40h160v40h159l-73 486q33 27 53.5 67t20.5 87v40q0 33-23.5 56.5T640-80H320Zm-43-520-24-160h-53v160h77Zm231.5 388.5Q520-223 520-240t-11.5-28.5Q497-280 480-280t-28.5 11.5Q440-257 440-240t11.5 28.5Q463-200 480-200t28.5-11.5ZM388-400h184l54-360H334l54 360Z"/></symbol>
+<symbol id="ic-w-key-vertical" viewBox="0 -960 960 960"><path d="M565-595q35-35 35-85t-35-85q-35-35-85-35t-85 35q-35 35-35 85t35 85q35 35 85 35t85-35ZM482-40 320-200l80-80-80-80 80-80v-14q-72-25-116-87t-44-139q0-100 70-170t170-70q100 0 170 70t70 170q0 81-46 141.5T560-454v334l-78 80Z"/></symbol>
+<symbol id="ic-w-vpn-key" viewBox="0 -960 960 960"><path d="M280-240q-100 0-170-70T40-480q0-100 70-170t170-70q81 0 141.5 45.5T506-560h414v160h-80v160H680v-160H506q-24 69-84.5 114.5T280-240Zm0-160q33 0 56.5-23.5T360-480q0-33-23.5-56.5T280-560q-33 0-56.5 23.5T200-480q0 33 23.5 56.5T280-400Z"/></symbol>
+<symbol id="ic-w-fire-hydrant" viewBox="0 -960 960 960"><path d="M160-80v-80h80v-120h-40q-33 0-56.5-23.5T120-360v-80q0-33 23.5-56.5T200-520h40v-120h-80v-80h94q25-70 86.5-115T480-880q78 0 139.5 45T706-720h94v80h-80v120h40q33 0 56.5 23.5T840-440v80q0 33-23.5 56.5T760-280h-40v120h80v80H160Zm419-221q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-141.5-56.5Q420-375 420-400t17.5-42.5Q455-460 480-460t42.5 17.5Q540-425 540-400t-17.5 42.5Q505-340 480-340t-42.5-17.5Z"/></symbol>
+<symbol id="ic-w-propane-tank" viewBox="0 -960 960 960"><path d="M160-440v-120q0-57 34-99t86-56v-85q0-33 23.5-56.5T360-880h240q33 0 56.5 23.5T680-800v85q52 14 86 56t34 99v120H160ZM320-80q-66 0-113-47t-47-113v-120h640v120q0 66-47 113T640-80H320Zm40-640h80q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720h80v-80H360v80Z"/></symbol>
+<symbol id="ic-w-local-gas-station" viewBox="0 -960 960 960"><path d="M160-120v-640q0-33 23.5-56.5T240-840h240q33 0 56.5 23.5T560-760v280h40q33 0 56.5 23.5T680-400v180q0 17 11.5 28.5T720-180q17 0 28.5-11.5T760-220v-288q-9 5-19 6.5t-21 1.5q-42 0-71-29t-29-71q0-32 17.5-57.5T684-694l-84-84 42-42 148 144q15 15 22.5 35t7.5 41v380q0 42-29 71t-71 29q-42 0-71-29t-29-71v-200h-60v300H160Zm80-440h240v-200H240v200Zm480 0q17 0 28.5-11.5T760-600q0-17-11.5-28.5T720-640q-17 0-28.5 11.5T680-600q0 17 11.5 28.5T720-560Z"/></symbol>
+<symbol id="ic-w-security-key" viewBox="0 -960 960 960"><path d="M400-40q-33 0-56.5-23.5T320-120v-120q-33 0-56.5-23.5T240-320v-520q0-33 23.5-56.5T320-920h320q33 0 56.5 23.5T720-840v520q0 33-23.5 56.5T640-240v120q0 33-23.5 56.5T560-40H400Zm80-420q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-80 340h160v-120H400v120Zm80-420q-17 0-28.5-11.5T440-580q0-17 11.5-28.5T480-620q17 0 28.5 11.5T520-580q0 17-11.5 28.5T480-540Z"/></symbol>
+<symbol id="ic-w-wall-lamp" viewBox="0 -960 960 960"><path d="M120-120v-240h80v240h-80Zm120-80v-80h200q17 0 28.5-11.5T480-320v-120H280q-20 0-32-15.5t-6-35.5l96-320q4-13 14-21t24-8h288q14 0 24 8t14 21l96 320q6 20-6 35.5T760-440H560v120q0 50-35 85t-85 35H240Z"/></symbol>
+<symbol id="ic-w-book-2" viewBox="0 -960 960 960"><path d="M300-80q-58 0-99-41t-41-99v-520q0-58 41-99t99-41h500v600q-25 0-42.5 17.5T740-220q0 25 17.5 42.5T800-160v80H300Zm20-280h80v-440h-80v440Zm-20 200h373q-6-14-9.5-28.5T660-220q0-16 3-31t10-29H300q-26 0-43 17.5T240-220q0 26 17 43t43 17Z"/></symbol>
+<symbol id="ic-w-book-3" viewBox="0 -960 960 960"><path d="M300-80q-59 0-99.5-40.5T160-220v-520q0-58 40.5-99t99.5-41h500v600q-26 0-43 17.5T740-220q0 26 17 43t43 17v80H300Zm49-360h49l25-71h113l25 71h49L504-720h-50L349-440Zm88-112 41-116h3l41 116h-85ZM300-160h373q-6-14-9.5-28.5T660-220q0-16 3-31t10-29H300q-26 0-43 17.5T240-220q0 26 17 43t43 17Z"/></symbol>
+<symbol id="ic-w-book-4" viewBox="0 -960 960 960"><path d="M280-320h80v-480h-80v480ZM240-80q-50 0-85-35t-35-85v-560q0-50 35-85t85-35h440v640H240q-17 0-28.5 11.5T200-200q0 17 11.5 28.5T240-160h520v-640h80v720H240Z"/></symbol>
+<symbol id="ic-w-book-5" viewBox="0 -960 960 960"><path d="M270-80q-45 0-77.5-30.5T160-186v-558q0-38 23.5-68t61.5-38l395-78v640l-379 76q-9 2-15 9.5t-6 16.5q0 11 9 18.5t21 7.5h450v-640h80v720H270Zm10-217 80-16v-478l-80 16v478Z"/></symbol>
+<symbol id="ic-w-book-6" viewBox="0 -960 960 960"><path d="M240-80q-50 0-85-35t-35-85v-560q0-50 35-85t85-35h440v640H240q-17 0-28.5 11.5T200-200q0 17 11.5 28.5T240-160h520v-640h80v720H240Zm30-340h48l26-72h113l25 72h48L425-700h-50L270-420Zm88-112 41-116h2l41 116h-84Z"/></symbol>
+<symbol id="ic-w-menu-book" viewBox="0 -960 960 960"><path d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454Zm-40 176q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q47-23 96.5-35.5T260-800q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 101.5 12.5T898-752q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59Z"/></symbol>
+<symbol id="ic-w-menu-book-2" viewBox="0 -960 960 960"><path d="M240-80q-33 0-56.5-23.5T160-160v-80h-40v-80h40v-120h-40v-80h40v-120h-40v-80h40v-80q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80H240Zm140-200h60v-160q26-7 43-28.5t17-48.5v-163h-40v151h-30v-151h-40v151h-30v-151h-40v163q0 27 17 48.5t43 28.5v160Zm220 0h60v-400q-50 0-85 35t-35 85v120h60v160Z"/></symbol>
 </defs>`;
 
 /** Renders once per page; every <Icon> below references it via <use>. */
@@ -139,130 +246,231 @@ export function IconSprite() {
 
 export const ICON_LIBRARY: Record<"s" | "l" | "w", [string, string][]> = {
   s: [
-    ["hood", "ผ้าคลุม"],
-    ["tophat", "หมวกทรงสูง"],
-    ["mustache", "หนวด"],
-    ["glasses", "แว่นตา"],
-    ["crown", "มงกุฎ"],
-    ["mask", "หน้ากาก"],
-    ["bowtie", "โบว์ไท"],
-    ["cap", "หมวกแก๊ป"],
-    ["skull", "กะโหลก"],
     ["person", "คนทั่วไป"],
-    ["monocle", "เลนส์ตาเดียว"],
-    ["pipe", "กล้องยาสูบ"],
-    ["beard", "เคราแพะ"],
-    ["wig", "วิกผมหยิก"],
-    ["eyepatch", "ผ้าปิดตา"],
-    ["earring", "ต่างหู"],
-    ["bandana", "ผ้าโพกหัว"],
-    ["bowler", "หมวกทรงโบว์เลอร์"],
-    ["necktie", "เนคไท"],
-    ["locket", "สร้อยจี้"],
-    ["fedora", "หมวกปีกกว้าง"],
-    ["veil", "ผ้าคลุมหน้า"],
-    ["turban", "ผ้าโพกศีรษะ"],
-    ["headband", "ผ้ารัดผม"],
-    ["ponytail", "ผมหางม้า"],
-    ["braid", "ผมเปีย"],
-    ["sideburns", "จอน"],
-    ["nosering", "ห่วงจมูก"],
-    ["cane", "ไม้เท้า"],
-    ["umbrella", "ร่ม"],
-    ["handbag", "กระเป๋าถือ"],
-    ["gloves", "ถุงมือ"],
-    ["scarf", "ผ้าพันคอ"],
-    ["brooch", "เข็มกลัด"],
-    ["pearls", "สร้อยไข่มุก"],
+    ["man", "ผู้ชาย"],
+    ["woman", "ผู้หญิง"],
+    ["boy", "เด็กชาย"],
+    ["girl", "เด็กหญิง"],
+    ["elderly", "ชายสูงอายุ"],
+    ["elderly-woman", "หญิงสูงอายุ"],
+    ["face", "ใบหน้า"],
+    ["face-2", "ใบหน้าทรงรี"],
+    ["face-3", "ใบหน้าเหลี่ยม"],
+    ["crown", "มงกุฎ"],
+    ["domino-mask", "หน้ากากโดมิโน"],
+    ["comedy-mask", "หน้ากากละคร"],
+    ["medical-mask", "หน้ากากอนามัย"],
+    ["skull", "กะโหลก"],
+    ["eyeglasses", "แว่นตา"],
+    ["eyeglasses-2", "แว่นกรอบหนา"],
+    ["eyeglasses-3", "แว่นกันแดด"],
+    ["jewelry", "เครื่องประดับ"],
+    ["diamond", "เพชร"],
     ["watch", "นาฬิกาข้อมือ"],
-    ["bald", "หัวล้าน"],
-    ["beret", "หมวกเบเร่ต์"],
-    ["balaclava", "หมวกไหมพรมคลุมหน้า"],
-    ["bunhair", "ผมเกล้ามวย"],
+    ["umbrella", "ร่ม"],
+    ["checkroom", "แขวนเสื้อ"],
+    ["apparel", "เสื้อผ้า"],
+    ["footprint", "รอยเท้า"],
+    ["identity-platform", "บัตรประจำตัว"],
+    ["eyebrow", "คิ้ว"],
+    ["lips", "ริมฝีปาก"],
+    ["mystery", "ปริศนา"],
+    ["gavel", "ค้อนตุลาการ"],
+    ["siren", "ไซเรน"],
+    ["handshake", "จับมือ"],
+    ["folded-hands", "พนมมือ"],
+    ["waving-hand", "โบกมือ"],
+    ["thumb-up", "ยกนิ้วโป้ง"],
+    ["mood", "สีหน้ายิ้ม"],
+    ["sentiment-dissatisfied", "สีหน้าไม่พอใจ"],
+    ["sentiment-stressed", "สีหน้าเครียด"],
+    ["chess-king", "หมากรุกราชา"],
+    ["chess-queen", "หมากรุกราชินี"],
+    ["person-2", "คนทั่วไปแบบที่ 2"],
+    ["person-3", "คนทั่วไปแบบที่ 3"],
+    ["person-4", "คนทั่วไปแบบที่ 4"],
+    ["man-2", "ผู้ชายแบบที่ 2"],
+    ["man-3", "ผู้ชายแบบที่ 3"],
+    ["man-4", "ผู้ชายแบบที่ 4"],
+    ["woman-2", "ผู้หญิงแบบที่ 2"],
+    ["face-4", "ใบหน้าแบบที่ 4"],
+    ["face-5", "ใบหน้าแบบที่ 5"],
+    ["face-6", "ใบหน้าแบบที่ 6"],
+    ["face-down", "หน้าก้มลง"],
+    ["face-left", "หน้าหันซ้าย"],
+    ["face-right", "หน้าหันขวา"],
+    ["face-up", "หน้าเงยขึ้น"],
+    ["face-nod", "พยักหน้า"],
+    ["face-shake", "ส่ายหน้า"],
+    ["male", "สัญลักษณ์เพศชาย"],
+    ["female", "สัญลักษณ์เพศหญิง"],
+    ["agender", "ไม่ระบุเพศ"],
+    ["transgender", "เพศทางเลือก"],
+    ["chess", "หมากรุกทั้งกระดาน"],
+    ["chess-bishop", "หมากรุกบิชอป"],
+    ["chess-knight", "หมากรุกม้า"],
+    ["chess-pawn", "หมากรุกเบี้ย"],
+    ["chess-rook", "หมากรุกเรือ"],
+    ["diversity-1", "กลุ่มคนหลากหลาย 1"],
+    ["diversity-2", "กลุ่มคนหลากหลาย 2"],
+    ["diversity-3", "กลุ่มคนหลากหลาย 3"],
+    ["diversity-4", "กลุ่มคนหลากหลาย 4"],
+    ["family-group", "ครอบครัว"],
+    ["group", "กลุ่มคน"],
+    ["badge", "เข็มกลัด/บัตร"],
+    ["fingerprint", "ลายนิ้วมือ"],
+    ["wallet", "กระเป๋าสตางค์"],
+    ["perm-identity", "สัญลักษณ์บุคคล"],
+    ["local-police", "ตำรวจ"],
+    ["mood-bad", "สีหน้าแย่"],
+    ["mood-heart", "สีหน้าประทับใจ"],
+    ["sentiment-calm", "สีหน้าสงบ"],
+    ["sentiment-content", "สีหน้าพึงพอใจ"],
+    ["sentiment-excited", "สีหน้าตื่นเต้น"],
+    ["sentiment-extremely-dissatisfied", "สีหน้าไม่พอใจมาก"],
+    ["sentiment-frustrated", "สีหน้าหงุดหงิด"],
+    ["sentiment-neutral", "สีหน้าเฉยๆ"],
+    ["sentiment-sad", "สีหน้าเศร้า"],
+    ["sentiment-satisfied", "สีหน้าพอใจ"],
+    ["sentiment-satisfied-alt", "สีหน้าพอใจ (อีกแบบ)"],
+    ["sentiment-very-dissatisfied", "สีหน้าไม่พอใจมากที่สุด"],
+    ["sentiment-very-satisfied", "สีหน้าพอใจมากที่สุด"],
+    ["sentiment-worried", "สีหน้ากังวล"],
+    ["back-hand", "ยกมือห้าม"],
+    ["front-hand", "ยื่นมือ"],
+    ["person-raised-hand", "คนยกมือ"],
+    ["person-apron", "คนใส่ผ้ากันเปื้อน"],
+    ["person-celebrate", "คนดีใจ"],
+    ["person-heart", "คนกับหัวใจ"],
+    ["person-book", "คนอ่านหนังสือ"],
+    ["siren-check", "ไซเรนถูกต้อง"],
+    ["siren-open", "ไซเรนเปิด"],
+    ["siren-question", "ไซเรนสงสัย"],
+    ["thumb-down", "กดนิ้วโป้งลง"],
+    ["ear-sound", "หู"],
+    ["remove-red-eye", "ตา"],
+    ["shoe-cleats", "รองเท้าสตั๊ด"],
   ],
   l: [
     ["house", "บ้าน"],
-    ["toilet", "ห้องน้ำ"],
-    ["stage", "เวที"],
-    ["bed", "ห้องนอน"],
+    ["cottage", "กระท่อม"],
+    ["cabin", "กระท่อมไม้"],
+    ["castle", "ปราสาท"],
+    ["warehouse", "โกดัง"],
+    ["houseboat", "บ้านเรือ"],
+    ["bedroom-parent", "ห้องนอน"],
+    ["bedroom-child", "ห้องนอนเด็ก"],
     ["kitchen", "ห้องครัว"],
-    ["library", "ห้องสมุด"],
-    ["tree", "สวน"],
-    ["car", "รถ"],
-    ["stairs", "บันได"],
-    ["door", "ประตู"],
+    ["bathroom", "ห้องน้ำ"],
+    ["dining", "ห้องอาหาร"],
     ["garage", "โรงรถ"],
-    ["attic", "ห้องใต้หลังคา"],
-    ["basement", "ห้องใต้ดิน"],
+    ["deck", "ระเบียงไม้"],
     ["balcony", "ระเบียง"],
     ["pool", "สระว่ายน้ำ"],
-    ["study", "ห้องทำงาน"],
-    ["dining", "ห้องอาหาร"],
-    ["closet", "ตู้เสื้อผ้า"],
     ["elevator", "ลิฟต์"],
     ["gate", "ประตูรั้ว"],
-    ["greenhouse", "เรือนกระจก"],
-    ["observatory", "หอดูดาว"],
-    ["boathouse", "โรงเก็บเรือ"],
-    ["gazebo", "ศาลาในสวน"],
-    ["fountain", "น้ำพุ"],
-    ["hallway", "ทางเดิน"],
-    ["bathroom", "ห้องอาบน้ำ"],
     ["fireplace", "เตาผิง"],
-    ["ballroom", "ห้องเต้นรำ"],
-    ["conservatory", "เรือนกระจกพันธุ์ไม้"],
     ["laundry", "ห้องซักผ้า"],
-    ["terrace", "ระเบียงดาดฟ้า"],
-    ["shed", "โรงเก็บของ"],
-    ["barn", "โรงนา"],
-    ["chapel", "โบสถ์น้อย"],
-    ["maze", "เขาวงกต"],
+    ["church", "โบสถ์"],
+    ["stairs", "บันได"],
+    ["stairs-2", "บันไดเวียน"],
+    ["door-front", "ประตู"],
     ["dock", "ท่าเทียบเรือ"],
-    ["lighthouse", "ประภาคาร"],
-    ["windmill", "กังหันลม"],
-    ["stable", "คอกม้า"],
+    ["hallway", "ทางเดิน"],
+    ["library-books", "ห้องสมุด"],
+    ["meeting-room", "ห้องประชุม"],
+    ["sauna", "ห้องซาวน่า"],
+    ["spa", "สปา"],
+    ["theaters", "โรงละคร"],
+    ["room-service", "รูมเซอร์วิส"],
+    ["yard", "สนามหญ้า"],
+    ["outdoor-garden", "สวนกลางแจ้ง"],
+    ["museum", "พิพิธภัณฑ์"],
+    ["wine-bar", "บาร์ไวน์"],
+    ["school", "โรงเรียน"],
+    ["local-hospital", "โรงพยาบาล"],
+    ["hotel", "โรงแรม"],
+    ["stadium", "สนามกีฬา"],
+    ["storefront", "ร้านค้า"],
+    ["door-back", "ประตูหลัง"],
+    ["door-open", "ประตูเปิด"],
+    ["door-sliding", "ประตูบานเลื่อน"],
+    ["fence", "รั้ว"],
+    ["local-convenience-store", "ร้านสะดวกซื้อ"],
+    ["local-grocery-store", "ร้านขายของชำ"],
+    ["local-hotel", "เตียงในโรงแรม"],
+    ["local-post-office", "ที่ทำการไปรษณีย์"],
+    ["location-city", "ย่านเมือง"],
+    ["potted-plant", "ต้นไม้กระถาง"],
+    ["holiday-village", "หมู่บ้านตากอากาศ"],
+    ["villa", "วิลล่า"],
+    ["apartment", "อพาร์ตเมนต์"],
+    ["bungalow", "บังกะโล"],
+    ["room", "ห้อง"],
+    ["factory", "โรงงาน"],
+    ["temple-buddhist", "วัดพุทธ"],
+    ["temple-hindu", "เทวสถาน"],
+    ["garage-door-open", "โรงรถเปิดประตู"],
+    ["local-library", "หอสมุด"],
+    ["store", "ร้าน"],
+    ["local-mall", "ห้างสรรพสินค้า"],
+    ["home", "บ้านพัก"],
   ],
   w: [
-    ["printer", "เครื่องพิมพ์"],
-    ["triangle", "ไม้ฉาก"],
-    ["compass", "วงเวียน"],
-    ["knife", "มีด"],
-    ["key", "กุญแจ"],
-    ["hammer", "ค้อน"],
-    ["rope", "เชือก"],
-    ["scissors", "กรรไกร"],
-    ["candle", "เชิงเทียน"],
-    ["poison", "ขวดยาพิษ"],
-    ["gun", "ปืน"],
-    ["bat", "ไม้ตี"],
-    ["wrench", "ประแจ"],
-    ["axe", "ขวาน"],
-    ["dagger", "กริช"],
-    ["saw", "เลื่อย"],
+    ["swords", "ดาบ"],
+    ["sword-rose", "ดาบประดับดอกกุหลาบ"],
     ["syringe", "เข็มฉีดยา"],
-    ["bottle", "ขวดแก้ว"],
     ["trophy", "ถ้วยรางวัล"],
-    ["chain", "โซ่"],
-    ["crowbar", "ชะแลง"],
-    ["shovel", "พลั่ว"],
-    ["pickaxe", "อีเต้อ"],
-    ["spear", "หอก"],
-    ["slingshot", "หนังสติ๊ก"],
-    ["dumbbell", "ดัมเบล"],
-    ["anvil", "ทั่ง"],
-    ["poker", "เหล็กคุ้ยเตาไฟ"],
-    ["letteropener", "มีดเปิดจดหมาย"],
-    ["icepick", "เหล็กสกัดน้ำแข็ง"],
-    ["cleaver", "มีดสับ"],
-    ["sickle", "เคียว"],
-    ["nailgun", "ปืนตะปู"],
+    ["poker-chip", "ชิปโป๊กเกอร์"],
     ["brick", "อิฐ"],
-    ["book", "หนังสือเล่มหนา"],
-    ["lamp", "โคมไฟตั้งโต๊ะ"],
-    ["golfclub", "ไม้กอล์ฟ"],
-    ["harpoon", "ฉมวก"],
-    ["crossbow", "หน้าไม้"],
+    ["book", "หนังสือ"],
+    ["content-cut", "กรรไกร"],
+    ["floor-lamp", "โคมไฟตั้งพื้น"],
+    ["table-lamp", "โคมไฟตั้งโต๊ะ"],
+    ["candle", "เทียน"],
+    ["key", "กุญแจ"],
+    ["push-pin", "เข็มหมุด"],
+    ["compass-calibration", "เข็มทิศ"],
+    ["add-triangle", "ไม้ฉากสามเหลี่ยม"],
+    ["sports-golf", "ไม้กอล์ฟ"],
     ["kettle", "กาต้มน้ำ"],
+    ["fire-extinguisher", "ถังดับเพลิง"],
+    ["local-fire-department", "เปลวไฟ"],
+    ["bomb", "ระเบิด"],
+    ["electric-bolt", "ไฟฟ้าช็อต"],
+    ["build", "ประแจ"],
+    ["construction", "เครื่องมือก่อสร้าง"],
+    ["handyman", "กล่องเครื่องมือช่าง"],
+    ["plumbing", "ประแจท่อ"],
+    ["carpenter", "เลื่อยช่างไม้"],
+    ["tools-power-drill", "สว่านไฟฟ้า"],
+    ["medical-services", "กระเป๋ายา"],
+    ["thermometer", "เทอร์โมมิเตอร์"],
+    ["stethoscope", "หูฟังแพทย์"],
+    ["science", "ขวดสารเคมี"],
+    ["biotech", "ชีวเคมี"],
+    ["warning", "ป้ายเตือนอันตราย"],
+    ["dangerous", "สัญลักษณ์อันตราย"],
+    ["flash-on", "สายฟ้า"],
+    ["propane", "ถังแก๊ส"],
+    ["sports-martial-arts", "ศิลปะป้องกันตัว"],
+    ["fitness-center", "ดัมเบล"],
+    ["water-bottle", "ขวดน้ำ"],
+    ["blender", "เครื่องปั่น"],
+    ["key-vertical", "กุญแจแนวตั้ง"],
+    ["vpn-key", "กุญแจ VPN"],
+    ["fire-hydrant", "หัวจ่ายน้ำดับเพลิง"],
+    ["propane-tank", "ถังโพรเพน"],
+    ["local-gas-station", "ปั๊มแก๊ส"],
+    ["security-key", "กุญแจรักษาความปลอดภัย"],
+    ["wall-lamp", "โคมไฟติดผนัง"],
+    ["book-2", "หนังสือแบบที่ 2"],
+    ["book-3", "หนังสือแบบที่ 3"],
+    ["book-4", "หนังสือแบบที่ 4"],
+    ["book-5", "หนังสือแบบที่ 5"],
+    ["book-6", "หนังสือแบบที่ 6"],
+    ["menu-book", "หนังสือเมนู"],
+    ["menu-book-2", "หนังสือเมนูเล่มหนา"],
   ],
 };
 
