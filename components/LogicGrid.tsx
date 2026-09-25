@@ -207,7 +207,7 @@ export default function LogicGrid() {
         hour: "2-digit",
         minute: "2-digit",
       });
-      const label = (s.cpLabel || "").trim() || "จุดที่ " + s.nextCp;
+      const label = (s.cpLabel || "").trim() || "สมมติฐานที่ N";
       const cp: Checkpoint = {
         id: "cp" + Date.now(),
         label,
@@ -597,7 +597,7 @@ export default function LogicGrid() {
                   maxLength={40}
                   value={state.cpLabel}
                   onChange={(e) => setState((s) => ({ ...s, cpLabel: e.target.value }))}
-                  placeholder={`จุดที่ ${state.nextCp}`}
+                  placeholder="สมมติฐานที่ N"
                   className={styles.cpLabelInput}
                 />
                 <button type="button" onClick={saveCp} className={styles.saveCpBtn}>
