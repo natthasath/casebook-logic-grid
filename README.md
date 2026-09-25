@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### 👉🏼 Demo
 
-- [logic-grid-deduction.vercel.app](https://logic-grid-deduction.vercel.app) — live production deployment (auto-deployed from `main` via Vercel's GitHub integration)
+- [casebook-logic-grid.vercel.app](https://casebook-logic-grid.vercel.app) — live production deployment
 
 ### ⚠️ Troubleshooting
 
