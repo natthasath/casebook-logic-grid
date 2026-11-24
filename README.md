@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### 👉🏼 Demo
 
-- [casebook-logic-grid.vercel.app](https://casebook-logic-grid.vercel.app) — live production deployment
+- [casebook-logic-grid.codeinsane.dev](https://casebook-logic-grid.codeinsane.dev) — live production deployment
 
 ### ⚠️ Troubleshooting
 
